@@ -1,0 +1,29 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "text": "Ông/bà có ho vài lần trong hầu hết các ngày?",
+      "key": "ho"
+    },
+    {
+      "id": 2,
+      "text": "Ông/bà có khạc đờm ở hầu hết các ngày?",
+      "key": "khac_dom"
+    },
+    {
+      "id": 3,
+      "text": "Ông/bà dễ bị khó thở hơn những người cùng tuổi?",
+      "key": "kho_tho"
+    },
+    {
+      "id": 4,
+      "text": "Ông/bà có trên 40 tuổi?",
+      "key": "tuoi_tren_40"
+    },
+    {
+      "id": 5,
+      "text": "Ông/bà vẫn còn hút thuốc lá hoặc đã từng hút thuốc lá?",
+      "key": "hut_thuoc"
+    }
+  ]
+}
