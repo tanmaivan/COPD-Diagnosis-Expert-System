@@ -1,4 +1,3 @@
-# filepath: /d:/COPD-Diagnosis-Expert-System/questionnaire_development.py
 import json
 from experta import *
 
@@ -31,7 +30,7 @@ def load_questions(filepath):
         data = json.load(file)
     return data["questions"]
 
-if __name__ == "__main__":
+def run_questionnaire_engine():
     questions = load_questions(r"luu_tru_tri_thuc\bang_cau_hoi")
     engine = COPDExpertSystem()
     engine.reset()
@@ -43,3 +42,6 @@ if __name__ == "__main__":
 
     engine.declare(PatientData(**patient_data))
     engine.run()
+
+if __name__ == "__main__":
+    run_questionnaire_engine()

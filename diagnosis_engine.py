@@ -10,7 +10,7 @@ class DiagnosisEngine(KnowledgeEngine):
         if FEV1_FVC < 70:
             self.declare(Fact(FEV1_FVC_status="abnormal"))
         else:
-            self.declare(Fact(FEV1_FVC_status="normal"))
+            self.declare(Fact(FEV1_FVC_status="abnormal"))
 
     @Rule(Fact(FEV1_FVC_status="normal"))
     def normal_diagnosis(self):
@@ -20,8 +20,8 @@ class DiagnosisEngine(KnowledgeEngine):
     def abnormal_diagnosis(self):
         print("Kết quả: Chỉ số FEV₁/FVC dưới 70%. Chẩn đoán: BPTNMT. Hãy tham khảo bác sĩ chuyên khoa.")
 
-if __name__ == "__main__":
-    # Tạo instance của hệ thống
+def run_diagnosis_engine():
+        # Tạo instance của hệ thống
     engine = DiagnosisEngine()
     
     # Khởi tạo hệ thống
@@ -38,3 +38,5 @@ if __name__ == "__main__":
         engine.run()
     except ValueError:
         print("Vui lòng nhập giá trị số hợp lệ.")
+if __name__ == "__main__":
+    run_diagnosis_engine()
