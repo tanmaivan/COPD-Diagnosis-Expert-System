@@ -43,5 +43,10 @@ def run_questionnaire_engine():
     engine.declare(PatientData(**patient_data))
     engine.run()
 
+    for fact in engine.facts.values():
+        if isinstance(fact, Fact) and fact.get("screening") == "positive":
+            return True
+    return False
+
 if __name__ == "__main__":
     run_questionnaire_engine()
