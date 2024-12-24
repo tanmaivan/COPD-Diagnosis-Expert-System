@@ -10,7 +10,7 @@ class DiagnosisEngine(KnowledgeEngine):
         if FEV1_FVC < 70:
             self.declare(Fact(FEV1_FVC_status="abnormal"))
         else:
-            self.declare(Fact(FEV1_FVC_status="abnormal"))
+            self.declare(Fact(FEV1_FVC_status="normal"))
 
     @Rule(Fact(FEV1_FVC_status="normal"))
     def normal_diagnosis(self):
