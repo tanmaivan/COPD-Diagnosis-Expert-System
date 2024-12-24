@@ -36,7 +36,13 @@ def run_diagnosis_engine():
         
         # Chạy hệ thống
         engine.run()
+
+        for fact in engine.facts.values():
+            if isinstance(fact, Fact) and fact.get("FEV1_FVC_status") == "abnormal":
+                return True
+            return False
     except ValueError:
         print("Vui lòng nhập giá trị số hợp lệ.")
+        
 if __name__ == "__main__":
     run_diagnosis_engine()
