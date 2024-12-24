@@ -1,0 +1,39 @@
+{
+  "general_treatment": [
+    "Ngừng tiếp xúc với khói thuốc lá, thuốc lào, bụi, khói bếp rơm, củi, than, khí độc...",
+    "Cai nghiện thuốc lá, thuốc lào",
+    "Tiêm vắc xin phòng nhiễm trùng đường hô hấp",
+    "Vệ sinh tai mũi họng thường xuyên",
+    "Giữ ấm cổ ngực về mùa lạnh",
+    "Phát hiện sớm và điều trị kịp thời các nhiễm trùng tai mũi họng, răng hàm mặt"
+  ],
+  "Nhóm A": [
+    "Thuốc giãn phế quản khi cần thiết để cải thiện triệu chứng.",
+    "Có thể lựa chọn thuốc giãn phế quản tác dụng ngắn hoặc dài.",
+    "Tiếp tục điều trị theo phác đồ hoặc thay đổi thuốc tùy vào phản ứng của bệnh nhân."
+  ],
+  "Nhóm B": {
+    "default": [
+      "Lựa chọn điều trị tối ưu là thuốc giãn phế quản tác dụng dài (LABA hoặc LAMA).",
+      "Lưu ý: Nếu có khó thở dai dẳng, có thể sử dụng phối hợp thuốc giãn phế quản LABA/LAMA.",
+      "Bệnh nhân nhóm B có thể có bệnh đồng mắc, cần đánh giá và điều trị toàn diện."
+    ],
+    "high_risk": [
+      "Khuyến nghị bắt đầu điều trị với phác đồ phối hợp thuốc giãn phế quản LABA/LAMA."
+    ]
+  },
+  "Nhóm C": [
+    "Khởi đầu điều trị với thuốc giãn phế quản tác dụng dài (LAMA).",
+    "Khuyến nghị sử dụng LAMA để giảm đợt cấp và cải thiện triệu chứng."
+  ],
+  "Nhóm D": {
+    "default": [
+      "Lựa chọn điều trị khởi đầu với thuốc LAMA.",
+      "Nếu bạch cầu ái toan máu ≥ 300 tế bào/µl hoặc bệnh nhân có tiền sử hen, có thể cân nhắc sử dụng ICS/LABA.",
+      "Cần chú ý, ICS có thể làm tăng nguy cơ viêm phổi, chỉ sử dụng khi lợi ích lớn hơn nguy cơ."
+    ],
+    "high_risk": [
+      "Khuyến nghị điều trị phối hợp thuốc giãn phế quản LABA/LAMA để giảm triệu chứng và phòng ngừa đợt cấp."
+    ]
+  }
+}

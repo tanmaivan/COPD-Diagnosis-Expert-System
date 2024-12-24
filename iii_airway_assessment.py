@@ -39,17 +39,14 @@ def run_airway_assessment():
     # Khởi tạo hệ thống
     engine.reset()
     
-    # Thu thập thông tin từ người dùng
-    try:
-        FEV1 = float(input("Nhập giá trị FEV₁ sau test hồi phục phế quản (%): "))
+
+    FEV1 = float(input("Nhập giá trị FEV₁ sau test hồi phục phế quản (%): "))
+
+    # Đưa dữ liệu vào hệ thống
+    engine.declare(LungFunctionData(FEV1=FEV1))
         
-        # Đưa dữ liệu vào hệ thống
-        engine.declare(LungFunctionData(FEV1=FEV1))
-        
-        # Chạy hệ thống
-        engine.run()
-    except ValueError:
-        print("Vui lòng nhập giá trị số hợp lệ.")
+    # Chạy hệ thống
+    engine.run()
 
 if __name__ == "__main__":
     run_airway_assessment()

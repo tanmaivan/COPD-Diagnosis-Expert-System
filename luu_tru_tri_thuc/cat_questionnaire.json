@@ -1,0 +1,29 @@
+{
+  "questions": [
+    { "id": 1, "text": "Tôi hoàn toàn không ho - Tôi ho thường xuyên" },
+    {
+      "id": 2,
+      "text": "Tôi không có chút đờm nào trong phổi - Trong phổi tôi có rất nhiều đờm"
+    },
+    {
+      "id": 3,
+      "text": "Tôi không có cảm giác nặng ngực - Tôi có cảm giác rất nặng ngực"
+    },
+    {
+      "id": 4,
+      "text": "Tôi không bị khó thở khi lên dốc hoặc lên một tầng lầu - Tôi rất khó thở khi lên dốc hoặc lên một tầng lầu"
+    },
+    {
+      "id": 5,
+      "text": "Tôi yên tâm ra khỏi nhà dù tôi có bệnh phổi - Tôi không yên tâm chút nào khi ra khỏi nhà vì tôi có bệnh phổi"
+    },
+    {
+      "id": 6,
+      "text": "Tôi ngủ ngon giấc - Tôi không ngủ ngon giấc vì tôi có bệnh phổi"
+    },
+    {
+      "id": 7,
+      "text": "Tôi cảm thấy rất khỏe - Tôi cảm thấy không còn chút sức lực nào"
+    }
+  ]
+}

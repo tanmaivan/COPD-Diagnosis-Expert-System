@@ -31,7 +31,7 @@ def load_questions(filepath):
     return data["questions"]
 
 def run_questionnaire_engine():
-    questions = load_questions(r"luu_tru_tri_thuc\bang_cau_hoi")
+    questions = load_questions(r"luu_tru_tri_thuc\gold_questionnaire.json")
     engine = COPDExpertSystem()
     engine.reset()
 

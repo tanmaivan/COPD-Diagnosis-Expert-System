@@ -1,0 +1,21 @@
+{
+  "questions": [
+    { "id": 0, "text": "Khó thở khi gắng sức mạnh." },
+    {
+      "id": 1,
+      "text": "Khó thở khi đi vội trên đường bằng hoặc đi lên dốc nhẹ."
+    },
+    {
+      "id": 2,
+      "text": "Đi bộ chậm hơn người cùng tuổi vì khó thở hoặc phải dừng lại để thở."
+    },
+    {
+      "id": 3,
+      "text": "Phải dừng lại để thở khi đi bộ khoảng 100m trên đường bằng."
+    },
+    {
+      "id": 4,
+      "text": "Khó thở nhiều đến mức không thể ra khỏi nhà hoặc ngay cả khi thay quần áo."
+    }
+  ]
+}
