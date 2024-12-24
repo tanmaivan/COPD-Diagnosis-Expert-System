@@ -21,28 +21,30 @@ class ExacerbationAntibioticsExpert(KnowledgeEngine):
     def stage_1_proceed(self):
         print("Có đủ triệu chứng chính. Chuyển sang giai đoạn 2.")
 
-    @Rule(Patient(risk_fev1_lt_50=False, risk_exacerbations_lt_2=False, risk_hospitalization_3m=False,
+    @Rule(Patient(fev1=MATCH.fev1, exacerbations=MATCH.exacerbations, hospitalization=False,
                   risk_oxygen_home=False, risk_comorbidities=False))
-    def stage_2_low_risk(self):
-        self.result = "Tùy thuộc đặc điểm bệnh nhân, chọn 1 trong các kháng sinh sau:\n- Macrolide\n- Cephalosporin thế hệ 2 hoặc 3"
-        print(self.result)
+    def stage_2_low_risk(self, fev1, exacerbations):
+        if fev1 >= 50 and exacerbations < 2:
+            self.result = "Tùy thuộc đặc điểm bệnh nhân, chọn 1 trong các kháng sinh sau:\n- Macrolide\n- Cephalosporin thế hệ 2 hoặc 3"
+            print(self.result)
 
-    @Rule(Patient(risk_fev1_lt_50=True) | Patient(risk_exacerbations_lt_2=False) |
-          Patient(risk_hospitalization_3m=True) | Patient(risk_oxygen_home=True) |
+    @Rule(Patient(fev1=MATCH.fev1, exacerbations=MATCH.exacerbations) & 
+          Patient(hospitalization=True) | Patient(risk_oxygen_home=True) |
           Patient(risk_comorbidities=True))
-    def stage_2_high_risk(self):
-        print("Có yếu tố nguy cơ kết cục xấu. Chuyển sang giai đoạn 3.")
+    def stage_2_high_risk(self, fev1, exacerbations):
+        if fev1 < 50 or exacerbations >= 2:
+            self.result = "Có yếu tố nguy cơ kết cục xấu. Chuyển sang giai đoạn 3."
+            print(self.result)
 
     @Rule(Patient(risk_pseudomonas=True))
     def stage_3_pseudomonas(self):
-        self.result = "Điều trị bằng ciprofloxacine và cấy đờm làm kháng sinh đồ."
+        self.result = "Điều trị bằng ciprofloxacine và cấy đờm làm kháng sinh."
         print(self.result)
 
     @Rule(Patient(risk_pseudomonas=False))
     def stage_3_proceed(self):
         print("Không có nguy cơ nhiễm Pseudomonas. Chuyển sang giai đoạn 4.")
 
-class ExacerbationAntibioticsExpert(KnowledgeEngine):
     @Rule(Patient(fev1=MATCH.fev1, gian_phe_quan=MATCH.gian_phe_quan, dung_khang_sinh_pho_rong=MATCH.dung_khang_sinh_pho_rong))
     def stage_4(self, fev1, gian_phe_quan, dung_khang_sinh_pho_rong):
         if fev1 < 30 or gian_phe_quan or dung_khang_sinh_pho_rong:
@@ -70,14 +72,14 @@ def main():
 
     # Giai đoạn 2: Nhập yếu tố nguy cơ
     print("\nNhập các yếu tố nguy cơ:")
-    risk_fev1_lt_50 = input("FEV1 < 50% (True/False): ").lower() == "true"
-    risk_exacerbations_lt_2 = input(">=2 đợt cấp BPTNMT trong 12 tháng qua (True/False): ").lower() == "true"
-    risk_hospitalization_3m = input("Nhập viện vì đợt cấp BPTNMT trong 3 tháng qua (True/False): ").lower() == "true"
+    fev1 = int(input("FEV1: "))
+    exacerbations = int((input("Số đợt cấp BPTNMT trong 12 tháng qua: ")) or 0)
+    hospitalization = input("Nhập viện vì đợt cấp BPTNMT trong 3 tháng qua (True/False): ").lower() == "true"
     risk_oxygen_home = input("Đang dùng liệu pháp oxy dài hạn tại nhà (True/False): ").lower() == "true"
     risk_comorbidities = input("Có bệnh đồng mắc (True/False): ").lower() == "true"
 
-    engine.declare(Patient(risk_fev1_lt_50=risk_fev1_lt_50, risk_exacerbations_lt_2=risk_exacerbations_lt_2,
-                           risk_hospitalization_3m=risk_hospitalization_3m, risk_oxygen_home=risk_oxygen_home,
+    engine.declare(Patient(fev1=fev1, exacerbations=exacerbations,
+                           hospitalization=hospitalization, risk_oxygen_home=risk_oxygen_home,
                            risk_comorbidities=risk_comorbidities))
     engine.run()
 
@@ -96,9 +98,13 @@ def main():
 
     # Giai đoạn 4: Kiểm tra yếu tố nguy cơ khác gây nhiễm Pseudomonas
     print("\nKiểm tra yếu tố nguy cơ khác:")
-    risk_pseudomonas_other = input("Có yếu tố nguy cơ khác gây nhiễm Pseudomonas (True/False): ").lower() == "true"
+    
+    # Nhập gian_phe_quan hoặc dung_khang_sinh_pho_rong
+    gian_phe_quan = input("Giãn phế quang trên X-quang hoặc CT ngực (True/False): ").lower() == "true"
+    dung_khang_sinh_pho_rong = input("Có dùng kháng sinh phổ rộng (True/False): ").lower() == "true"
 
-    engine.declare(Patient(risk_pseudomonas_other=risk_pseudomonas_other))
+    # Khai báo các yếu tố nguy cơ khác
+    engine.declare(Patient(fev1=fev1,gian_phe_quan=gian_phe_quan, dung_khang_sinh_pho_rong=dung_khang_sinh_pho_rong))
     engine.run()
 
 if __name__ == "__main__":
