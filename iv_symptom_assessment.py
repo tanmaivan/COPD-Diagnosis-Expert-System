@@ -176,7 +176,7 @@ def run_symptom_assessment():
 
     engine.run()
 
-    view_treatment = input("Bạn có muốn xem cách điều trị không? (Có/Không): ")
+    view_treatment = input("Bạn có muốn xem cách điều trị ban đầu không? (Có/Không): ")
     if view_treatment == "Có":
         group_fact = engine.facts[2] 
         group = group_fact["group"]
