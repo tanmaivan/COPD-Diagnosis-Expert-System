@@ -5,7 +5,7 @@ class Patient(Fact):
     """Thông tin bệnh nhân"""
     pass
 
-class ExacerbationAntibioticsExpert(KnowledgeEngine):
+class EmpiricalAntibioticSelectionOutpatient(KnowledgeEngine):
     def __init__(self):
         super().__init__()
         self.result = ""
@@ -55,7 +55,7 @@ class ExacerbationAntibioticsExpert(KnowledgeEngine):
 
 # Hệ thống thực thi
 def main():
-    engine = ExacerbationAntibioticsExpert()
+    engine = EmpiricalAntibioticSelectionOutpatient()
     engine.reset()
 
     # Giai đoạn 1: Nhập triệu chứng chính
