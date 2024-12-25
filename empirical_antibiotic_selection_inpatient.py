@@ -28,6 +28,7 @@ class EmpiricalAntibioticSelectionInpatient(KnowledgeEngine):
     @Rule(Patient(risk_pseudomonas=False))
     def stage_2_no_pseudomonas(self):
         self.result = "Nhuộm Gram và cấy đờm làm kháng sinh đồ, chọn kháng sinh theo kinh nghiệm dựa vào đặc điểm bệnh nhân, tính nhạy cảm kháng sinh tại địa phương, tiền sử dùng kháng sinh:\n-	Một fluoroquinolone hô hấp (levofloxacin hoặc moxifloxacin) HOẶC\n-	Một cephalosporin thế hệ 3 (ceftriaxone hoặc cefotaxime)\n"
+        print(self.result)
 
 def main():
     engine = EmpiricalAntibioticSelectionInpatient()
