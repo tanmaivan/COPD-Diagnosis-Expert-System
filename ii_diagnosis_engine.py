@@ -5,44 +5,39 @@ class LungFunctionData(Fact):
     pass
 
 class DiagnosisEngine(KnowledgeEngine):
-    @Rule(LungFunctionData(FEV1_FVC=MATCH.FEV1_FVC))
-    def check_FEV1_FVC(self, FEV1_FVC):
-        if FEV1_FVC < 70:
-            self.declare(Fact(FEV1_FVC_status="abnormal"))
+    @Rule(LungFunctionData(fev1_fvc=MATCH.fev1_fvc))
+    def check_fev1_fvc(self, fev1_fvc):
+        if fev1_fvc < 70:
+            self.declare(LungFunctionData(copd=True))
         else:
-            self.declare(Fact(FEV1_FVC_status="normal"))
+            self.declare(LungFunctionData(copd=False))
 
-    @Rule(Fact(FEV1_FVC_status="normal"))
+    @Rule(LungFunctionData(copd=False))
     def normal_diagnosis(self):
         print("Kết quả: Chỉ số FEV₁/FVC bình thường. Không mắc BPTNMT.")
         
-    @Rule(Fact(FEV1_FVC_status="abnormal"))
+    @Rule(LungFunctionData(copd=True))
     def abnormal_diagnosis(self):
         print("Kết quả: Chỉ số FEV₁/FVC dưới 70%. Chẩn đoán: BPTNMT.")
 
 def run_diagnosis_engine():
-        # Tạo instance của hệ thống
     engine = DiagnosisEngine()
     
-    # Khởi tạo hệ thống
     engine.reset()
     
     while True:
-        # Thu thập thông tin từ người dùng
         try:
-            FEV1_FVC = float(input("Nhập chỉ số FEV₁/FVC (%): "))
+            fev1_fvc = float(input("Nhập chỉ số FEV₁/FVC (%): "))
             break
         except ValueError:
             print("Vui lòng nhập giá trị số hợp lệ.")
 
-    # Đưa dữ liệu vào hệ thống
-    engine.declare(LungFunctionData(FEV1_FVC=FEV1_FVC))
+    engine.declare(LungFunctionData(fev1_fvc=fev1_fvc))
         
-    # Chạy hệ thống
     engine.run()
 
     for fact in engine.facts.values():
-        if isinstance(fact, Fact) and fact.get("FEV1_FVC_status") == "abnormal":
+        if isinstance(fact, Fact) and fact.get("fev1_fvc_status") == "abnormal":
             return True
     return False
         

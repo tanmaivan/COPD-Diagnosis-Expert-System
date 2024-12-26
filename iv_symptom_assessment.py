@@ -1,7 +1,7 @@
 from experta import *
 import json
 
-class PatientData(Fact):
+class SymptomAssessmentData(Fact):
     """
     Fact lưu trữ thông tin đánh giá triệu chứng và nguy cơ.
     Các thuộc tính:
@@ -14,13 +14,11 @@ class PatientData(Fact):
     pass
 
 class SymptomAssessment(KnowledgeEngine):
-    @Rule(PatientData(mMRC=MATCH.mMRC, CAT=MATCH.CAT, exacerbations=MATCH.exacerbations, hospitalizations=MATCH.hospitalizations))
+    @Rule(SymptomAssessmentData(mMRC=MATCH.mMRC, CAT=MATCH.CAT, exacerbations=MATCH.exacerbations, hospitalizations=MATCH.hospitalizations))
     def assess_abcd_group(self, mMRC, CAT, exacerbations, hospitalizations):
-        # Phân nhóm nguy cơ đợt cấp
         high_risk = exacerbations >= 2 or hospitalizations >= 1
         low_risk = not high_risk
 
-        # Phân loại triệu chứng
         many_symptoms = mMRC >= 2 or CAT >= 10
         few_symptoms = not many_symptoms
 
@@ -36,9 +34,9 @@ class SymptomAssessment(KnowledgeEngine):
         else:
             group = "Không xác định"
         
-        self.declare(PatientData(group=group, mMRC=mMRC, CAT=CAT, exacerbations=exacerbations, hospitalizations=hospitalizations))
+        self.declare(SymptomAssessmentData(group=group, mMRC=mMRC, CAT=CAT, exacerbations=exacerbations, hospitalizations=hospitalizations))
 
-    @Rule(PatientData(group=MATCH.group))
+    @Rule(SymptomAssessmentData(group=MATCH.group))
     def print_group(self, group):
         print(f"Kết quả: Bệnh nhân thuộc {group}.")
 
@@ -64,7 +62,6 @@ def get_mMRC_score():
         except ValueError:
             print("Vui lòng nhập một số hợp lệ.")
 
-# Bộ câu hỏi CAT
 def get_CAT_score():
     data = load_json(r"luu_tru_tri_thuc\cat_questionnaire.json")
     questions = data["questions"]
@@ -102,7 +99,7 @@ class TreatmentPlan(KnowledgeEngine):
         super().__init__()
         self.treatment_recommendations = load_json(r"luu_tru_tri_thuc\treatment_recommendations.json")
 
-    @Rule(PatientData(group=MATCH.group, CAT=MATCH.CAT, mMRC=MATCH.mMRC))
+    @Rule(SymptomAssessmentData(group=MATCH.group, CAT=MATCH.CAT, mMRC=MATCH.mMRC))
     def treatment_recommendation(self, group, CAT, mMRC):
         print(f"\nBệnh nhân thuộc nhóm {group}.")
         
@@ -172,16 +169,16 @@ def run_symptom_assessment():
 
     mMRC, CAT, exacerbations, hospitalizations = get_patient_data()
 
-    engine.declare(PatientData(mMRC=mMRC, CAT=CAT, exacerbations=exacerbations, hospitalizations=hospitalizations))
+    engine.declare(SymptomAssessmentData(mMRC=mMRC, CAT=CAT, exacerbations=exacerbations, hospitalizations=hospitalizations))
 
     engine.run()
 
-    view_treatment = input("Bạn có muốn xem cách điều trị ban đầu không? (Có/Không): ")
-    if view_treatment == "Có":
+    view_treatment = input("Bạn có muốn xem cách điều trị ban đầu không? (True/False): ")
+    if view_treatment == "True":
         group_fact = engine.facts[2] 
         group = group_fact["group"]
 
-        treatment_engine.declare(PatientData(group=group, mMRC=mMRC, CAT=CAT, exacerbations=exacerbations, hospitalizations=hospitalizations))
+        treatment_engine.declare(SymptomAssessmentData(group=group, mMRC=mMRC, CAT=CAT, exacerbations=exacerbations, hospitalizations=hospitalizations))
 
         treatment_engine.run()
 

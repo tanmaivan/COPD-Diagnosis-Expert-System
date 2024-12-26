@@ -40,8 +40,8 @@ def main():
     # Nhập thông tin bệnh nhân
     print("Đánh giá các tiêu chuẩn:")
     dyspnea_severe = input("Khó thở vừa tới nặng có co kéo cơ hô hấp phụ và hô hấp nghịch thường (True/False): ").lower() == "true"
-    ph = float(input("Nhập pH (ví dụ: 7.3): "))
-    pco2 = float(input("Nhập PaCO2 (mmHg, ví dụ: 50): "))
+    ph = float(input("Nhập pH: "))
+    pco2 = float(input("Nhập PaCO2 (mmHg): "))
     respiratory_rate = int(input("Tần số thở (lần/phút): "))
     persistent_hypoxemia = input("Giảm oxy máu dai dẳng dù đã dùng oxy liệu pháp (True/False): ").lower() == "true"
 

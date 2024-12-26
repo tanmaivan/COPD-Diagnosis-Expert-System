@@ -37,7 +37,7 @@ def run_questionnaire_engine():
 
     patient_data = {}
     for question in questions:
-        answer = input(f"{question['text']} (Có/Không): ").strip()
+        answer = input(f"{question['text']} (True/False): ").strip().lower() == "true"
         patient_data[question["key"]] = answer
 
     engine.declare(PatientData(**patient_data))
