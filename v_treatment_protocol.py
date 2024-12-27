@@ -1,8 +1,31 @@
 from experta import *
 
 class TreatmentData(Fact):
-    """Fact chứa thông tin về điều trị và triệu chứng của bệnh nhân."""
-    pass
+    """
+    Fact chứa thông tin về điều trị và triệu chứng của bệnh nhân.
+    
+    Các thuộc tính:
+    - initial_response: Phản ứng ban đầu với điều trị (positive/negative)
+    - symptoms: Triệu chứng hiện tại (persistent/none)
+    - current_treatment: Phác đồ điều trị hiện tại (LABA/LAMA/ICS/LABA/LAMA)
+    - second_bronchodilator_effective: Hiệu quả của thuốc giãn phế quản thứ 2
+    - exacerbations: Tình trạng đợt cấp (persistent/none)
+    - eosinophils: Số lượng bạch cầu ái toan
+    - fev1: Chỉ số FEV1 (%)
+    - chronic_bronchitis: Tình trạng viêm phế quản mạn tính
+    - smoker: Tình trạng hút thuốc
+    - severe_side_effects: Tác dụng phụ nghiêm trọng
+    """
+    initial_response = Field(str)
+    symptoms = Field(str)
+    current_treatment = Field(str)
+    second_bronchodilator_effective = Field(bool)
+    exacerbations = Field(str)
+    eosinophils = Field(int)
+    fev1 = Field(int)
+    chronic_bronchitis = Field(bool)
+    smoker = Field(bool)
+    severe_side_effects = Field(bool)
 
 class TreatmentProtocol(KnowledgeEngine):
     @Rule(TreatmentData(initial_response="positive"))
@@ -61,20 +84,25 @@ class TreatmentProtocol(KnowledgeEngine):
     def stop_ics_with_side_effects(self):
         print("Bệnh nhân có tác dụng phụ nghiêm trọng khi điều trị ICS/LABA/LAMA. Khuyến cáo ngừng ICS.")
 
+def input_treatment_data():
+    initial_response = input("Phản ứng ban đầu với điều trị (positive/negative): ")
+    if initial_response.lower() == "positive":
+        return TreatmentData(initial_response=initial_response)
+    
+    symptoms = input("Triệu chứng hiện tại (persistent/none): ")
+    current_treatment = input("Phác đồ điều trị hiện tại (LABA/LAMA/ICS/LABA/LAMA): ")
+    second_bronchodilator_effective = input("Hiệu quả của thuốc giãn phế quản thứ 2 (True/False): ").lower() == 'true'
+
+    return TreatmentData(
+        initial_response=initial_response,
+        symptoms=symptoms,
+        current_treatment=current_treatment,
+        second_bronchodilator_effective=second_bronchodilator_effective
+    )
+
 if __name__ == "__main__":
-    # Tạo instance của hệ thống điều trị
     treatment_engine = TreatmentProtocol()
-
-    # Khởi tạo hệ thống
     treatment_engine.reset()
-
-    # Ví dụ: Dữ liệu bệnh nhân
-    treatment_engine.declare(TreatmentData(
-        initial_response="negative",
-        symptoms="persistent",
-        current_treatment="LABA",
-        second_bronchodilator_effective=False
-    ))
-
-    # Chạy hệ thống
+    treatment_data = input_treatment_data()
+    treatment_engine.declare(treatment_data)
     treatment_engine.run()

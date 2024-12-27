@@ -3,7 +3,11 @@ from experta import *
 
 class PatientData(Fact):
     """Lưu trữ thông tin của bệnh nhân"""
-    pass
+    ho = Field(bool)  # Ho (Có/Không)
+    khac_dom = Field(bool)  # Khạc đờm (Có/Không)
+    kho_tho = Field(bool)  # Khó thở (Có/Không)
+    tuoi_tren_40 = Field(bool)  # Tuổi trên 40 (Có/Không)
+    hut_thuoc = Field(bool)  # Hút thuốc (Có/Không)
 
 class COPDExpertSystem(KnowledgeEngine):
     @Rule(

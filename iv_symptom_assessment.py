@@ -2,16 +2,11 @@ from experta import *
 import json
 
 class SymptomAssessmentData(Fact):
-    """
-    Fact lưu trữ thông tin đánh giá triệu chứng và nguy cơ.
-    Các thuộc tính:
-    - mMRC: Điểm mMRC (0 - 4).
-    - CAT: Điểm CAT (0 - 40).
-    - exacerbations: Số đợt cấp trong 12 tháng qua.
-    - hospitalizations: Số đợt cấp phải nhập viện trong 12 tháng qua.
-    - group: Nhóm ABCD của bệnh nhân
-    """
-    pass
+    mMRC = Field(int)
+    CAT = Field(int)
+    exacerbations = Field(int)
+    hospitalizations = Field(int)
+    group = Field(str)
 
 class SymptomAssessment(KnowledgeEngine):
     @Rule(SymptomAssessmentData(mMRC=MATCH.mMRC, CAT=MATCH.CAT, exacerbations=MATCH.exacerbations, hospitalizations=MATCH.hospitalizations))
@@ -100,9 +95,7 @@ class TreatmentPlan(KnowledgeEngine):
         self.treatment_recommendations = load_json(r"luu_tru_tri_thuc\treatment_recommendations.json")
 
     @Rule(SymptomAssessmentData(group=MATCH.group, CAT=MATCH.CAT, mMRC=MATCH.mMRC))
-    def treatment_recommendation(self, group, CAT, mMRC):
-        print(f"\nBệnh nhân thuộc nhóm {group}.")
-        
+    def treatment_recommendation(self, group, CAT, mMRC):     
         # Điều trị chung cho tất cả các nhóm
         self.general_treatment()
 
