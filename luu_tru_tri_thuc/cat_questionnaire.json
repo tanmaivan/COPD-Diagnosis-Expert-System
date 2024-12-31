@@ -15,14 +15,18 @@
     },
     {
       "id": 5,
-      "text": "Tôi yên tâm ra khỏi nhà dù tôi có bệnh phổi - Tôi không yên tâm chút nào khi ra khỏi nhà vì tôi có bệnh phổi"
+      "text": "Tôi không giới hạn bất cứ hoạt động nào ở nhà - Tôi bị giới hạn các hoạt động ở nhà"
     },
     {
       "id": 6,
-      "text": "Tôi ngủ ngon giấc - Tôi không ngủ ngon giấc vì tôi có bệnh phổi"
+      "text": "Tôi yên tâm ra khỏi nhà dù tôi có bệnh phổi - Tôi không yên tâm chút nào khi ra khỏi nhà vì tôi có bệnh phổi"
     },
     {
       "id": 7,
+      "text": "Tôi ngủ ngon giấc - Tôi không ngủ ngon giấc vì tôi có bệnh phổi"
+    },
+    {
+      "id": 8,
       "text": "Tôi cảm thấy rất khỏe - Tôi cảm thấy không còn chút sức lực nào"
     }
   ]

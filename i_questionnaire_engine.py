@@ -16,7 +16,7 @@ class COPDExpertSystem(KnowledgeEngine):
     def screening(self, f, ho, khac_dom, kho_tho, tuoi_tren_40, hut_thuoc):
         # Đếm số câu trả lời "Có"
         symptoms = [ho, khac_dom, kho_tho, tuoi_tren_40, hut_thuoc]
-        positive_responses = symptoms.count("Có")
+        positive_responses = sum(symptoms)
         
         if positive_responses >= 3:
             self.declare(Fact(screening="positive"))
