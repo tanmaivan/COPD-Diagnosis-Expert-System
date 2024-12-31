@@ -1,19 +1,23 @@
 from experta import *
-from ii_diagnosis_engine import LungFunctionData
+from iii_diagnosis_engine import LungFunctionData
 
 class GOLDStageAssessment(KnowledgeEngine):
     @Rule(LungFunctionData(fev1=MATCH.fev1))
     def assess_gold_stage(self, fev1):
         if fev1 >= 80:
             GOLD_stage = "GOLD 1"
+            GOLD_stage_description = "Tắc nghẽn nhẹ."
         elif 50 <= fev1 < 80:
             GOLD_stage = "GOLD 2"
+            GOLD_stage_description = "Tắc nghẽn trung bình."
         elif 30 <= fev1 < 50:
             GOLD_stage = "GOLD 3"
+            GOLD_stage_description = "Tắc nghẽn nặng."
         elif fev1 < 30:
             GOLD_stage = "GOLD 4"
+            GOLD_stage_description = "Tắc nghẽn rất nặng."
 
-        self.declare(LungFunctionData(fev1=fev1, GOLD_stage=GOLD_stage))
+        self.declare(LungFunctionData(fev1=fev1, GOLD_stage=GOLD_stage, GOLD_stage_description=GOLD_stage_description))
 
     @Rule(LungFunctionData(GOLD_stage="GOLD 1"))
     def stage_gold_1(self):

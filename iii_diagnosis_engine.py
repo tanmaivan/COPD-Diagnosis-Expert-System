@@ -6,6 +6,7 @@ class LungFunctionData(Fact):
     copd = Field(bool)  # Chẩn đoán BPTNMT (Có/Không)
     fev1 = Field(float)  # Chỉ số FEV₁ (%)
     GOLD_stage = Field(str)  # Giai đoạn GOLD (GOLD 1/2/3/4)
+    GOLD_stage_description = Field(str)  # Mô tả giai đoạn GOLD
 
 class DiagnosisEngine(KnowledgeEngine):
     @Rule(LungFunctionData(fev1_fvc=MATCH.fev1_fvc))

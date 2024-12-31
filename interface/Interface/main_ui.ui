@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1016</width>
-    <height>661</height>
+    <height>694</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -72,7 +72,7 @@
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>7</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="page"/>
       <widget class="QWidget" name="ii_gold">
@@ -151,7 +151,7 @@
          <string>BỘ CÂU HỎI TẦM SOÁT BỆNH PHỔI TẮC NGHẼN MẠN TÍNH Ở CỘNG ĐỒNG (THEO GOLD)</string>
         </property>
        </widget>
-       <widget class="QTextBrowser" name="textBrowser_2">
+       <widget class="QTextBrowser" name="ii_chan_doan">
         <property name="geometry">
          <rect>
           <x>620</x>
@@ -173,7 +173,7 @@
         <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
            <widget class="QCheckBox" name="ii_ho">
@@ -197,7 +197,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="tuoi_tren_40">
+           <widget class="QCheckBox" name="ii_tuoi_tren_40">
             <property name="text">
              <string>4	Ông/bà có trên 40 tuổi</string>
             </property>
@@ -215,13 +215,13 @@
        </widget>
       </widget>
       <widget class="QWidget" name="iii_iv">
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>50</x>
           <y>110</y>
           <width>721</width>
-          <height>250</height>
+          <height>361</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -265,24 +265,28 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_5">
            <item>
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="iii_fev1_fvc_label">
              <property name="text">
               <string>FEV₁/FVC</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QDoubleSpinBox" name="fev1_fvc"/>
+            <widget class="QDoubleSpinBox" name="iii_fev1_fvc">
+             <property name="maximum">
+              <double>10000.000000000000000</double>
+             </property>
+            </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="iii_chan_doan_1">
+            <widget class="QPushButton" name="iii_chan_doan_1_btn">
              <property name="text">
               <string>Chẩn đoán</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="copd">
+            <widget class="QLineEdit" name="iii_ket_qua_1">
              <property name="styleSheet">
               <string notr="true">background-color: rgb(236, 236, 236);</string>
              </property>
@@ -332,31 +336,35 @@
          <item>
           <widget class="QLabel" name="label_3">
            <property name="text">
-            <string>Đánh giá mức độ tắc nghẽn đường thở</string>
+            <string>Đánh giá mức độ tắc nghẽn đường thở (lưu ý, người không bị BPTNMT thì không dùng chức năng này)</string>
            </property>
           </widget>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel" name="iii_fev1_label">
              <property name="text">
               <string>FEV₁</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QDoubleSpinBox" name="fev1"/>
+            <widget class="QDoubleSpinBox" name="iii_fev1">
+             <property name="maximum">
+              <double>1000.000000000000000</double>
+             </property>
+            </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="iii_chan_doan_2">
+            <widget class="QPushButton" name="iii_chan_doan_2_btn">
              <property name="text">
               <string>Chẩn đoán</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="copd_stage">
+            <widget class="QLineEdit" name="iii_ket_qua_2">
              <property name="styleSheet">
               <string notr="true">background-color: rgb(236, 236, 236);</string>
              </property>
@@ -368,11 +376,11 @@
        </widget>
       </widget>
       <widget class="QWidget" name="v">
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="v_chan_doan_btn">
         <property name="geometry">
          <rect>
-          <x>490</x>
-          <y>530</y>
+          <x>480</x>
+          <y>590</y>
           <width>93</width>
           <height>28</height>
          </rect>
@@ -381,17 +389,17 @@
          <string>Chẩn đoán</string>
         </property>
        </widget>
-       <widget class="QTextBrowser" name="textBrowser">
+       <widget class="QTextBrowser" name="v_ket_qua">
         <property name="geometry">
          <rect>
           <x>640</x>
           <y>40</y>
           <width>161</width>
-          <height>571</height>
+          <height>601</height>
          </rect>
         </property>
        </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>60</x>
@@ -524,7 +532,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBox">
+            <widget class="QSpinBox" name="v_mmrc">
              <property name="maximum">
               <number>4</number>
              </property>
@@ -534,13 +542,13 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>60</x>
           <y>230</y>
           <width>566</width>
-          <height>262</height>
+          <height>326</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -646,82 +654,106 @@
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_12">
              <item>
-              <widget class="QSlider" name="horizontalSlider">
+              <widget class="QSlider" name="v_q1">
                <property name="maximum">
                 <number>5</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="tickPosition">
+                <enum>QSlider::TicksBothSides</enum>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSlider" name="horizontalSlider_2">
+              <widget class="QSlider" name="v_q2">
                <property name="maximum">
                 <number>5</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="tickPosition">
+                <enum>QSlider::TicksBothSides</enum>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSlider" name="horizontalSlider_3">
+              <widget class="QSlider" name="v_q3">
                <property name="maximum">
                 <number>5</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="tickPosition">
+                <enum>QSlider::TicksBothSides</enum>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSlider" name="horizontalSlider_4">
+              <widget class="QSlider" name="v_q4">
                <property name="maximum">
                 <number>5</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="tickPosition">
+                <enum>QSlider::TicksBothSides</enum>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSlider" name="horizontalSlider_5">
+              <widget class="QSlider" name="v_q5">
                <property name="maximum">
                 <number>5</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="tickPosition">
+                <enum>QSlider::TicksBothSides</enum>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSlider" name="horizontalSlider_6">
+              <widget class="QSlider" name="v_q6">
                <property name="maximum">
                 <number>5</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="tickPosition">
+                <enum>QSlider::TicksBothSides</enum>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSlider" name="horizontalSlider_7">
+              <widget class="QSlider" name="v_q7">
                <property name="maximum">
                 <number>5</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="tickPosition">
+                <enum>QSlider::TicksBothSides</enum>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSlider" name="horizontalSlider_8">
+              <widget class="QSlider" name="v_q8">
                <property name="maximum">
                 <number>5</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="tickPosition">
+                <enum>QSlider::TicksBothSides</enum>
                </property>
               </widget>
              </item>
@@ -815,12 +847,12 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>61</x>
-          <y>510</y>
-          <width>369</width>
+          <x>60</x>
+          <y>570</y>
+          <width>375</width>
           <height>66</height>
          </rect>
         </property>
@@ -872,15 +904,20 @@
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_14">
            <item>
-            <widget class="QSpinBox" name="spinBox_3"/>
+            <widget class="QSpinBox" name="v_exacerbations"/>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBox_4"/>
+            <widget class="QSpinBox" name="v_hospitalizations"/>
            </item>
           </layout>
          </item>
         </layout>
        </widget>
+       <zorder>v_ket_qua</zorder>
+       <zorder>layoutWidget</zorder>
+       <zorder>layoutWidget</zorder>
+       <zorder>layoutWidget</zorder>
+       <zorder>v_chan_doan_btn</zorder>
       </widget>
       <widget class="QWidget" name="vi_chuyen_doi_thuoc"/>
       <widget class="QWidget" name="page_6"/>
