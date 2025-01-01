@@ -203,6 +203,10 @@ def run_symptom_assessment():
         treatment_engine.declare(SymptomAssessmentData(group=group, general_treatment=general_treatment, mMRC=mMRC, CAT=CAT, exacerbations=exacerbations, hospitalizations=hospitalizations))
 
         treatment_engine.run()
+        # for fact_id, fact in treatment_engine.facts.items():   
+        #     print(f"Fact ID: {fact_id}")
+        #     for key, value in fact.items():
+        #         print(f"{key}: {value}")
 if __name__ == "__main__":
     run_symptom_assessment()
 

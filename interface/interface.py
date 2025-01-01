@@ -46,6 +46,7 @@ class MainWindow(QMainWindow):
         self.side_menu.setFocusPolicy(Qt.FocusPolicy.NoFocus)
 
         self.main_content = self.ui.stackedWidget
+        self.ui.stackedWidget.setCurrentIndex(0)
 
         # Define a list of menu items with names and icons
         self.menu_list = [
@@ -199,17 +200,18 @@ class MainWindow(QMainWindow):
             f"Phương pháp điều trị riêng cho {group}:\n {specific_treatment_list}"
         )
         self.ui.v_ket_qua.setText(result_text)
-        msg = QMessageBox()
-        msg.setInformativeText(result_text)
-        msg.setWindowTitle("Kết quả đánh giá triệu chứng")
-        msg.exec()
+        # msg = QMessageBox()
+        # msg.setInformativeText(result_text)
+        # msg.setWindowTitle("Kết quả đánh giá triệu chứng")
+        # msg.exec()
     
     def run_vi_treatment_protocol(self):
         engine = TreatmentProtocol()
         engine.reset()
 
-        initial_response = self.ui.vi_initial_response.currentText()
-        symptoms = self.ui.vi_symptoms.currentText()
+        initial_response_text = self.ui.vi_initial_response.currentText()
+        initial_response = "positive" if initial_response_text == "Đáp ứng tốt" else "negative"
+        status = self.ui.vi_status.currentText()
         current_treatment = self.ui.vi_current_treatment.currentText()
         second_bronchodilator_effective = self.ui.vi_second_bronchodilator_effective.isChecked()
         eosinophils = self.ui.vi_eosinophils.value()
@@ -218,13 +220,16 @@ class MainWindow(QMainWindow):
         smoker = self.ui.vi_smoker.isChecked()
         severe_side_effects = self.ui.vi_severe_side_effects.isChecked()
 
-        engine.declare(TreatmentData(initial_response=initial_response, symptoms=symptoms, current_treatment=current_treatment, second_bronchodilator_effective=second_bronchodilator_effective, eosinophils=eosinophils, fev1=fev1, chronic_bronchitis=chronic_bronchitis, smoker=smoker, severe_side_effects=severe_side_effects))
+        engine.declare(TreatmentData(initial_response=initial_response, status=status, current_treatment=current_treatment, second_bronchodilator_effective=second_bronchodilator_effective, eosinophils=eosinophils, fev1=fev1, chronic_bronchitis=chronic_bronchitis, smoker=smoker, severe_side_effects=severe_side_effects))
 
         engine.run()
 
-        for fact in engine.facts.values():
-            if isinstance(fact, TreatmentData):
-                self.ui.vi_ket_qua.setText(f"Kết quả: {fact.get('treatment_protocol_result')}")
+        try:
+            result = engine.facts[2].get("treatment_protocol_result")
+            self.ui.vi_ket_qua.setText(f"Kết quả: {result}")
+        except KeyError:
+            self.ui.vi_ket_qua.setText("No result found.")
+        
 
 
             

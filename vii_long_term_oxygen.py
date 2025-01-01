@@ -17,6 +17,7 @@ class OxygenAssessment(Fact):
     polycythemia = Field(bool)
     pulmonary_hypertension = Field(bool)
     oxygen_required = Field(bool)
+    result = Field(str)
 
 class OxygenTherapyEngine(KnowledgeEngine):
     @Rule(OxygenAssessment(PaO2=MATCH.PaO2, SaO2=MATCH.SaO2, heart_failure=False, polycythemia=False, pulmonary_hypertension=False),

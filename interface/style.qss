@@ -63,13 +63,18 @@ QListWidget,
 }
 
 /* Hover effect for list items */
-#listWidget::item:hover {
+#listWidget::item:hover{
     background-color: #dadada;
 }
 
 /* Selected item styles for list items */
-#listWidget::item:selected {
+#listWidget::item:selected{
     background-color:hsl(0, 72.90%, 34.70%);
 }
+
+QPushButton:hover {
+    color: hsl(0, 72.90%, 34.70%);
+}
+
 
 

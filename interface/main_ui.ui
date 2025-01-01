@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>986</width>
+    <width>1032</width>
     <height>729</height>
    </rect>
   </property>
@@ -905,7 +905,7 @@
          <rect>
           <x>640</x>
           <y>40</y>
-          <width>131</width>
+          <width>171</width>
           <height>511</height>
          </rect>
         </property>
@@ -992,7 +992,7 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QComboBox" name="vi_symptoms">
+          <widget class="QComboBox" name="vi_status">
            <item>
             <property name="text">
              <string>Khó thở kéo dài</string>
@@ -1026,12 +1026,17 @@
            </item>
            <item>
             <property name="text">
+             <string>LABA/LAMA</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>ICS/LABA</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>LABA/LAMA</string>
+             <string>ICS/LABA/LAMA</string>
             </property>
            </item>
           </widget>
@@ -2215,7 +2220,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>986</width>
+     <width>1032</width>
      <height>26</height>
     </rect>
    </property>
