@@ -211,7 +211,8 @@ class MainWindow(QMainWindow):
 
         initial_response_text = self.ui.vi_initial_response.currentText()
         initial_response = "positive" if initial_response_text == "Đáp ứng tốt" else "negative"
-        status = self.ui.vi_status.currentText()
+        status_text = self.ui.vi_status.currentText()
+        status = "persistent" if status_text == "Khó thở kéo dài" else "exacerbations"
         current_treatment = self.ui.vi_current_treatment.currentText()
         second_bronchodilator_effective = self.ui.vi_second_bronchodilator_effective.isChecked()
         eosinophils = self.ui.vi_eosinophils.value()
@@ -228,7 +229,7 @@ class MainWindow(QMainWindow):
             result = engine.facts[2].get("treatment_protocol_result")
             self.ui.vi_ket_qua.setText(f"Kết quả: {result}")
         except KeyError:
-            self.ui.vi_ket_qua.setText("No result found.")
+            self.ui.vi_ket_qua.setText("Không tìm được kết quả.")
         
 
 
