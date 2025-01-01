@@ -4,7 +4,7 @@ class LungInterventionAssessment(Fact):
     """
     Fact lưu trữ thông tin đánh giá chỉ định nội soi can thiệp hoặc phẫu thuật.
     Các thuộc tính:
-    - emphysema_severity: Mức độ khí phế thũng (nặng hoặc nhẹ).
+    - emphysema_severity: Mức độ khí phế thũng (nặng hoặc rất nặng).
     - lobe_hyperinflation: Ứ khí thùy trên (True/False).
     - bode_score: Điểm BODE (0 - 10).
     - acute_CO2_exacerbation: Có đợt cấp với tăng CO2 máu cấp tính (True/False).
@@ -14,6 +14,7 @@ class LungInterventionAssessment(Fact):
     - DLCO: Chỉ số DLCO (%).
     - emphysema_pattern: Kiểu hình khí phế thũng (đồng nhất hoặc không).
     - diagnosis_result: Kết quả chẩn đoán.
+    - diagnosis_result_description: Mô tả kết quả chẩn đoán.
     """
     emphysema_severity = Field(str)
     lobe_hyperinflation = Field(bool)
@@ -25,17 +26,20 @@ class LungInterventionAssessment(Fact):
     DLCO = Field(float)
     emphysema_pattern = Field(str)
     diagnosis_result = Field(str)
+    diagnosis_result_description = Field(str)
 
 class InterventionRecommendation(KnowledgeEngine):
     @Rule(LungInterventionAssessment(emphysema_severity="nặng", lobe_hyperinflation=True))
     def recommend_bronchoscopy(self):
-        self.declare(LungInterventionAssessment(diagnosis_result="lung_volume_reduction_endoscopy"))
-        print("Nội soi can thiệp giảm thể tích phổi được khuyến cáo. Các phương pháp bao gồm: đặt van một chiều, đặt coil hoặc đốt nhiệt.")
+        diagnosis_result_description = "Nội soi can thiệp giảm thể tích phổi được khuyến cáo. Các phương pháp bao gồm: đặt van một chiều, đặt coil hoặc đốt nhiệt."
+        print(diagnosis_result_description)
+        self.declare(LungInterventionAssessment(diagnosis_result="lung_volume_reduction_endoscopy", diagnosis_result_description=diagnosis_result_description))
 
     @Rule(LungInterventionAssessment(emphysema_severity="nặng", lobe_hyperinflation=True))
     def recommend_surgery(self):
-        self.declare(LungInterventionAssessment(diagnosis_result="lung_volume_reduction_surgery"))
-        print("Phẫu thuật giảm thể tích phổi có thể được chỉ định cho bệnh nhân có ứ khí thùy trên.")
+        diagnosis_result_description = "Phẫu thuật giảm thể tích phổi có thể được chỉ định cho bệnh nhân có ứ khí thùy trên."
+        print(diagnosis_result_description)
+        self.declare(LungInterventionAssessment(diagnosis_result="lung_volume_reduction_surgery", diagnosis_result_description=diagnosis_result_description))
 
     @Rule(LungInterventionAssessment(bode_score=MATCH.bode_score, emphysema_severity="rất nặng"),
           TEST(lambda bode_score: 7 <= bode_score <= 10),
@@ -45,8 +49,9 @@ class InterventionRecommendation(KnowledgeEngine):
              AND(Fact(FEV1=MATCH.FEV1, DLCO=MATCH.DLCO, emphysema_pattern="đồng nhất"),
                  TEST(lambda FEV1, DLCO: FEV1 < 20 and DLCO < 20))))
     def recommend_lung_transplant(self):
-        self.declare(LungInterventionAssessment(diagnosis_result="lung_transplant"))
-        print("Ghép phổi được khuyến cáo cho bệnh nhân có các tiêu chí phù hợp.")
+        diagnosis_result_description = "Ghép phổi được khuyến cáo cho bệnh nhân có các tiêu chí phù hợp."
+        print(diagnosis_result_description)
+        self.declare(LungInterventionAssessment(diagnosis_result="lung_transplant", diagnosis_result_description=diagnosis_result_description))
 
 if __name__ == "__main__":
     engine = InterventionRecommendation()

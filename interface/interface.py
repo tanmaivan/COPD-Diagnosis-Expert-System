@@ -93,6 +93,8 @@ class MainWindow(QMainWindow):
         self.ui.iii_chan_doan_2_btn.clicked.connect(self.run_iii_airway_assessment)
         self.ui.v_chan_doan_btn.clicked.connect(self.run_v_symptom_assessment)
         self.ui.vi_kiem_tra_btn.clicked.connect(self.run_vi_treatment_protocol)
+        self.ui.vii_ket_qua_btn.clicked.connect(self.run_vii_long_term_oxygen)
+        # self.ui.viii_kiem_tra_btn.clicked.connect(self.run_viii_lung_intervention_surgery)
 
 
     def init_list_widget(self):
@@ -230,7 +232,27 @@ class MainWindow(QMainWindow):
             self.ui.vi_ket_qua.setText(f"Kết quả: {result}")
         except KeyError:
             self.ui.vi_ket_qua.setText("Không tìm được kết quả.")
-        
+    
+    def run_vii_long_term_oxygen(self):
+        engine = OxygenTherapyEngine()
+        engine.reset()
+
+        PaO2 = self.ui.vii_pa02.value()
+        SaO2 = self.ui.vii_sa02.value()
+        heart_failure = self.ui.vii_heart_failure.isChecked()
+        polycythemia = self.ui.vii_polycythemia.isChecked()
+        pulmonary_hypertension = self.ui.vii_pulmonary_hypertension.isChecked()
+
+        engine.declare(OxygenAssessment(PaO2=PaO2, SaO2=SaO2, heart_failure=heart_failure, polycythemia=polycythemia, pulmonary_hypertension=pulmonary_hypertension))
+
+        engine.run()
+
+        try:
+            oxygen_required = "Chỉ định thở oxy dài hạn.\n" if engine.facts[2].get("oxygen_required") else "Không chỉ định thở oxy.\n"
+            long_term_oxygen_reason = "\n".join(engine.facts[2].get("long_term_oxygen_reason"))
+            self.ui.vii_ket_qua.setText(f"Kết quả: {oxygen_required}\nLý do:\n{long_term_oxygen_reason}")
+        except KeyError:
+            self.ui.vii_ket_qua.setText("Không tìm được kết quả.")
 
 
             

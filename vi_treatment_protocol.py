@@ -14,6 +14,7 @@ class TreatmentData(Fact):
     - chronic_bronchitis: Tình trạng viêm phế quản mạn tính
     - smoker: Tình trạng hút thuốc
     - severe_side_effects: Tác dụng phụ nghiêm trọng
+    - treatment_protocol_result: Kết quả phác đồ điều trị
     """
     initial_response = Field(str)
     status = Field(str)
