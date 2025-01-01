@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1016</width>
-    <height>694</height>
+    <width>986</width>
+    <height>729</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,16 +30,6 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <item row="1" column="1">
-     <widget class="QListWidget" name="listWidget">
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>16777215</height>
-       </size>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="0" colspan="2">
      <widget class="QFrame" name="title_frame">
       <property name="frameShape">
@@ -66,13 +56,23 @@
       </layout>
      </widget>
     </item>
-    <item row="0" column="2" rowspan="2">
+    <item row="1" column="1">
+     <widget class="QListWidget" name="listWidget">
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="frameShape">
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>9</number>
       </property>
       <widget class="QWidget" name="page"/>
       <widget class="QWidget" name="ii_gold">
@@ -82,9 +82,9 @@
         </property>
         <property name="geometry">
          <rect>
-          <x>60</x>
+          <x>70</x>
           <y>40</y>
-          <width>541</width>
+          <width>621</width>
           <height>61</height>
          </rect>
         </property>
@@ -122,8 +122,8 @@
        <widget class="QPushButton" name="ii_chan_doan_btn">
         <property name="geometry">
          <rect>
-          <x>280</x>
-          <y>370</y>
+          <x>340</x>
+          <y>310</y>
           <width>93</width>
           <height>28</height>
          </rect>
@@ -132,86 +132,79 @@
          <string>Chẩn đoán</string>
         </property>
        </widget>
-       <widget class="QLabel" name="ii_tieu_de_bang">
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>140</y>
-          <width>541</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>BỘ CÂU HỎI TẦM SOÁT BỆNH PHỔI TẮC NGHẼN MẠN TÍNH Ở CỘNG ĐỒNG (THEO GOLD)</string>
-        </property>
-       </widget>
        <widget class="QTextBrowser" name="ii_chan_doan">
         <property name="geometry">
          <rect>
-          <x>620</x>
-          <y>40</y>
-          <width>181</width>
-          <height>581</height>
+          <x>70</x>
+          <y>370</y>
+          <width>621</width>
+          <height>141</height>
          </rect>
         </property>
        </widget>
-       <widget class="QSplitter" name="splitter">
+       <widget class="QWidget" name="">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>170</y>
-          <width>541</width>
-          <height>191</height>
+          <x>70</x>
+          <y>140</y>
+          <width>621</width>
+          <height>150</height>
          </rect>
         </property>
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <widget class="QWidget" name="layoutWidget">
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-           <widget class="QCheckBox" name="ii_ho">
-            <property name="text">
-             <string>1	Ông/bà có ho vài lần trong hầu hết các ngày</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="ii_khac_dom">
-            <property name="text">
-             <string>2	Ông/bà có khạc đờm ở hầu hết các ngày</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="ii_kho_tho">
-            <property name="text">
-             <string>3	Ông/bà có dễ bị khó thở hơn những người cùng tuổi</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="ii_tuoi_tren_40">
-            <property name="text">
-             <string>4	Ông/bà có trên 40 tuổi</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="ii_hut_thuoc">
-            <property name="text">
-             <string>5	Ông/bà vẫn còn hút thuốc lá hoặc đã từng hút thuốc lá</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QLabel" name="ii_tieu_de_bang">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>BỘ CÂU HỎI TẦM SOÁT BỆNH PHỔI TẮC NGHẼN MẠN TÍNH Ở CỘNG ĐỒNG (THEO GOLD)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="gridLayout_13">
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="ii_ho">
+             <property name="text">
+              <string>1	Ông/bà có ho vài lần trong hầu hết các ngày</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QCheckBox" name="ii_khac_dom">
+             <property name="text">
+              <string>2	Ông/bà có khạc đờm ở hầu hết các ngày</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QCheckBox" name="ii_kho_tho">
+             <property name="text">
+              <string>3	Ông/bà có dễ bị khó thở hơn những người cùng tuổi</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QCheckBox" name="ii_tuoi_tren_40">
+             <property name="text">
+              <string>4	Ông/bà có trên 40 tuổi</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QCheckBox" name="ii_hut_thuoc">
+             <property name="text">
+              <string>5	Ông/bà vẫn còn hút thuốc lá hoặc đã từng hút thuốc lá</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </widget>
       </widget>
       <widget class="QWidget" name="iii_iv">
@@ -387,16 +380,6 @@
         </property>
         <property name="text">
          <string>Chẩn đoán</string>
-        </property>
-       </widget>
-       <widget class="QTextBrowser" name="v_ket_qua">
-        <property name="geometry">
-         <rect>
-          <x>640</x>
-          <y>40</y>
-          <width>161</width>
-          <height>601</height>
-         </rect>
         </property>
        </widget>
        <widget class="QWidget" name="layoutWidget">
@@ -913,20 +896,1285 @@
          </item>
         </layout>
        </widget>
-       <zorder>v_ket_qua</zorder>
+       <widget class="QTextBrowser" name="v_ket_qua">
+        <property name="geometry">
+         <rect>
+          <x>640</x>
+          <y>40</y>
+          <width>131</width>
+          <height>511</height>
+         </rect>
+        </property>
+       </widget>
        <zorder>layoutWidget</zorder>
        <zorder>layoutWidget</zorder>
        <zorder>layoutWidget</zorder>
        <zorder>v_chan_doan_btn</zorder>
+       <zorder>v_ket_qua</zorder>
       </widget>
-      <widget class="QWidget" name="vi_chuyen_doi_thuoc"/>
-      <widget class="QWidget" name="page_6"/>
-      <widget class="QWidget" name="page_7"/>
-      <widget class="QWidget" name="page_8"/>
-      <widget class="QWidget" name="page_9"/>
-      <widget class="QWidget" name="page_10"/>
-      <widget class="QWidget" name="page_11"/>
-      <widget class="QWidget" name="page_2"/>
+      <widget class="QWidget" name="vi_chuyen_doi_thuoc">
+       <widget class="QTextBrowser" name="textBrowser">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>390</y>
+          <width>361</width>
+          <height>151</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_17">
+        <property name="geometry">
+         <rect>
+          <x>41</x>
+          <y>459</y>
+          <width>235</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>330</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Kiểm tra</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>80</y>
+          <width>361</width>
+          <height>224</height>
+         </rect>
+        </property>
+        <layout class="QFormLayout" name="formLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Phản ứng ban đầu với điều trị</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="comboBox">
+           <item>
+            <property name="text">
+             <string>Đáp ứng tốt</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Không đáp ứng</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Triệu chứng hiện tại</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QComboBox" name="comboBox_2">
+           <item>
+            <property name="text">
+             <string>Khó thở kéo dài</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Đợt cấp</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_14">
+           <property name="text">
+            <string>Phác đồ điều trị hiện tại</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="comboBox_3">
+           <item>
+            <property name="text">
+             <string>LABA</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LAMA</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ICS/LABA</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LABA/LAMA</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_18">
+           <property name="text">
+            <string>Thuốc giãn phế quản thử 2 có hiệu quả</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QCheckBox" name="checkBox">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_15">
+           <property name="text">
+            <string>Số lượng bạch cầu ái toan (tế bào/µL)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QSpinBox" name="spinBox"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_16">
+           <property name="text">
+            <string>Chỉ số FEV1 (%)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="label_19">
+           <property name="text">
+            <string>Bệnh nhân mắc viêm phế quản mạn tính</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QCheckBox" name="checkBox_2">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="label_20">
+           <property name="text">
+            <string>Bệnh nhân có hút thuốc</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QCheckBox" name="checkBox_3">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLabel" name="label_21">
+           <property name="text">
+            <string>Bệnh nhân có tác dụng phụ nghiêm trọng</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QCheckBox" name="checkBox_4">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="vii_viii">
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>210</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Kiểm tra</string>
+        </property>
+       </widget>
+       <widget class="QTextBrowser" name="textBrowser_2">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>40</y>
+          <width>256</width>
+          <height>201</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_31">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>40</y>
+          <width>161</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Chỉ định thở oxi</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_32">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>260</y>
+          <width>261</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Chỉ định nội soi can thiệp và phẫu thuật</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>570</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Kiểm tra</string>
+        </property>
+       </widget>
+       <widget class="QTextBrowser" name="textBrowser_3">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>260</y>
+          <width>256</width>
+          <height>341</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>70</y>
+          <width>329</width>
+          <height>124</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="3" column="0" colspan="4">
+          <widget class="QLabel" name="label_26">
+           <property name="text">
+            <string>Bệnh nhân có dấu hiệu suy tim phải:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" rowspan="2" colspan="2">
+          <widget class="QLabel" name="label_22">
+           <property name="text">
+            <string>PaO₂:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_24">
+           <property name="text">
+            <string>SaO₂:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0" colspan="4">
+          <widget class="QLabel" name="label_30">
+           <property name="text">
+            <string>Bệnh nhân có tăng áp động mạch phổi:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="5">
+          <widget class="QLabel" name="label_23">
+           <property name="text">
+            <string>mmHg</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="4">
+          <widget class="QDoubleSpinBox" name="doubleSpinBox_3"/>
+         </item>
+         <item row="1" column="4">
+          <widget class="QDoubleSpinBox" name="doubleSpinBox_2"/>
+         </item>
+         <item row="2" column="5">
+          <widget class="QLabel" name="label_25">
+           <property name="text">
+            <string>%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0" colspan="3">
+          <widget class="QLabel" name="label_29">
+           <property name="text">
+            <string>Bệnh nhân có đa hồng cầu:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="4">
+          <widget class="QCheckBox" name="checkBox_7">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="4">
+          <widget class="QCheckBox" name="checkBox_6">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="4">
+          <widget class="QCheckBox" name="checkBox_5">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>300</y>
+          <width>321</width>
+          <height>252</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="2" column="8">
+          <widget class="QSpinBox" name="spinBox_2"/>
+         </item>
+         <item row="6" column="9">
+          <widget class="QLabel" name="label_40">
+           <property name="text">
+            <string>%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="0" colspan="7">
+          <widget class="QLabel" name="label_63">
+           <property name="text">
+            <string>Kiểu hình khí phế thủng: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="7" colspan="3">
+          <widget class="QComboBox" name="comboBox_5">
+           <item>
+            <property name="text">
+             <string>Đồng nhất</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Không đồng nhất</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="6" column="0" colspan="2">
+          <widget class="QLabel" name="label_39">
+           <property name="text">
+            <string>FEV₁:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="5">
+          <widget class="QLabel" name="label_34">
+           <property name="text">
+            <string>Ức khí thùy trên:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="8">
+          <widget class="QDoubleSpinBox" name="doubleSpinBox_4"/>
+         </item>
+         <item row="4" column="0" colspan="8">
+          <widget class="QLabel" name="label_37">
+           <property name="text">
+            <string>Tăng áp động mạch phổi:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0" colspan="4">
+          <widget class="QLabel" name="label_38">
+           <property name="text">
+            <string>Tâm phế mạn:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="7">
+          <widget class="QLabel" name="label_33">
+           <property name="text">
+            <string>Mức độ khí phế thủng:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="8">
+          <widget class="QDoubleSpinBox" name="doubleSpinBox_5"/>
+         </item>
+         <item row="2" column="0" colspan="3">
+          <widget class="QLabel" name="label_35">
+           <property name="text">
+            <string>Điểm BODE:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="9">
+          <widget class="QLabel" name="label_62">
+           <property name="text">
+            <string>%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="8">
+          <widget class="QCheckBox" name="checkBox_8">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="8" colspan="2">
+          <widget class="QComboBox" name="comboBox_4">
+           <item>
+            <property name="text">
+             <string>Nặng</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Rất nặng</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="5" column="8">
+          <widget class="QCheckBox" name="checkBox_11">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="8">
+          <widget class="QCheckBox" name="checkBox_10">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0" colspan="8">
+          <widget class="QLabel" name="label_36">
+           <property name="text">
+            <string>Đợt cấp với tăng CO₂ cấp tính:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="8">
+          <widget class="QCheckBox" name="checkBox_9">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLabel" name="label_61">
+           <property name="text">
+            <string>DLCO:</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="ix_dot_cap">
+       <widget class="QLabel" name="label_78">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>120</y>
+          <width>361</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Phân loại độ nặng đợt cấp BPTNMT theo đề xuất Rome</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_4">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>400</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Chẩn đoán</string>
+        </property>
+       </widget>
+       <widget class="QTextBrowser" name="textBrowser_4">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>440</y>
+          <width>371</width>
+          <height>192</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>150</y>
+          <width>364</width>
+          <height>242</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="7" column="0" colspan="4">
+          <widget class="QLabel" name="label_77">
+           <property name="text">
+            <string>Độ pH máu (0 - 14):</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_67">
+           <property name="text">
+            <string>Nhịp tim:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="9" colspan="2">
+          <widget class="QLabel" name="label_74">
+           <property name="text">
+            <string>mmHg</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="6">
+          <widget class="QLabel" name="label_64">
+           <property name="text">
+            <string>Chỉ số đau - VAS (0 - 10):</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="9" colspan="2">
+          <widget class="QLabel" name="label_75">
+           <property name="text">
+            <string>mmHg</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_71">
+           <property name="text">
+            <string>Chỉ số CRP:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="7" colspan="2">
+          <widget class="QDoubleSpinBox" name="doubleSpinBox_8"/>
+         </item>
+         <item row="3" column="0" colspan="6">
+          <widget class="QLabel" name="label_69">
+           <property name="text">
+            <string>Độ bão hòa O₂ trong máu:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="9">
+          <widget class="QLabel" name="label_72">
+           <property name="text">
+            <string>mg/L</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0" colspan="5">
+          <widget class="QLabel" name="label_73">
+           <property name="text">
+            <string>Áp lực O₂ động mạch:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QLabel" name="label_65">
+           <property name="text">
+            <string>Tần số thở:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0" colspan="4">
+          <widget class="QLabel" name="label_76">
+           <property name="text">
+            <string>Áp lực CO₂ động mạch:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="7" colspan="2">
+          <widget class="QDoubleSpinBox" name="doubleSpinBox_9"/>
+         </item>
+         <item row="4" column="7" colspan="2">
+          <widget class="QDoubleSpinBox" name="doubleSpinBox_7"/>
+         </item>
+         <item row="3" column="7" colspan="2">
+          <widget class="QDoubleSpinBox" name="doubleSpinBox_6"/>
+         </item>
+         <item row="3" column="9">
+          <widget class="QLabel" name="label_70">
+           <property name="text">
+            <string>%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="7" colspan="2">
+          <widget class="QSpinBox" name="spinBox_3">
+           <property name="maximum">
+            <number>10</number>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="7" colspan="2">
+          <widget class="QSpinBox" name="spinBox_4"/>
+         </item>
+         <item row="1" column="9">
+          <widget class="QLabel" name="label_66">
+           <property name="text">
+            <string>lần/phút</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="7" colspan="2">
+          <widget class="QSpinBox" name="spinBox_5"/>
+         </item>
+         <item row="2" column="9">
+          <widget class="QLabel" name="label_68">
+           <property name="text">
+            <string>lần/phút</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="7" colspan="2">
+          <widget class="QSpinBox" name="spinBox_6">
+           <property name="maximum">
+            <number>14</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="x_tho_may_khong_xam_nhap">
+       <widget class="QPushButton" name="pushButton_5">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>380</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Kiểm tra</string>
+        </property>
+       </widget>
+       <widget class="QTextBrowser" name="textBrowser_5">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>470</y>
+          <width>511</width>
+          <height>141</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_85">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>50</y>
+          <width>511</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="text">
+         <string>- Thở máy không xâm nhập trong bệnh phổi tắc nghẽn mạn tính được sử dụng nhằm 2 mục đích:
++ Thở hỗ trợ trong các trường hợp có suy hô hấp mạn tính.
++ Điều trị suy hô hấp cấp hoặc hỗ trợ điều trị đợt cấp bệnh phổi tắc nghẽn mạn tính.
+- Thở máy không xâm nhập có nhiều ưu điểm như tiện lợi, an toàn, dễ chịu, dễ sử dụng, giá thành thấp, tránh được đặt nội khí quản, giảm biến chứng nhiễm khuẩn hô hấp và giảm được ngày nằm viện điều trị.
+</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>240</y>
+          <width>511</width>
+          <height>118</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_81">
+           <property name="text">
+            <string>pH:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="5">
+          <widget class="QLabel" name="label_79">
+           <property name="text">
+            <string>Khó thở vừa tới nặng có co kéo cơ hô hấp phụ và hô hấp nghịch thường</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="6">
+          <widget class="QLabel" name="label_84">
+           <property name="text">
+            <string>mmHg</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0" colspan="2">
+          <widget class="QLabel" name="label_82">
+           <property name="text">
+            <string>PaCO₂:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0" colspan="4">
+          <widget class="QLabel" name="label_83">
+           <property name="text">
+            <string>Giảm O₂ máu dai dẳng dù đã dùng O₂ liệu pháp:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="4">
+          <widget class="QLabel" name="label_80">
+           <property name="text">
+            <string>Kiểm tra toan hô hấp:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="5">
+          <widget class="QDoubleSpinBox" name="doubleSpinBox_10"/>
+         </item>
+         <item row="2" column="5">
+          <widget class="QSpinBox" name="spinBox_7">
+           <property name="maximum">
+            <number>14</number>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5">
+          <widget class="QCheckBox" name="checkBox_12">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="5">
+          <widget class="QCheckBox" name="checkBox_13">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="xi">
+       <widget class="QTextBrowser" name="textBrowser_6">
+        <property name="geometry">
+         <rect>
+          <x>460</x>
+          <y>90</y>
+          <width>256</width>
+          <height>121</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QTextBrowser" name="textBrowser_7">
+        <property name="geometry">
+         <rect>
+          <x>460</x>
+          <y>220</y>
+          <width>256</width>
+          <height>171</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QTextBrowser" name="textBrowser_8">
+        <property name="geometry">
+         <rect>
+          <x>460</x>
+          <y>410</y>
+          <width>256</width>
+          <height>51</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QTextBrowser" name="textBrowser_9">
+        <property name="geometry">
+         <rect>
+          <x>460</x>
+          <y>480</y>
+          <width>256</width>
+          <height>101</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>220</y>
+          <width>351</width>
+          <height>176</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_90">
+             <property name="text">
+              <string>Các yếu tố nguy cơ:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_91">
+             <property name="text">
+              <string>FEV₁:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_11"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_92">
+             <property name="text">
+              <string>Số đợt cấp BPTNMT trong 12 tháng qua:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QSpinBox" name="spinBox_8"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_93">
+             <property name="text">
+              <string>Nhập viện vì đợt cấp BPTNMT trong 3 tháng qua</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QCheckBox" name="checkBox_17">
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_94">
+             <property name="text">
+              <string>Đang dùng liệu pháp oxy dài hạn tại nhà</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QCheckBox" name="checkBox_18">
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_95">
+             <property name="text">
+              <string>Có bệnh đồng mắc</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QCheckBox" name="checkBox_19">
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_7">
+           <property name="text">
+            <string>Kiểm tra</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>410</y>
+          <width>351</width>
+          <height>54</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <layout class="QGridLayout" name="gridLayout_8">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_96">
+             <property name="text">
+              <string>Kiểm tra nguy cơ nhiễm Pseudomonas:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QCheckBox" name="checkBox_20">
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_8">
+           <property name="text">
+            <string>Kiểm tra</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>480</y>
+          <width>351</width>
+          <height>98</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <layout class="QGridLayout" name="gridLayout_9">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_97">
+             <property name="text">
+              <string>Kiểm tra yếu tố nguy cơ khác:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_98">
+             <property name="text">
+              <string>Giãn phế quang trên X-quang hoặc CT ngực</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QCheckBox" name="checkBox_21">
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_99">
+             <property name="text">
+              <string>Có dùng kháng sinh phổ rộng</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QCheckBox" name="checkBox_22">
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_9">
+           <property name="text">
+            <string>Kiểm tra</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>90</y>
+          <width>351</width>
+          <height>120</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0" colspan="3">
+            <widget class="QLabel" name="label_86">
+             <property name="text">
+              <string>Kiểm tra các triệu chứng chính:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_87">
+             <property name="text">
+              <string>Khó thở tăng:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QLabel" name="label_88">
+             <property name="text">
+              <string>Thể tích/độ quánh đờm tăng:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QCheckBox" name="checkBox_15">
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QLabel" name="label_89">
+             <property name="text">
+              <string>Đờm mủ tăng:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QCheckBox" name="checkBox_16">
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QCheckBox" name="checkBox_14">
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_6">
+           <property name="text">
+            <string>Kiểm tra</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="xii">
+       <widget class="QWidget" name="layoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>140</y>
+          <width>380</width>
+          <height>54</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_18">
+         <item>
+          <layout class="QGridLayout" name="gridLayout_11">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_101">
+             <property name="text">
+              <string>Bệnh nhân có nghi ngờ viêm phổi hoặc nhiễm khuẩn nơi khác:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QCheckBox" name="checkBox_24">
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_11">
+           <property name="text">
+            <string>Kiểm tra</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QTextBrowser" name="textBrowser_10">
+        <property name="geometry">
+         <rect>
+          <x>460</x>
+          <y>140</y>
+          <width>256</width>
+          <height>51</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="layoutWidget_3">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>260</y>
+          <width>380</width>
+          <height>54</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_19">
+         <item>
+          <layout class="QGridLayout" name="gridLayout_12">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_102">
+             <property name="text">
+              <string>Bệnh nhân có yếu tố nguy cơ nhiễm Pseudomonas:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QCheckBox" name="checkBox_25">
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_12">
+           <property name="text">
+            <string>Kiểm tra</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QTextBrowser" name="textBrowser_11">
+        <property name="geometry">
+         <rect>
+          <x>460</x>
+          <y>260</y>
+          <width>256</width>
+          <height>51</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -936,7 +2184,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1016</width>
+     <width>986</width>
      <height>26</height>
     </rect>
    </property>

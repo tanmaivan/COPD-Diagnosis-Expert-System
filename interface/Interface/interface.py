@@ -3,9 +3,8 @@ import os
 from PyQt6.QtWidgets import QMainWindow, QApplication, QLabel, QListWidgetItem, QWidget, QGridLayout
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QIcon, QPixmap, QFont
-
-# Import the UI class from the 'main_ui' module
 from main_ui import Ui_MainWindow
+import json
 
 # Import the engines
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
@@ -163,7 +162,10 @@ class MainWindow(QMainWindow):
 
     def run_v_symptom_assessment(self):
         engine = SymptomAssessment()
+        treatment_engine = TreatmentPlan()
+        
         engine.reset()
+        treatment_engine.reset()
 
         mMRC = self.ui.v_mmrc.value()
         CAT = sum([self.ui.v_q1.value(), self.ui.v_q2.value(), self.ui.v_q3.value(), self.ui.v_q4.value(), self.ui.v_q5.value(), self.ui.v_q6.value(), self.ui.v_q7.value(), self.ui.v_q8.value()])
@@ -176,8 +178,22 @@ class MainWindow(QMainWindow):
 
         for fact in engine.facts.values():
             if isinstance(fact, SymptomAssessmentData):
-                self.ui.v_ket_qua.setText(f"Kết quả: {fact.get('group')}")
-        
+                group = fact.get("group")
+
+        treatment_engine.declare(SymptomAssessmentData(group=group, mMRC=mMRC, CAT=CAT, exacerbations=exacerbations, hospitalizations=hospitalizations))
+
+        treatment_engine.run()
+
+        recommendations = treatment_engine.treatment_recommendations[group]
+
+        for fact in treatment_engine.facts.values():
+            if isinstance(fact, SymptomAssessmentData):
+                result_text = (
+                    f"Kết quả: {fact.get('group')}.\n\n"
+                    f"Phương pháp điều trị chung: {fact.get('general_treatment')}.\n"
+                    f"Phương pháp điều trị cho {fact.get('group')}: {fact.get('specific_treatment')}"
+                )
+                self.ui.v_ket_qua.setText(result_text)  
                                                   
 if __name__ == '__main__':
     app = QApplication(sys.argv)
