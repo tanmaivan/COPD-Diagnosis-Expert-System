@@ -19,7 +19,7 @@ class Outpatient(Fact):
     breathlessness_increase = Field(bool)
     sputum_volume_or_thickness_increase = Field(bool)
     purulent_sputum_increase = Field(bool)
-    fev1 = Field(int)
+    fev1 = Field(float)
     exacerbations = Field(int)
     hospitalization = Field(bool)
     risk_oxygen_home = Field(bool)
@@ -95,7 +95,7 @@ def main():
 
     # Giai đoạn 2: Nhập yếu tố nguy cơ
     print("\nNhập các yếu tố nguy cơ:")
-    fev1 = int(input("FEV1: "))
+    fev1 = float(input("FEV1: "))
     exacerbations = int((input("Số đợt cấp BPTNMT trong 12 tháng qua: ")) or 0)
     hospitalization = input("Nhập viện vì đợt cấp BPTNMT trong 3 tháng qua (True/False): ").lower() == "true"
     risk_oxygen_home = input("Đang dùng liệu pháp oxy dài hạn tại nhà (True/False): ").lower() == "true"

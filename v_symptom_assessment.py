@@ -7,6 +7,8 @@ class SymptomAssessmentData(Fact):
     exacerbations = Field(int)
     hospitalizations = Field(int)
     group = Field(str)
+    general_treatment = Field(list)
+    specific_treatment = Field(list)
 
 class SymptomAssessment(KnowledgeEngine):
     @Rule(SymptomAssessmentData(mMRC=MATCH.mMRC, CAT=MATCH.CAT, exacerbations=MATCH.exacerbations, hospitalizations=MATCH.hospitalizations))
@@ -21,11 +23,17 @@ class SymptomAssessment(KnowledgeEngine):
         if low_risk and few_symptoms:
             group = "Nhóm A"
         elif low_risk and many_symptoms:
-            group = "Nhóm B"
+            if CAT >= 20 or mMRC >= 3:
+                group = "Nhóm B - Rủi ro cao"
+            else:
+                group = "Nhóm B"
         elif high_risk and few_symptoms:
             group = "Nhóm C"
         elif high_risk and many_symptoms:
-            group = "Nhóm D"
+            if CAT >= 20 or mMRC >= 3:
+                group = "Nhóm D - Rủi ro cao"
+            else:
+                group = "Nhóm D"
         else:
             group = "Không xác định"
         
@@ -92,66 +100,81 @@ def get_patient_data():
 class TreatmentPlan(KnowledgeEngine):
     def __init__(self):
         super().__init__()
+
         self.treatment_recommendations = load_json(r"luu_tru_tri_thuc\treatment_recommendations.json")
+        self.general_treatment = []
+        self.specific_treatment = []
 
-    @Rule(SymptomAssessmentData(group=MATCH.group, CAT=MATCH.CAT, mMRC=MATCH.mMRC))
-    def treatment_recommendation(self, group, CAT, mMRC):     
-        # Điều trị chung cho tất cả các nhóm
-        self.general_treatment()
-
+    @Rule(SymptomAssessmentData(group=MATCH.group))
+    def treatment_recommendation(self, group):     
         if group == "Nhóm A":
             self.recommend_A()
         elif group == "Nhóm B":
-            self.recommend_B(CAT, mMRC)
+            self.recommend_B_high_risk()
+        elif group == "Nhóm B - Rủi ro cao":
+            self.recommend_B_high_risk()
         elif group == "Nhóm C":
             self.recommend_C()
         elif group == "Nhóm D":
-            self.recommend_D(CAT, mMRC)
+            self.recommend_D()
+        elif group == "Nhóm D - Rủi ro cao":
+            self.recommend_D_high_risk()
         else:
             print("Không xác định được nhóm điều trị.")
-    
-    def general_treatment(self):
-        recommendations = self.treatment_recommendations["general_treatment"]
-        print("Điều trị chung cho tất cả các nhóm:")
-        for recommendation in recommendations:
-            print(f"- {recommendation}")
-        print()
 
     def recommend_A(self):
         recommendations = self.treatment_recommendations["Nhóm A"]
         print("Điều trị cho bệnh nhân nhóm A:")
         for recommendation in recommendations:
+            self.specific_treatment.append(recommendation)
             print(f"- {recommendation}")
         print()
+        self.declare(SymptomAssessmentData(specific_treatment=self.specific_treatment))
 
-    def recommend_B(self, CAT, mMRC):
+    def recommend_B(self):
         recommendations = self.treatment_recommendations["Nhóm B"]
         print("Điều trị cho bệnh nhân nhóm B:")
-        if CAT >= 20 or mMRC >= 3:
-            for recommendation in recommendations["high_risk"]:
-                print(f"- {recommendation}")
-        else:
-            for recommendation in recommendations["default"]:
-                print(f"- {recommendation}")
+        for recommendation in recommendations["default"]:
+            self.specific_treatment.append(recommendation)
+            print(f"- {recommendation}")
         print()
+        self.declare(SymptomAssessmentData(specific_treatment=self.specific_treatment))
+
+    def recommend_B_high_risk(self):
+        recommendations = self.treatment_recommendations["Nhóm B"]
+        print("Điều trị cho bệnh nhân nhóm B - Rủi ro cao:")
+        for recommendation in recommendations["high_risk"]:
+            self.specific_treatment.append(recommendation)
+            print(f"- {recommendation}")
+        print()
+        self.declare(SymptomAssessmentData(specific_treatment=self.specific_treatment))
 
     def recommend_C(self):
         recommendations = self.treatment_recommendations["Nhóm C"]
         print("Điều trị cho bệnh nhân nhóm C:")
         for recommendation in recommendations:
+            self.specific_treatment.append(recommendation)
             print(f"- {recommendation}")
         print()
+        self.declare(SymptomAssessmentData(specific_treatment=self.specific_treatment))
 
-    def recommend_D(self, CAT, mMRC):
+    def recommend_D(self):
         recommendations = self.treatment_recommendations["Nhóm D"]
         print("Điều trị cho bệnh nhân nhóm D:")
-        if CAT > 20 or mMRC >= 3:
-            for recommendation in recommendations["high_risk"]:
-                print(f"- {recommendation}")
-        else:
-            for recommendation in recommendations["default"]:
+        for recommendation in recommendations["default"]:
+                self.specific_treatment.append(recommendation)
                 print(f"- {recommendation}")
         print()
+        self.declare(SymptomAssessmentData(specific_treatment=self.specific_treatment))
+
+    def recommend_D_high_risk(self):
+        recommendations = self.treatment_recommendations["Nhóm D"]
+        print("Điều trị cho bệnh nhân nhóm D - Rủi ro cao:")
+        for recommendation in recommendations["high_risk"]:
+            self.specific_treatment.append(recommendation)
+            print(f"- {recommendation}")
+        print()
+        self.declare(SymptomAssessmentData(specific_treatment=self.specific_treatment))
 
 def run_symptom_assessment():
     engine = SymptomAssessment()
@@ -171,9 +194,15 @@ def run_symptom_assessment():
         group_fact = engine.facts[2] 
         group = group_fact["group"]
 
-        treatment_engine.declare(SymptomAssessmentData(group=group, mMRC=mMRC, CAT=CAT, exacerbations=exacerbations, hospitalizations=hospitalizations))
+        treatment_recommendations = load_json(r"luu_tru_tri_thuc\treatment_recommendations.json")
+        general_treatment = []
+        recommendations = treatment_recommendations["general_treatment"]
+        for recommendation in recommendations:
+            general_treatment.append(recommendation)
+
+        treatment_engine.declare(SymptomAssessmentData(group=group, general_treatment=general_treatment, mMRC=mMRC, CAT=CAT, exacerbations=exacerbations, hospitalizations=hospitalizations))
 
         treatment_engine.run()
-
 if __name__ == "__main__":
     run_symptom_assessment()
+

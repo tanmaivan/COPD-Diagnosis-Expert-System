@@ -21,8 +21,8 @@ class LungInterventionAssessment(Fact):
     acute_CO2_exacerbation = Field(bool)
     pulmonary_hypertension = Field(bool)
     cor_pulmonale = Field(bool)
-    FEV1 = Field(int)
-    DLCO = Field(int)
+    FEV1 = Field(float)
+    DLCO = Field(float)
     emphysema_pattern = Field(str)
     diagnosis_result = Field(str)
 
@@ -59,8 +59,8 @@ if __name__ == "__main__":
     acute_CO2_exacerbation = input("Có đợt cấp với tăng CO2 máu cấp tính không? (True/False): ").strip().lower() == "true"
     pulmonary_hypertension = input("Có tăng áp động mạch phổi không? (True/False): ").strip().lower() == "true"
     cor_pulmonale = input("Có tâm phế mạn không? (True/False): ").strip().lower() == "true"
-    FEV1 = int(input("Chỉ số FEV1 (%): ").strip())
-    DLCO = int(input("Chỉ số DLCO (%): ").strip())
+    FEV1 = float(input("Chỉ số FEV1 (%): ").strip())
+    DLCO = float(input("Chỉ số DLCO (%): ").strip())
     emphysema_pattern = input("Kiểu hình khí phế thũng (đồng nhất/không): ").strip()
 
     engine.declare(LungInterventionAssessment(

@@ -72,10 +72,10 @@
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>9</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="page"/>
-      <widget class="QWidget" name="ii_gold">
+      <widget class="QWidget" name="ii">
        <widget class="QLabel" name="ii_mo_ta">
         <property name="enabled">
          <bool>true</bool>
@@ -208,17 +208,17 @@
        </widget>
       </widget>
       <widget class="QWidget" name="iii_iv">
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QWidget" name="">
         <property name="geometry">
          <rect>
-          <x>50</x>
-          <y>110</y>
-          <width>721</width>
-          <height>361</height>
+          <x>51</x>
+          <y>111</y>
+          <width>681</width>
+          <height>86</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_17">
-         <item>
+        <layout class="QGridLayout" name="iii_do_cnhh">
+         <item row="0" column="0" colspan="4">
           <widget class="QLabel" name="iii_mo_ta_1">
            <property name="enabled">
             <bool>true</bool>
@@ -255,39 +255,47 @@
            </property>
           </widget>
          </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_5">
-           <item>
-            <widget class="QLabel" name="iii_fev1_fvc_label">
-             <property name="text">
-              <string>FEV₁/FVC</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QDoubleSpinBox" name="iii_fev1_fvc">
-             <property name="maximum">
-              <double>10000.000000000000000</double>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="iii_chan_doan_1_btn">
-             <property name="text">
-              <string>Chẩn đoán</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="iii_ket_qua_1">
-             <property name="styleSheet">
-              <string notr="true">background-color: rgb(236, 236, 236);</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
+         <item row="1" column="0">
+          <widget class="QLabel" name="iii_fev1_fvc_label">
+           <property name="text">
+            <string>FEV₁/FVC</string>
+           </property>
+          </widget>
          </item>
-         <item>
+         <item row="1" column="1">
+          <widget class="QDoubleSpinBox" name="iii_fev1_fvc">
+           <property name="maximum">
+            <double>10000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QPushButton" name="iii_chan_doan_1_btn">
+           <property name="text">
+            <string>Chẩn đoán</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLineEdit" name="iii_ket_qua_1">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(236, 236, 236);</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>51</x>
+          <y>241</y>
+          <width>681</width>
+          <height>181</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="iii_danh_gia_bptnmt">
+         <item row="0" column="0" colspan="4">
           <widget class="QLabel" name="iii_mo_ta_2">
            <property name="enabled">
             <bool>true</bool>
@@ -326,44 +334,40 @@
            </property>
           </widget>
          </item>
-         <item>
+         <item row="1" column="0" colspan="4">
           <widget class="QLabel" name="label_3">
            <property name="text">
-            <string>Đánh giá mức độ tắc nghẽn đường thở (lưu ý, người không bị BPTNMT thì không dùng chức năng này)</string>
+            <string>Đánh giá mức độ tắc nghẽn đường thở</string>
            </property>
           </widget>
          </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <item>
-            <widget class="QLabel" name="iii_fev1_label">
-             <property name="text">
-              <string>FEV₁</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QDoubleSpinBox" name="iii_fev1">
-             <property name="maximum">
-              <double>1000.000000000000000</double>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="iii_chan_doan_2_btn">
-             <property name="text">
-              <string>Chẩn đoán</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="iii_ket_qua_2">
-             <property name="styleSheet">
-              <string notr="true">background-color: rgb(236, 236, 236);</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
+         <item row="2" column="0">
+          <widget class="QLabel" name="iii_fev1_label">
+           <property name="text">
+            <string>FEV₁</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QDoubleSpinBox" name="iii_fev1">
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QPushButton" name="iii_chan_doan_2_btn">
+           <property name="text">
+            <string>Chẩn đoán</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLineEdit" name="iii_ket_qua_2">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(236, 236, 236);</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -912,8 +916,8 @@
        <zorder>v_chan_doan_btn</zorder>
        <zorder>v_ket_qua</zorder>
       </widget>
-      <widget class="QWidget" name="vi_chuyen_doi_thuoc">
-       <widget class="QTextBrowser" name="textBrowser">
+      <widget class="QWidget" name="vi">
+       <widget class="QTextBrowser" name="vi_ket_qua">
         <property name="geometry">
          <rect>
           <x>190</x>
@@ -936,7 +940,7 @@
          <string/>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="vi_kiem_tra_btn">
         <property name="geometry">
          <rect>
           <x>330</x>
@@ -967,7 +971,7 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QComboBox" name="comboBox">
+          <widget class="QComboBox" name="vi_initial_response">
            <item>
             <property name="text">
              <string>Đáp ứng tốt</string>
@@ -988,7 +992,7 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QComboBox" name="comboBox_2">
+          <widget class="QComboBox" name="vi_symptoms">
            <item>
             <property name="text">
              <string>Khó thở kéo dài</string>
@@ -1009,7 +1013,7 @@
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QComboBox" name="comboBox_3">
+          <widget class="QComboBox" name="vi_current_treatment">
            <item>
             <property name="text">
              <string>LABA</string>
@@ -1040,7 +1044,7 @@
           </widget>
          </item>
          <item row="3" column="1">
-          <widget class="QCheckBox" name="checkBox">
+          <widget class="QCheckBox" name="vi_second_bronchodilator_effective">
            <property name="layoutDirection">
             <enum>Qt::RightToLeft</enum>
            </property>
@@ -1057,7 +1061,7 @@
           </widget>
          </item>
          <item row="4" column="1">
-          <widget class="QSpinBox" name="spinBox"/>
+          <widget class="QSpinBox" name="vi_eosinophils"/>
          </item>
          <item row="5" column="0">
           <widget class="QLabel" name="label_16">
@@ -1067,7 +1071,7 @@
           </widget>
          </item>
          <item row="5" column="1">
-          <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
+          <widget class="QDoubleSpinBox" name="vi_fev1"/>
          </item>
          <item row="6" column="0">
           <widget class="QLabel" name="label_19">
@@ -1077,7 +1081,7 @@
           </widget>
          </item>
          <item row="6" column="1">
-          <widget class="QCheckBox" name="checkBox_2">
+          <widget class="QCheckBox" name="vi_chronic_bronchitis">
            <property name="layoutDirection">
             <enum>Qt::RightToLeft</enum>
            </property>
@@ -1094,7 +1098,7 @@
           </widget>
          </item>
          <item row="7" column="1">
-          <widget class="QCheckBox" name="checkBox_3">
+          <widget class="QCheckBox" name="vi_smoker">
            <property name="layoutDirection">
             <enum>Qt::RightToLeft</enum>
            </property>
@@ -1111,7 +1115,7 @@
           </widget>
          </item>
          <item row="8" column="1">
-          <widget class="QCheckBox" name="checkBox_4">
+          <widget class="QCheckBox" name="vi_severe_side_effects">
            <property name="layoutDirection">
             <enum>Qt::RightToLeft</enum>
            </property>
@@ -1263,6 +1267,9 @@
          </item>
          <item row="5" column="4">
           <widget class="QCheckBox" name="checkBox_7">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -1270,6 +1277,9 @@
          </item>
          <item row="4" column="4">
           <widget class="QCheckBox" name="checkBox_6">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -1277,6 +1287,9 @@
          </item>
          <item row="3" column="4">
           <widget class="QCheckBox" name="checkBox_5">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -1382,6 +1395,9 @@
          </item>
          <item row="1" column="8">
           <widget class="QCheckBox" name="checkBox_8">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -1403,6 +1419,9 @@
          </item>
          <item row="5" column="8">
           <widget class="QCheckBox" name="checkBox_11">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -1410,6 +1429,9 @@
          </item>
          <item row="4" column="8">
           <widget class="QCheckBox" name="checkBox_10">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -1424,6 +1446,9 @@
          </item>
          <item row="3" column="8">
           <widget class="QCheckBox" name="checkBox_9">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -1439,7 +1464,7 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="ix_dot_cap">
+      <widget class="QWidget" name="ix">
        <widget class="QLabel" name="label_78">
         <property name="geometry">
          <rect>
@@ -1619,7 +1644,7 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="x_tho_may_khong_xam_nhap">
+      <widget class="QWidget" name="x">
        <widget class="QPushButton" name="pushButton_5">
         <property name="geometry">
          <rect>
@@ -1730,6 +1755,9 @@
          </item>
          <item row="0" column="5">
           <widget class="QCheckBox" name="checkBox_12">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -1737,6 +1765,9 @@
          </item>
          <item row="4" column="5">
           <widget class="QCheckBox" name="checkBox_13">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
            <property name="text">
             <string/>
            </property>
