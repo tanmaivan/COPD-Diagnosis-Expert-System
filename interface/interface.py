@@ -94,7 +94,8 @@ class MainWindow(QMainWindow):
         self.ui.v_chan_doan_btn.clicked.connect(self.run_v_symptom_assessment)
         self.ui.vi_kiem_tra_btn.clicked.connect(self.run_vi_treatment_protocol)
         self.ui.vii_ket_qua_btn.clicked.connect(self.run_vii_long_term_oxygen)
-        # self.ui.viii_kiem_tra_btn.clicked.connect(self.run_viii_lung_intervention_surgery)
+        self.ui.viii_ket_qua_btn.clicked.connect(self.run_viii_lung_intervention_surgery)
+
 
 
     def init_list_widget(self):
@@ -254,6 +255,29 @@ class MainWindow(QMainWindow):
         except KeyError:
             self.ui.vii_ket_qua.setText("Không tìm được kết quả.")
 
+    def run_viii_lung_intervention_surgery(self):
+        engine = InterventionRecommendation()
+        engine.reset()
+
+        emphysema_severity = "nặng" if self.ui.viii_emphysema_severity.currentText() == "Nặng" else "nhẹ"
+        lobe_hyperinflation = self.ui.viii_lobe_hyperinflation.isChecked()
+        bode_score = self.ui.viii_bode_score.value()
+        acute_CO2_exacerbation = self.ui.viii_acute_CO2_exacerbation.isChecked()
+        pulmonary_hypertension = self.ui.viii_pulmonary_hypertension.isChecked()
+        cor_pulmonale = self.ui.viii_cor_pulmonale.isChecked()
+        FEV1 = self.ui.viii_fev1.value()
+        DLCO = self.ui.viii_dlco.value()
+        emphysema_pattern = "đồng nhất" if self.ui.viii_emphysema_pattern.currentText() == "Đồng nhất" else "không"
+
+        engine.declare(LungInterventionAssessment(emphysema_severity=emphysema_severity, lobe_hyperinflation=lobe_hyperinflation, bode_score=bode_score, acute_CO2_exacerbation=acute_CO2_exacerbation, pulmonary_hypertension=pulmonary_hypertension, cor_pulmonale=cor_pulmonale, FEV1=FEV1, DLCO=DLCO, emphysema_pattern=emphysema_pattern))
+
+        engine.run()
+
+        try:
+            diagnosis_result_description = engine.facts[2].get("diagnosis_result_description")
+            self.ui.viii_ket_qua.setText(f"Kết quả:\n\n{diagnosis_result_description}")
+        except KeyError:
+            self.ui.viii_ket_qua.setText("Không tìm được kết quả.")
 
             
 

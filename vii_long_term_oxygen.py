@@ -82,7 +82,7 @@ if __name__ == "__main__":
 
     engine.run()
 
-    for fact_id, fact in engine.facts.items():   
-        print(f"Fact ID: {fact_id}")
-        for key, value in fact.items():
-            print(f"{key}: {value}")
+    # for fact_id, fact in engine.facts.items():   
+    #     print(f"Fact ID: {fact_id}")
+    #     for key, value in fact.items():
+    #         print(f"{key}: {value}")

@@ -29,36 +29,48 @@ class LungInterventionAssessment(Fact):
     diagnosis_result_description = Field(str)
 
 class InterventionRecommendation(KnowledgeEngine):
-    @Rule(LungInterventionAssessment(emphysema_severity="nặng", lobe_hyperinflation=True))
+    def __init__(self):
+        super().__init__()
+        self.diagnosis_result = "no_intervention"
+        self.diagnosis_result_description = "Không chỉ định nội soi can thiệp và phẫu thuật."
+
+    @Rule(LungInterventionAssessment(emphysema_severity="nặng"))
     def recommend_bronchoscopy(self):
-        diagnosis_result_description = "Nội soi can thiệp giảm thể tích phổi được khuyến cáo. Các phương pháp bao gồm: đặt van một chiều, đặt coil hoặc đốt nhiệt."
-        print(diagnosis_result_description)
-        self.declare(LungInterventionAssessment(diagnosis_result="lung_volume_reduction_endoscopy", diagnosis_result_description=diagnosis_result_description))
+        self.diagnosis_result_description = "Nội soi can thiệp giảm thể tích phổi được khuyến cáo. Các phương pháp bao gồm: đặt van một chiều, đặt coil hoặc đốt nhiệt."
+        self.diagnosis_result = "lung_volume_reduction_endoscopy"
+
 
     @Rule(LungInterventionAssessment(emphysema_severity="nặng", lobe_hyperinflation=True))
     def recommend_surgery(self):
-        diagnosis_result_description = "Phẫu thuật giảm thể tích phổi có thể được chỉ định cho bệnh nhân có ứ khí thùy trên."
-        print(diagnosis_result_description)
-        self.declare(LungInterventionAssessment(diagnosis_result="lung_volume_reduction_surgery", diagnosis_result_description=diagnosis_result_description))
+        self.diagnosis_result_description = "Phẫu thuật giảm thể tích phổi có thể được chỉ định cho bệnh nhân có ứ khí thùy trên."
+        self.diagnosis_result = "lung_volume_reduction_surgery"
 
-    @Rule(LungInterventionAssessment(bode_score=MATCH.bode_score, emphysema_severity="rất nặng"),
+    @Rule(LungInterventionAssessment(bode_score=MATCH.bode_score, emphysema_severity="nặng", ),
           TEST(lambda bode_score: 7 <= bode_score <= 10),
-          OR(Fact(acute_CO2_exacerbation=True),
-             Fact(pulmonary_hypertension=True),
-             Fact(cor_pulmonale=True),
-             AND(Fact(FEV1=MATCH.FEV1, DLCO=MATCH.DLCO, emphysema_pattern="đồng nhất"),
+          OR(LungInterventionAssessment(acute_CO2_exacerbation=True),
+             LungInterventionAssessment(pulmonary_hypertension=True),
+             LungInterventionAssessment(cor_pulmonale=True),
+             AND(LungInterventionAssessment(FEV1=MATCH.FEV1, DLCO=MATCH.DLCO, emphysema_pattern="đồng nhất"),
                  TEST(lambda FEV1, DLCO: FEV1 < 20 and DLCO < 20))))
     def recommend_lung_transplant(self):
-        diagnosis_result_description = "Ghép phổi được khuyến cáo cho bệnh nhân có các tiêu chí phù hợp."
-        print(diagnosis_result_description)
-        self.declare(LungInterventionAssessment(diagnosis_result="lung_transplant", diagnosis_result_description=diagnosis_result_description))
+        self.diagnosis_result_description = "Ghép phổi được khuyến cáo cho bệnh nhân có các tiêu chí phù hợp."
+        self.diagnosis_result = "lung_transplant"
+        self.declare(LungInterventionAssessment(diagnosis_result=self.diagnosis_result, diagnosis_result_description=self.diagnosis_result_description))
+        print(f"Kết quả chẩn đoán: {self.diagnosis_result_description}")
+        self.halt()
+
+    @Rule(LungInterventionAssessment(), salience=-1)
+    def declaration(self):            
+        self.declare(LungInterventionAssessment(diagnosis_result=self.diagnosis_result, diagnosis_result_description=self.diagnosis_result_description))
+        print(f"Kết quả chẩn đoán: {self.diagnosis_result_description}")
+
 
 if __name__ == "__main__":
     engine = InterventionRecommendation()
     engine.reset()
 
     print("Nhập dữ liệu bệnh nhân:")
-    emphysema_severity = input("Mức độ khí phế thũng (nặng/rất nặng): ").strip()
+    emphysema_severity = input("Mức độ khí phế thũng (nặng/nhẹ): ").strip()
     lobe_hyperinflation = input("Bệnh nhân có ứ khí thùy trên không? (True/False): ").strip().lower() == "true"
     bode_score = int(input("Điểm BODE (0-10): ").strip())
     acute_CO2_exacerbation = input("Có đợt cấp với tăng CO2 máu cấp tính không? (True/False): ").strip().lower() == "true"
@@ -81,3 +93,9 @@ if __name__ == "__main__":
     ))
 
     engine.run()
+
+    
+    for fact_id, fact in engine.facts.items():   
+        print(f"Fact ID: {fact_id}")
+        for key, value in fact.items():
+            print(f"{key}: {value}")

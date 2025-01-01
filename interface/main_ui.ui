@@ -1313,7 +1313,11 @@
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
          <item row="2" column="8">
-          <widget class="QSpinBox" name="viii_bode_score"/>
+          <widget class="QSpinBox" name="viii_bode_score">
+           <property name="maximum">
+            <number>10</number>
+           </property>
+          </widget>
          </item>
          <item row="6" column="9">
           <widget class="QLabel" name="label_40">
@@ -1412,12 +1416,12 @@
           <widget class="QComboBox" name="viii_emphysema_severity">
            <item>
             <property name="text">
-             <string>Nặng</string>
+             <string>Nhẹ</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Rất nặng</string>
+             <string>Nặng</string>
             </property>
            </item>
           </widget>

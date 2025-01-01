@@ -1,3 +1,4 @@
-[-] file v_symptom_assessment có thể giảm sự trùng lặp của declare trong engine (xem trong file vii)
-[-] lưu dữ liệu vào database
-[-] tìm cách dynamically ẩn/hiện các widget theo điều kiện
+[ ] file v_symptom_assessment có thể giảm sự trùng lặp của declare trong engine (xem trong file vii)
+[ ] lưu dữ liệu vào database
+[ ] tìm cách dynamically ẩn/hiện các widget theo điều kiện
+[x] sửa lại engine viii cho đúng tri thức
