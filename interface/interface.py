@@ -97,9 +97,10 @@ class MainWindow(QMainWindow):
         self.ui.viii_ket_qua_btn.clicked.connect(self.run_viii_lung_intervention_surgery)
         self.ui.ix_chan_doan_btn.clicked.connect(self.run_ix_acute_exacerbation_copd_diagnosis_and_treatment)
         self.ui.x_ket_qua_btn.clicked.connect(self.run_x_bipap_indication_copd)
-
-    
-
+        self.ui.xi_ket_qua_btn_1.clicked.connect(self.run_xi_empirical_antibiotic_selection_outpatient_1)
+        self.ui.xi_ket_qua_btn_2.clicked.connect(self.run_xi_empirical_antibiotic_selection_outpatient_2)
+        self.ui.xi_ket_qua_btn_3.clicked.connect(self.run_xi_empirical_antibiotic_selection_outpatient_3)
+        self.ui.xi_ket_qua_btn_4.clicked.connect(self.run_xi_empirical_antibiotic_selection_outpatient_4)
 
     def init_list_widget(self):
         for item in self.menu_list:
@@ -324,9 +325,79 @@ class MainWindow(QMainWindow):
             bipap_indicated_description = engine.facts[2].get("bipap_indicated_description")
             self.ui.x_ket_qua.setText(f"Kết quả: {bipap_indicated_description}")
         except KeyError:
-            self.ui.x_ket_qua.setText("Không chỉ định thông khí nhân tạo không xâm nhập (BiPAP).")
+            self.ui.x_ket_qua.setText("Không chỉ định thông khí nhân tạo không xâm nhập (BiPAP).") 
 
-            
+    def run_xi_empirical_antibiotic_selection_outpatient_1(self):
+        engine_1 = EmpiricalAntibioticSelectionOutpatient()
+        engine_1.reset()
+
+        symptom_main_1 = self.ui.xi_breathlessness_increase.isChecked()
+        symptom_main_2 = self.ui.xi_sputum_volume_or_thickness_increase.isChecked()
+        symptom_main_3 = self.ui.xi_purulent_sputum_increase.isChecked()
+
+        engine_1.declare(Outpatient(breathlessness_increase=symptom_main_1, sputum_volume_or_thickness_increase=symptom_main_2, purulent_sputum_increase=symptom_main_3))
+        engine_1.run()
+
+        try:
+            antibiotic_selection_description = engine_1.facts[2].get("antibiotic_selection_description")
+            self.ui.xi_ket_qua_1.setText(f"Kết quả chẩn đoán: {antibiotic_selection_description}")
+        except KeyError:
+            self.ui.ix_chan_doan.setText("Không tìm được kết quả.")
+
+    def run_xi_empirical_antibiotic_selection_outpatient_2(self):
+        fev1 = self.ui.xi_fev1.value()
+        hospitalization = self.ui.xi_hospitalization.isChecked()
+        exacerbations = self.ui.xi_exacerbations.value()
+        risk_oxygen_home = self.ui.xi_risk_oxygen_home.isChecked()
+        risk_comorbidities = self.ui.xi_risk_comorbidities.isChecked()
+
+        engine_2 = EmpiricalAntibioticSelectionOutpatient()
+        engine_2.reset()
+
+        engine_2.declare(Outpatient(fev1=fev1, exacerbations=exacerbations, hospitalization=hospitalization, risk_oxygen_home=risk_oxygen_home, risk_comorbidities=risk_comorbidities))
+        engine_2.run()
+
+        try:
+            antibiotic_selection_description = engine_2.facts[2].get("antibiotic_selection_description")
+            self.ui.xi_ket_qua_2.setText(f"Kết quả chẩn đoán: {antibiotic_selection_description}")
+        except KeyError:
+            self.ui.xi_ket_qua_2.setText("Không tìm được kết quả.")
+
+    def run_xi_empirical_antibiotic_selection_outpatient_3(self):
+        engine_3 = EmpiricalAntibioticSelectionOutpatient()
+        engine_3.reset()
+
+        risk_pseudomonas = self.ui.xi_risk_pseudomonas.isChecked()
+
+        engine_3.declare(Outpatient(risk_pseudomonas=risk_pseudomonas))
+        engine_3.run()
+
+        try:
+            antibiotic_selection_description_3 = engine_3.facts[2].get("antibiotic_selection_description")
+            if self.ui.xi_ket_qua_btn_3.isChecked():
+                self.ui.xi_ket_qua_3.setText(f"Kết quả chẩn đoán: {antibiotic_selection_description_3}")
+        except KeyError:
+            self.ui.ix_ix_ket_qua_3.setText("Không tìm được kết quả.")
+
+    def run_xi_empirical_antibiotic_selection_outpatient_4(self):
+        engine_4 = EmpiricalAntibioticSelectionOutpatient()
+        engine_4.reset()
+
+        fev1 = self.ui.xi_fev1.value()
+        bronchiectasis = self.ui.xi_bronchiectasis.isChecked()
+        broad_spectrum = self.ui.xi_broad_spectrum_antibiotic_use.isChecked()
+
+        engine_4.declare(Outpatient(fev1=fev1,bronchiectasis=bronchiectasis, broad_spectrum_antibiotic_use=broad_spectrum))
+        engine_4.run()
+
+        try:
+            antibiotic_selection_description_4 = engine_4.facts[2].get("antibiotic_selection_description")
+            if self.ui.xi_ket_qua_btn_4.isChecked():
+                self.ui.xi_ket_qua_4.setText(f"Kết quả chẩn đoán: {antibiotic_selection_description_4}")
+        except KeyError:
+            self.ui.ix_ix_ket_qua_4.setText("Không tìm được kết quả.")
+
+        
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
