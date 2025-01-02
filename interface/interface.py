@@ -101,6 +101,13 @@ class MainWindow(QMainWindow):
         self.ui.xi_ket_qua_btn_2.clicked.connect(self.run_xi_empirical_antibiotic_selection_outpatient_2)
         self.ui.xi_ket_qua_btn_3.clicked.connect(self.run_xi_empirical_antibiotic_selection_outpatient_3)
         self.ui.xi_ket_qua_btn_4.clicked.connect(self.run_xi_empirical_antibiotic_selection_outpatient_4)
+        self.ui.xii_ket_qua_btn_1.clicked.connect(self.run_xii_empirical_antibiotic_selection_inpatient_1)
+        self.ui.xii_ket_qua_btn_2.clicked.connect(self.run_xii_empirical_antibiotic_selection_inpatient_2)
+
+        self.ui.xi_ket_qua_btn_2.setEnabled(False)
+        self.ui.xi_ket_qua_btn_3.setEnabled(False)
+        self.ui.xi_ket_qua_btn_4.setEnabled(False)
+        self.ui.xii_ket_qua_btn_2.setEnabled(False)
 
     def init_list_widget(self):
         for item in self.menu_list:
@@ -340,6 +347,15 @@ class MainWindow(QMainWindow):
 
         try:
             antibiotic_selection_description = engine_1.facts[2].get("antibiotic_selection_description")
+            if antibiotic_selection_description == "Có đủ triệu chứng chính. Chuyển sang giai đoạn 2.":
+                self.ui.xi_ket_qua_btn_2.setEnabled(True)
+            else:
+                self.ui.xi_ket_qua_btn_2.setEnabled(False)
+                self.ui.xi_ket_qua_btn_3.setEnabled(False)
+                self.ui.xi_ket_qua_btn_4.setEnabled(False)
+                self.ui.xi_ket_qua_2.setText("")
+                self.ui.xi_ket_qua_3.setText("")
+                self.ui.xi_ket_qua_4.setText("")
             self.ui.xi_ket_qua_1.setText(f"Kết quả chẩn đoán: {antibiotic_selection_description}")
         except KeyError:
             self.ui.ix_chan_doan.setText("Không tìm được kết quả.")
@@ -359,6 +375,14 @@ class MainWindow(QMainWindow):
 
         try:
             antibiotic_selection_description = engine_2.facts[2].get("antibiotic_selection_description")
+            if antibiotic_selection_description == "Có yếu tố nguy cơ kết cục xấu. Chuyển sang giai đoạn 3.":
+                self.ui.xi_ket_qua_btn_3.setEnabled(True)
+            else:
+                self.ui.xi_ket_qua_btn_3.setEnabled(False)
+                self.ui.xi_ket_qua_btn_4.setEnabled(False)
+                self.ui.xi_ket_qua_3.setText("")
+                self.ui.xi_ket_qua_4.setText("")
+
             self.ui.xi_ket_qua_2.setText(f"Kết quả chẩn đoán: {antibiotic_selection_description}")
         except KeyError:
             self.ui.xi_ket_qua_2.setText("Không tìm được kết quả.")
@@ -373,9 +397,13 @@ class MainWindow(QMainWindow):
         engine_3.run()
 
         try:
-            antibiotic_selection_description_3 = engine_3.facts[2].get("antibiotic_selection_description")
-            if self.ui.xi_ket_qua_btn_3.isChecked():
-                self.ui.xi_ket_qua_3.setText(f"Kết quả chẩn đoán: {antibiotic_selection_description_3}")
+            antibiotic_selection_description = engine_3.facts[2].get("antibiotic_selection_description")
+            if antibiotic_selection_description == "Không có nguy cơ nhiễm Pseudomonas. Chuyển sang giai đoạn 4.":
+                self.ui.xi_ket_qua_btn_4.setEnabled(True)
+            else:
+                self.ui.xi_ket_qua_btn_4.setEnabled(False)
+                self.ui.xi_ket_qua_4.setText("")
+            self.ui.xi_ket_qua_3.setText(f"Kết quả chẩn đoán: {antibiotic_selection_description}")
         except KeyError:
             self.ui.ix_ix_ket_qua_3.setText("Không tìm được kết quả.")
 
@@ -391,12 +419,47 @@ class MainWindow(QMainWindow):
         engine_4.run()
 
         try:
-            antibiotic_selection_description_4 = engine_4.facts[2].get("antibiotic_selection_description")
-            if self.ui.xi_ket_qua_btn_4.isChecked():
-                self.ui.xi_ket_qua_4.setText(f"Kết quả chẩn đoán: {antibiotic_selection_description_4}")
+            antibiotic_selection_description = engine_4.facts[2].get("antibiotic_selection_description")
+            self.ui.xi_ket_qua_4.setText(f"Kết quả chẩn đoán: {antibiotic_selection_description}")
         except KeyError:
             self.ui.ix_ix_ket_qua_4.setText("Không tìm được kết quả.")
 
+    def run_xii_empirical_antibiotic_selection_inpatient_1(self):
+        engine_1 = EmpiricalAntibioticSelectionInpatient()
+        engine_1.reset()
+
+        suspect_pneumonia_or_infection = self.ui.xii_suspect_pneumonia_or_infection.isChecked()
+
+        engine_1.declare(Inpatient(suspect_pneumonia_or_infection=suspect_pneumonia_or_infection))
+        engine_1.run()
+
+        try:
+            antibiotic_selection_description = engine_1.facts[2].get("antibiotic_selection_description")
+            if antibiotic_selection_description == "Không nghi ngờ viêm phổi hoặc nhiễm khuẩn nơi khác. Chuyển sang giai đoạn 2.":
+                self.ui.xii_ket_qua_btn_2.setEnabled(True)
+            else:  
+                self.ui.xii_ket_qua_btn_2.setEnabled(False)
+                self.ui.xii_ket_qua_2.setText("")
+            self.ui.xii_ket_qua_1.setText(f"Kết quả chẩn đoán: {antibiotic_selection_description}")
+        except KeyError:
+            self.ui.xii_ket_qua_1.setText("Không tìm được kết quả.")
+
+
+
+    def run_xii_empirical_antibiotic_selection_inpatient_2(self):
+        engine_2 = EmpiricalAntibioticSelectionInpatient()
+        engine_2.reset()
+
+        risk_pseudomonas = self.ui.xii_risk_pseudomonas.isChecked()
+
+        engine_2.declare(Inpatient(risk_pseudomonas=risk_pseudomonas))
+        engine_2.run()
+
+        try:
+            antibiotic_selection_description_2 = engine_2.facts[2].get("antibiotic_selection_description")
+            self.ui.xii_ket_qua_2.setText(f"Kết quả chẩn đoán: {antibiotic_selection_description_2}")
+        except KeyError:
+            self.ui.xii_ket_qua_2.setText("Không tìm được kết quả.")
         
 
 if __name__ == '__main__':

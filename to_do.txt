@@ -1,6 +1,6 @@
 [ ] file v_symptom_assessment có thể giảm sự trùng lặp của declare trong engine (xem trong file vii)
 [ ] lưu dữ liệu vào database
-[->] tìm cách dynamically ẩn/hiện các widget theo điều kiện
+[ ] tìm cách dynamically ẩn/hiện các widget theo điều kiện
 https://www.youtube.com/watch?v=LCJEyuCZlAY&ab_channel=Codemy.com
 [x] sửa lại engine viii cho đúng tri thức
 [ ] viết lại README

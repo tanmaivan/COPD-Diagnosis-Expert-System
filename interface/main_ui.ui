@@ -72,7 +72,7 @@
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>8</number>
+       <number>9</number>
       </property>
       <widget class="QWidget" name="page"/>
       <widget class="QWidget" name="ii">
@@ -2181,7 +2181,7 @@
           <x>460</x>
           <y>140</y>
           <width>256</width>
-          <height>51</height>
+          <height>201</height>
          </rect>
         </property>
        </widget>
@@ -2189,7 +2189,7 @@
         <property name="geometry">
          <rect>
           <x>70</x>
-          <y>260</y>
+          <y>360</y>
           <width>380</width>
           <height>54</height>
          </rect>
@@ -2229,9 +2229,9 @@
         <property name="geometry">
          <rect>
           <x>460</x>
-          <y>260</y>
+          <y>360</y>
           <width>256</width>
-          <height>51</height>
+          <height>201</height>
          </rect>
         </property>
        </widget>

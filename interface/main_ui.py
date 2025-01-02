@@ -993,10 +993,10 @@ class Ui_MainWindow(object):
         self.xii_ket_qua_btn_1.setObjectName("xii_ket_qua_btn_1")
         self.verticalLayout_18.addWidget(self.xii_ket_qua_btn_1)
         self.xii_ket_qua_1 = QtWidgets.QTextBrowser(parent=self.xii)
-        self.xii_ket_qua_1.setGeometry(QtCore.QRect(460, 140, 256, 51))
+        self.xii_ket_qua_1.setGeometry(QtCore.QRect(460, 140, 256, 201))
         self.xii_ket_qua_1.setObjectName("xii_ket_qua_1")
         self.layoutWidget_3 = QtWidgets.QWidget(parent=self.xii)
-        self.layoutWidget_3.setGeometry(QtCore.QRect(70, 260, 380, 54))
+        self.layoutWidget_3.setGeometry(QtCore.QRect(70, 360, 380, 54))
         self.layoutWidget_3.setObjectName("layoutWidget_3")
         self.verticalLayout_19 = QtWidgets.QVBoxLayout(self.layoutWidget_3)
         self.verticalLayout_19.setContentsMargins(0, 0, 0, 0)
@@ -1016,7 +1016,7 @@ class Ui_MainWindow(object):
         self.xii_ket_qua_btn_2.setObjectName("xii_ket_qua_btn_2")
         self.verticalLayout_19.addWidget(self.xii_ket_qua_btn_2)
         self.xii_ket_qua_2 = QtWidgets.QTextBrowser(parent=self.xii)
-        self.xii_ket_qua_2.setGeometry(QtCore.QRect(460, 260, 256, 51))
+        self.xii_ket_qua_2.setGeometry(QtCore.QRect(460, 360, 256, 201))
         self.xii_ket_qua_2.setObjectName("xii_ket_qua_2")
         self.stackedWidget.addWidget(self.xii)
         self.gridLayout.addWidget(self.stackedWidget, 0, 2, 2, 1)
@@ -1030,7 +1030,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(7)
+        self.stackedWidget.setCurrentIndex(9)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
