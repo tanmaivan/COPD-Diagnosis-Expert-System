@@ -18,11 +18,11 @@ class COPDExacerbationFacts(Fact):
     vas = Field(int)
     respiratory_rate = Field(int)
     heart_rate = Field(int)
-    spo2 = Field(int)
-    crp = Field(int)
+    spo2 = Field(float)
+    crp = Field(float)
     pao2 = Field(float)
     paco2 = Field(float)
-    ph = Field(float)
+    ph = Field(int)
     diagnosis = Field(str)
     treatment_location = Field(str)
 
@@ -36,7 +36,7 @@ class COPDExacerbationDiagnosis(KnowledgeEngine):
         crp=P(lambda crp: crp < 10)
     ))
     def mild_exacerbation(self):
-        self.declare(COPDExacerbationFacts(diagnosis="mild", treatment_location="outpatient"))
+        self.declare(COPDExacerbationFacts(diagnosis="Đợt cấp nhẹ", treatment_location="Ngoại trú"))
         print("Chẩn đoán: Đợt cấp nhẹ. Nên điều trị ngoại trú.")
 
     @Rule(COPDExacerbationFacts(
@@ -54,7 +54,7 @@ class COPDExacerbationDiagnosis(KnowledgeEngine):
         ]) >= 3)
     )
     def moderate_exacerbation(self):
-        self.declare(COPDExacerbationFacts(severity="moderate", treatment_location="internal"))
+        self.declare(COPDExacerbationFacts(severity="Đợt cấp trung bình", treatment_location="Khoa Nội"))
         print("Chẩn đoán: Đợt cấp trung bình. Nên điều trị tại Khoa Nội.")
 
     @Rule(COPDExacerbationFacts(
@@ -63,7 +63,7 @@ class COPDExacerbationDiagnosis(KnowledgeEngine):
         ph=P(lambda ph: ph >= 7.35)
     ))
     def moderate_exacerbation_with_abg(self):
-        self.declare(COPDExacerbationFacts(severity="moderate", treatment_location="internal"))
+        self.declare(COPDExacerbationFacts(severity="Đợt cấp trung bình", treatment_location="Khoa Nội"))
         print("Chẩn đoán: Đợt cấp trung bình. Nên điều trị tại Khoa Nội.")
 
     @Rule(COPDExacerbationFacts(
@@ -71,11 +71,12 @@ class COPDExacerbationDiagnosis(KnowledgeEngine):
         ph=P(lambda ph: ph < 7.35)
     ))
     def severe_exacerbation(self):
-        self.declare(COPDExacerbationFacts(severity="severe", treatment_location="icu"))
+        self.declare(COPDExacerbationFacts(severity="Đợt cấp nặng", treatment_location="Khoa Hô hấp hoặc Hồi sức tích cực (ICU)"))
         print("Chẩn đoán: Đợt cấp nặng. Nên điều trị tại Khoa Hô hấp hoặc Hồi sức tích cực (ICU).")
 
     @Rule(NOT(COPDExacerbationFacts(severity=W())), salience=-1)
     def unknown_severity(self):
+        self.declare(COPDExacerbationFacts(severity="Không đủ thông tin để phân loại đợt cấp", treatment_location="Không xác định"))
         print("Không đủ thông tin để phân loại đợt cấp. Hãy kiểm tra lại các chỉ số.")
 
 # Sử dụng hệ thống
@@ -105,3 +106,8 @@ if __name__ == "__main__":
     ))
 
     engine.run()
+
+    # for fact_id, fact in engine.facts.items():   
+    #     print(f"Fact ID: {fact_id}")
+    #     for key, value in fact.items():
+    #         print(f"{key}: {value}")

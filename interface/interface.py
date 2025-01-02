@@ -95,7 +95,10 @@ class MainWindow(QMainWindow):
         self.ui.vi_kiem_tra_btn.clicked.connect(self.run_vi_treatment_protocol)
         self.ui.vii_ket_qua_btn.clicked.connect(self.run_vii_long_term_oxygen)
         self.ui.viii_ket_qua_btn.clicked.connect(self.run_viii_lung_intervention_surgery)
+        self.ui.ix_chan_doan_btn.clicked.connect(self.run_ix_acute_exacerbation_copd_diagnosis_and_treatment)
+        self.ui.x_ket_qua_btn.clicked.connect(self.run_x_bipap_indication_copd)
 
+    
 
 
     def init_list_widget(self):
@@ -278,6 +281,50 @@ class MainWindow(QMainWindow):
             self.ui.viii_ket_qua.setText(f"Kết quả:\n\n{diagnosis_result_description}")
         except KeyError:
             self.ui.viii_ket_qua.setText("Không tìm được kết quả.")
+
+    def run_ix_acute_exacerbation_copd_diagnosis_and_treatment(self):
+        engine = COPDExacerbationDiagnosis()
+        engine.reset()
+
+        vas = self.ui.ix_vas.value()
+        respiratory_rate = self.ui.ix_respiratory_rate.value()
+        heart_rate = self.ui.ix_heart_rate.value()
+        spo2 = self.ui.ix_spo2.value()
+        crp = self.ui.ix_crp.value()
+        pao2 = self.ui.ix_pao2.value()
+        paco2 = self.ui.ix_paco2.value()
+        ph = self.ui.ix_ph.value()
+
+        engine.declare(COPDExacerbationFacts(vas=vas, respiratory_rate=respiratory_rate, heart_rate=heart_rate, spo2=spo2, crp=crp, pao2=pao2, paco2=paco2, ph=ph))
+
+        engine.run()
+
+        try:
+            severity = engine.facts[2].get("severity")
+            treatment_location = engine.facts[2].get("treatment_location")
+            self.ui.ix_chan_doan.setText(f"Kết quả chẩn đoán: {severity}.\nNên điều trị tại: {treatment_location}.")
+        except KeyError:
+            self.ui.ix_chan_doan.setText("Không tìm được kết quả.")
+
+    def run_x_bipap_indication_copd(self):
+        engine = BiPAPIndicationExpert()
+        engine.reset()
+
+        dyspnea_severe = self.ui.x_dyspnea_severe.isChecked()
+        ph = self.ui.x_ph.value()
+        paco2 = self.ui.x_paco2.value()
+        respiratory_rate = self.ui.x_respiratory_rate.value()
+        persistent_hypoxemia = self.ui.x_persistent_hypoxemia.isChecked()
+
+        engine.declare(BiPAPIndicationFacts(dyspnea_severe=dyspnea_severe, ph=ph, paco2=paco2, respiratory_rate=respiratory_rate, persistent_hypoxemia=persistent_hypoxemia))
+
+        engine.run()
+
+        try:
+            bipap_indicated_description = engine.facts[2].get("bipap_indicated_description")
+            self.ui.x_ket_qua.setText(f"Kết quả: {bipap_indicated_description}")
+        except KeyError:
+            self.ui.x_ket_qua.setText("Không chỉ định thông khí nhân tạo không xâm nhập (BiPAP).")
 
             
 

@@ -13,8 +13,8 @@ class Outpatient(Fact):
     - risk_oxygen_home: Đang dùng liệu pháp oxy dài hạn tại nhà (True/False).
     - risk_comorbidities: Có bệnh đồng mắc (True/False).
     - risk_pseudomonas: Có nguy cơ nhiễm Pseudomonas (True/False).
-    - gian_phe_quan: Giãn phế quang trên X-quang hoặc CT ngực (True/False).
-    - dung_khang_sinh_pho_rong: Có dùng kháng sinh phổ rộng (True/False).
+    - bronchiectasis: Giãn phế quang trên X-quang hoặc CT ngực (True/False).
+    - broad_spectrum_antibiotic_use: Có dùng kháng sinh phổ rộng (True/False).
     """
     breathlessness_increase = Field(bool)
     sputum_volume_or_thickness_increase = Field(bool)
@@ -25,8 +25,8 @@ class Outpatient(Fact):
     risk_oxygen_home = Field(bool)
     risk_comorbidities = Field(bool)
     risk_pseudomonas = Field(bool)
-    gian_phe_quan = Field(bool)
-    dung_khang_sinh_pho_rong = Field(bool)
+    bronchiectasis = Field(bool)
+    broad_spectrum_antibiotic_use = Field(bool)
 
 class EmpiricalAntibioticSelectionOutpatient(KnowledgeEngine):
     def __init__(self):
@@ -68,9 +68,9 @@ class EmpiricalAntibioticSelectionOutpatient(KnowledgeEngine):
     def stage_3_proceed(self):
         print("Không có nguy cơ nhiễm Pseudomonas. Chuyển sang giai đoạn 4.")
 
-    @Rule(Outpatient(fev1=MATCH.fev1, gian_phe_quan=MATCH.gian_phe_quan, dung_khang_sinh_pho_rong=MATCH.dung_khang_sinh_pho_rong))
-    def stage_4(self, fev1, gian_phe_quan, dung_khang_sinh_pho_rong):
-        if fev1 < 30 or gian_phe_quan or dung_khang_sinh_pho_rong:
+    @Rule(Outpatient(fev1=MATCH.fev1, bronchiectasis=MATCH.bronchiectasis, broad_spectrum_antibiotic_use=MATCH.broad_spectrum_antibiotic_use))
+    def stage_4(self, fev1, bronchiectasis, broad_spectrum_antibiotic_use):
+        if fev1 < 30 or bronchiectasis or broad_spectrum_antibiotic_use:
             self.result = "Điều trị bằng ciprofloxacin hoặc levofloxacin và cấy đờm làm kháng sinh đồ."
         else:
             self.result = "Tùy thuộc đặc điểm bệnh nhân, chọn 1 trong các kháng sinh sau:\n- Amoxicillin-clavulanate\n- Levofloxacin hoặc moxifloxacin"
@@ -122,12 +122,12 @@ def main():
     # Giai đoạn 4: Kiểm tra yếu tố nguy cơ khác gây nhiễm Pseudomonas
     print("\nKiểm tra yếu tố nguy cơ khác:")
     
-    # Nhập gian_phe_quan hoặc dung_khang_sinh_pho_rong
-    gian_phe_quan = input("Giãn phế quang trên X-quang hoặc CT ngực (True/False): ").lower() == "true"
-    dung_khang_sinh_pho_rong = input("Có dùng kháng sinh phổ rộng (True/False): ").lower() == "true"
+    # Nhập bronchiectasis hoặc broad_spectrum_antibiotic_use
+    bronchiectasis = input("Giãn phế quang trên X-quang hoặc CT ngực (True/False): ").lower() == "true"
+    broad_spectrum_antibiotic_use = input("Có dùng kháng sinh phổ rộng (True/False): ").lower() == "true"
 
     # Khai báo các yếu tố nguy cơ khác
-    engine.declare(Patient(fev1=fev1,gian_phe_quan=gian_phe_quan, dung_khang_sinh_pho_rong=dung_khang_sinh_pho_rong))
+    engine.declare(Patient(fev1=fev1,bronchiectasis=bronchiectasis, broad_spectrum_antibiotic_use=broad_spectrum_antibiotic_use))
     engine.run()
 
 if __name__ == "__main__":
