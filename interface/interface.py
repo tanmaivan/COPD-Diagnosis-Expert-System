@@ -1,13 +1,13 @@
 import sys
 import os 
-from PyQt6.QtWidgets import QMainWindow, QApplication, QLabel, QListWidgetItem, QWidget, QGridLayout, QMessageBox
+from PyQt6.QtWidgets import QMainWindow, QApplication, QLabel, QListWidgetItem, QWidget, QGridLayout, QMessageBox, QPushButton, QTableWidget, QTableWidgetItem
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QIcon, QPixmap, QFont
 from main_ui import Ui_MainWindow
-import json
 
 # Import the engines
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
+from connect_database import ConnectDatabase
 from ii_questionnaire_engine import *
 from iii_diagnosis_engine import *
 from iv_airway_assessment import *
@@ -32,6 +32,11 @@ class MainWindow(QMainWindow):
         # Set window properties
         self.setWindowIcon(QIcon("icon\Logo.png"))
         self.setWindowTitle("Hệ chuyên gia Chuẩn đoán bệnh phổi tắc nghẽn mạn tính")
+
+        # Create a database connection object
+        self.db = ConnectDatabase()
+
+
 
         # Initialize UI elements
         self.title_label = self.ui.title_label
@@ -88,9 +93,10 @@ class MainWindow(QMainWindow):
         self.init_single_slot()
 
         # Connect the button click event to the engines
-        self.ui.ii_chan_doan_btn.clicked.connect(self.run_i_questionnaire_engine)
-        self.ui.iii_chan_doan_1_btn.clicked.connect(self.run_ii_diagnosis_engine)
-        self.ui.iii_chan_doan_2_btn.clicked.connect(self.run_iii_airway_assessment)
+        self.ui.i_connect.clicked.connect(self.run_i_engine)
+        self.ui.ii_chan_doan_btn.clicked.connect(self.run_ii_questionnaire_engine)
+        self.ui.iii_chan_doan_1_btn.clicked.connect(self.run_iii_diagnosis_engine)
+        self.ui.iii_chan_doan_2_btn.clicked.connect(self.run_iv_airway_assessment)
         self.ui.v_chan_doan_btn.clicked.connect(self.run_v_symptom_assessment)
         self.ui.vi_kiem_tra_btn.clicked.connect(self.run_vi_treatment_protocol)
         self.ui.vii_ket_qua_btn.clicked.connect(self.run_vii_long_term_oxygen)
@@ -123,13 +129,145 @@ class MainWindow(QMainWindow):
     def init_stackwidget(self):
         # Initialize the stack widget with content pages
         widget_list = self.main_content.findChildren(QWidget)
+            
+    def run_i_engine(self):
+        self.ui.i_connect_state.setText("Đã xác nhận.")
 
-    def load_json(file_path):
-        with open(file_path, "r", encoding="utf-8") as file:
-            data = json.load(file)
-        return data
+        try:
+            self.ui.i_add_btn.clicked.disconnect(self.i_add_info)
+        except TypeError:
+            pass
+
+        self.ui.i_add_btn.clicked.connect(self.i_add_info)
+        self.ui.i_update_btn.clicked.connect(self.i_update_info)
+        self.ui.i_delete_btn.clicked.connect(self.i_delete_info)
+        self.ui.i_select_btn.clicked.connect(self.i_select_info)
+
+
+        self.result_tb = self.ui.i_result_tb
+        self.result_tb.setSortingEnabled(False)
+
+    def i_add_info(self):
+        patient_info = self.get_patient_info()
+
+        if not patient_info["full_name"]:
+            QMessageBox.warning(self, "Cảnh báo", "Tên đầy đủ là trường bắt buộc.")
+            return
+        
+        add_result = self.db.add_info(**patient_info)
+        if add_result:
+            QMessageBox.information(self, "Thông báo", f"Thêm thông tin bệnh nhân không thành công.")
+        else:
+            QMessageBox.information(self, "Thông báo", f"Thêm thông tin bệnh nhân thành công.")
+            self.reset_patient_info()
+            self.populate_table()
     
-    def run_i_questionnaire_engine(self):
+    def populate_table(self):
+        data = self.db.get_all_info()
+        if isinstance(data, Exception):
+            QMessageBox.warning(self, "Lỗi", f"Lỗi khi lấy dữ liệu: {data}")
+            return
+
+        if data:
+            headers = data[0].keys()
+            self.result_tb.setColumnCount(len(headers))
+            self.result_tb.setHorizontalHeaderLabels(headers)
+
+        self.result_tb.setRowCount(len(data))
+        for row_index, row_data in enumerate(data):
+            for col_index, (col_name, col_data) in enumerate(row_data.items()):
+                self.result_tb.setItem(row_index, col_index, QTableWidgetItem(str(col_data)))
+
+    def reset_patient_info(self):
+        self.ui.i_full_name.clear()
+        self.ui.i_gender.setCurrentIndex(0)
+        self.ui.i_age.setValue(0)
+        self.ui.i_address.clear()
+        self.ui.i_phone_number.clear()
+        self.ui.i_connect_state.clear()
+        self.ui.i_connect_state.setText("Vui lòng xác nhận thông tin.")
+
+    def i_update_info(self):
+        new_patient = self.get_patient_info()
+
+        if new_patient["full_name"]:
+            update_result = self.db.update_info(full_name=new_patient["full_name"], gender=new_patient["gender"], age=new_patient["age"], address=new_patient["address"], phone_number=new_patient["phone_number"])
+            if update_result:
+                QMessageBox.information(self, "Thông báo", "Cập nhật thông tin bệnh nhân không thành công.")
+        else:
+            QMessageBox.information(self, "Thông báo", "Vui lòng chọn thông tin bệnh nhân cần cập nhật.")
+
+    def i_delete_info(self):
+        select_row = self.result_tb.currentRow()
+        if select_row != 1:
+            selected_option = QMessageBox.warning(self, "Xác nhận", "Bạn có chắc chắn muốn xóa thông tin bệnh nhân này?", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+
+            if selected_option == QMessageBox.StandardButton.Yes:
+                patient_id = self.result_tb.item(select_row, 0).text()
+                delete_result = self.db.delete_info(patient_id)
+                if delete_result:
+                    QMessageBox.information(self, "Thông báo", "Xóa thông tin bệnh nhân không thành công.")
+        else:
+            QMessageBox.information(self, "Thông báo", "Vui lòng chọn thông tin bệnh nhân cần xóa.")
+
+    def i_select_info(self):
+        select_row = self.result_tb.currentRow()
+        if select_row != -1:
+            full_name = self.result_tb.item(select_row, 1).text()
+            gender = self.result_tb.item(select_row, 2).text()
+            age = int(self.result_tb.item(select_row, 3).text())
+            address = self.result_tb.item(select_row, 4).text()
+            phone_number = self.result_tb.item(select_row, 5).text()
+
+            self.full_name.setText(full_name)
+            self.gender.setText(gender)
+            self.age.setText(str(age))
+            self.address.setText(address)
+            self.phone_number.setText(phone_number)
+        else:
+            QMessageBox.information(self, "Thông báo", "Vui lòng chọn thông tin bệnh nhân cần xem.")
+
+    def show_data(self, data):
+        if data:
+            self.result_tb.setRowCount(0)
+            self.result_tb.setRowCount(len(data))
+
+            for row, patient in enumerate(data):
+                info_list = [
+                    patient["full_name"],
+                    patient["gender"],
+                    patient["age"],
+                    patient["address"],
+                    patient["phone_number"]
+                ]
+                for col, field in enumerate(info_list):
+                    cell_item = QTableWidgetItem(str(field))
+                    self.result_tb.setItem(row, col, cell_item)
+
+    def get_patient_info(self):
+        full_name = self.ui.i_full_name.text()
+        gender = self.ui.i_gender.currentText()
+        age = self.ui.i_age.value()
+        address = self.ui.i_address.text()
+        phone_number = self.ui.i_phone_number.text()
+
+        patient_info = {
+            "full_name": full_name,
+            "gender": gender,
+            "age": age,
+            "address": address,
+            "phone_number": phone_number
+        }
+
+        return patient_info
+
+
+
+
+        
+
+
+    def run_ii_questionnaire_engine(self):
         ho = self.ui.ii_ho.isChecked()
         khac_dom = self.ui.ii_khac_dom.isChecked()
         kho_tho = self.ui.ii_kho_tho.isChecked()
@@ -147,7 +285,7 @@ class MainWindow(QMainWindow):
                 return
         self.ui.ii_chan_doan.setText("Kết quả: Không có nguy cơ bệnh phổi tắc nghẽn mạn tính.")
 
-    def run_ii_diagnosis_engine(self):
+    def run_iii_diagnosis_engine(self):
         fev1_fvc = self.ui.iii_fev1_fvc.value()
 
         engine = DiagnosisEngine()
@@ -162,7 +300,7 @@ class MainWindow(QMainWindow):
                 else:
                     self.ui.iii_ket_qua_1.setText("Kết quả: Chỉ số FEV₁/FVC dưới 70%. Chẩn đoán: BPTNMT.")
 
-    def run_iii_airway_assessment(self):
+    def run_iv_airway_assessment(self):
         engine = GOLDStageAssessment()
         engine.reset()
 
