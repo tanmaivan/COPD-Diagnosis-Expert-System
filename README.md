@@ -10,7 +10,7 @@
 # Thành viên nhóm
 | STT    | MSSV          | Họ và Tên              |Chức Vụ    | Email                   |
 | ------ |:-------------:| ----------------------:|----------:|-------------------------:
-| 1      | 22521301      | Mai Văn Tân            |Nhóm trưởng|22521516@gm.uit.edu.vn   |
+| 1      | 22521301      | Mai Văn Tân            |Nhóm trưởng|22521301@gm.uit.edu.vn   |
 | 2      | 22521568      | Trần Lê Nguyên Trung   |Thành viên |22521568@gm.uit.edu.vn   |
 | 3      | 22521550      | Nguyễn Công Trúc       |Thành viên |22521550@gm.uit.edu.vn   |
 | 4      | 22521391      | Nguyễn Minh Thiện      |Thành viên |22521692@gm.uit.edu.vn   |
