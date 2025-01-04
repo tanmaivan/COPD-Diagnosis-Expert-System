@@ -94,7 +94,7 @@ class MainWindow(QMainWindow):
 
         # Connect the button click event to the engines
         # i
-        self.ui.i_add_btn.clicked.connect(lambda: self.add_database(self.get_patient_info(),"tb_patient_info", "tb_patient_info"))
+        self.ui.i_add_btn.clicked.connect(lambda: self.add_database(self.get_patient_info(),"tb_patient_info"))
         self.ui.i_delete_btn.clicked.connect(lambda: self.delete_database("tb_patient_info", "tb_patient_info"))
         self.populate_table("tb_patient_info", "tb_patient_info")
 
@@ -151,7 +151,7 @@ class MainWindow(QMainWindow):
             for col_index, (col_name, col_data) in enumerate(row_data.items()):
                 table_widget.setItem(row_index, col_index, QTableWidgetItem(str(col_data)))
 
-    def add_database(self, data, table_name, table_widget_name):   
+    def add_database(self, data, table_name):   
         add_result = self.db.add_info(table_name, data)
         if add_result:
             QMessageBox.information(self, "Thông báo", f"Thêm thông tin bệnh nhân không thành công.")
@@ -159,13 +159,6 @@ class MainWindow(QMainWindow):
             QMessageBox.information(self, "Thông báo", f"Thêm thông tin bệnh nhân thành công.")
             self.reset_patient_info()
             self.populate_table("tb_patient_info", "tb_patient_info")
-    
-    def reset_patient_info(self):
-        self.ui.i_full_name.clear()
-        self.ui.i_gender.setCurrentIndex(0)
-        self.ui.i_age.setValue(0)
-        self.ui.i_address.clear()
-        self.ui.i_phone_number.clear()
 
     def delete_database(self, table_name, table_widget_name):
         primary_key_column = self.db.get_primary_key(table_name)
@@ -177,7 +170,7 @@ class MainWindow(QMainWindow):
 
         select_row = table_widget.currentRow()
         if select_row != -1:
-            id = int(table_widget.item(select_row, 0).text())  # Assuming the first column is the primary key
+            id = int(table_widget.item(select_row, 0).text())
             delete_result = self.db.delete_info(table_name, primary_key_column, id)
             if delete_result:
                 QMessageBox.information(self, "Thông báo", f"Xóa thông tin không thành công cho ID: {id}")
@@ -203,6 +196,13 @@ class MainWindow(QMainWindow):
         }
 
         return patient_info
+    
+    def reset_patient_info(self):
+        self.ui.i_full_name.clear()
+        self.ui.i_gender.setCurrentIndex(0)
+        self.ui.i_age.setValue(0)
+        self.ui.i_address.clear()
+        self.ui.i_phone_number.clear()
 
     def run_ii_questionnaire_engine(self):
         ho = self.ui.ii_ho.isChecked()
