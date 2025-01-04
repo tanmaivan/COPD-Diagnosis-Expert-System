@@ -93,12 +93,15 @@ class MainWindow(QMainWindow):
         self.init_single_slot()
 
         # Connect the button click event to the engines
-        # i
         self.ui.i_add_btn.clicked.connect(lambda: self.add_database(self.get_patient_info(),"tb_patient_info", "tb_patient_info"))
         self.ui.i_delete_btn.clicked.connect(lambda: self.delete_database("tb_patient_info", "tb_patient_info"))
         self.populate_table("tb_patient_info", "tb_patient_info")
 
         self.ui.ii_chan_doan_btn.clicked.connect(self.run_ii_questionnaire_engine)
+        self.ui.ii_add_btn.clicked.connect(lambda: self.add_database(self.get_ii_questionnaire_data(), "tb_ii_patient_data", "ii_tb") if self.get_ii_questionnaire_data() else None)
+        self.ui.ii_delete_btn.clicked.connect(lambda: self.delete_database("tb_ii_patient_data", "ii_tb"))
+        self.populate_table("tb_ii_patient_data", "ii_tb")
+
         self.ui.iii_chan_doan_1_btn.clicked.connect(self.run_iii_diagnosis_engine)
         self.ui.iii_chan_doan_2_btn.clicked.connect(self.run_iv_airway_assessment)
         self.ui.v_chan_doan_btn.clicked.connect(self.run_v_symptom_assessment)
@@ -228,6 +231,44 @@ class MainWindow(QMainWindow):
                 self.ui.ii_chan_doan.setText("Kết quả: Có nguy cơ bệnh phổi tắc nghẽn mạn tính. Khuyến cáo đo chức năng hô hấp.")
                 return
         self.ui.ii_chan_doan.setText("Kết quả: Không có nguy cơ bệnh phổi tắc nghẽn mạn tính.")
+
+    def get_ii_questionnaire_data(self):
+        patient_id = self.ui.ii_patient_id.value()
+        if not self.db.check_patient_exists("tb_patient_info", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Mã bệnh nhân không tồn tại trong cơ sở dữ liệu.")
+            return None
+        
+        if self.db.check_patient_exists("tb_ii_patient_data", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Dữ liệu bệnh nhân đã tồn tại.")
+            return None
+        
+        ho = self.ui.ii_ho.isChecked()
+        khac_dom = self.ui.ii_khac_dom.isChecked()
+        kho_tho = self.ui.ii_kho_tho.isChecked()
+        tuoi_tren_40 = self.ui.ii_tuoi_tren_40.isChecked()
+        hut_thuoc = self.ui.ii_hut_thuoc.isChecked()
+        ket_qua = self.ui.ii_chan_doan.toPlainText()
+
+
+        ii_questionnaire_data = {
+            "patient_id": patient_id,
+            "ho": ho,
+            "khac_dom": khac_dom,
+            "kho_tho": kho_tho,
+            "tuoi_tren_40": tuoi_tren_40,
+            "hut_thuoc": hut_thuoc,
+            "ket_qua": ket_qua
+        }
+
+        return ii_questionnaire_data
+    
+    def reset_ii_questionnaire(self):
+        self.ui.ii_patient_id.setValue(0)
+        self.ui.ii_ho.setChecked(False)
+        self.ui.ii_khac_dom.setChecked(False)
+        self.ui.ii_kho_tho.setChecked(False)
+        self.ui.ii_tuoi_tren_40.setChecked(False)
+        self.ui.ii_hut_thuoc.setChecked(False)
 
     def run_iii_diagnosis_engine(self):
         fev1_fvc = self.ui.iii_fev1_fvc.value()

@@ -97,3 +97,15 @@ class ConnectDatabase:
         finally:
             self.con.close()
 
+    def check_patient_exists(self, table_name, patient_id):
+        self.connect_db()
+        sql = f"SELECT COUNT(*) FROM `{table_name}` WHERE patient_id = %s"
+        try:
+            self.cursor.execute(sql, (patient_id,))
+            result = self.cursor.fetchone()
+            return result['COUNT(*)'] > 0
+        except Exception as E:
+            return False
+        finally:
+            self.con.close()
+
