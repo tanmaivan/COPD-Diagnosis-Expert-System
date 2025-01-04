@@ -41,8 +41,10 @@ class ConnectDatabase:
 
     def get_all_info(self, table_name):
         self.connect_db()
-
+        
         primary_key = self.get_primary_key(table_name)
+        if not primary_key:
+            return Exception("Primary key not found for table: " + table_name)
 
         sql = f"SELECT * FROM `{table_name}` ORDER BY `{primary_key}` DESC;"
 

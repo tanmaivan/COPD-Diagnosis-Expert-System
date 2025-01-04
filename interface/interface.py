@@ -94,7 +94,7 @@ class MainWindow(QMainWindow):
 
         # Connect the button click event to the engines
         # i
-        self.ui.i_add_btn.clicked.connect(lambda: self.add_database(self.get_patient_info(),"tb_patient_info"))
+        self.ui.i_add_btn.clicked.connect(lambda: self.add_database(self.get_patient_info(),"tb_patient_info", "tb_patient_info"))
         self.ui.i_delete_btn.clicked.connect(lambda: self.delete_database("tb_patient_info", "tb_patient_info"))
         self.populate_table("tb_patient_info", "tb_patient_info")
 
@@ -141,24 +141,31 @@ class MainWindow(QMainWindow):
             return
 
         table_widget = getattr(self.ui, table_widget_name)
+        
+
         if data:
-            headers = data[0].keys()
+            headers = list(data[0].keys())
             table_widget.setColumnCount(len(headers))
             table_widget.setHorizontalHeaderLabels(headers)
+            table_widget.horizontalHeader().setVisible(True)
 
-        table_widget.setRowCount(len(data))
-        for row_index, row_data in enumerate(data):
-            for col_index, (col_name, col_data) in enumerate(row_data.items()):
-                table_widget.setItem(row_index, col_index, QTableWidgetItem(str(col_data)))
+            table_widget.setRowCount(len(data))
+            for row_index, row_data in enumerate(data):
+                for col_index, (col_name, col_data) in enumerate(row_data.items()):
+                    table_widget.setItem(row_index, col_index, QTableWidgetItem(str(col_data)))
+        else:
+            table_widget.setColumnCount(0)
+            table_widget.setRowCount(0)
+        
 
-    def add_database(self, data, table_name):   
+    def add_database(self, data, table_name, table_widget_name):   
         add_result = self.db.add_info(table_name, data)
         if add_result:
             QMessageBox.information(self, "Thông báo", f"Thêm thông tin bệnh nhân không thành công.")
         else:
             QMessageBox.information(self, "Thông báo", f"Thêm thông tin bệnh nhân thành công.")
             self.reset_patient_info()
-            self.populate_table("tb_patient_info", "tb_patient_info")
+            self.populate_table(table_name, table_widget_name)
 
     def delete_database(self, table_name, table_widget_name):
         primary_key_column = self.db.get_primary_key(table_name)
