@@ -80,6 +80,7 @@ class ConnectDatabase:
 
         except Exception as E:
             self.con.rollback()
+            print(f"Error adding data to {table_name}: {E}")
             return E
 
         finally:

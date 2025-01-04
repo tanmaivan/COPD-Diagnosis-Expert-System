@@ -36,8 +36,6 @@ class MainWindow(QMainWindow):
         # Create a database connection object
         self.db = ConnectDatabase()
 
-
-
         # Initialize UI elements
         self.title_label = self.ui.title_label
         self.title_label.setText("CS217.P11 - COPD")
@@ -104,8 +102,21 @@ class MainWindow(QMainWindow):
 
         self.ui.iii_chan_doan_1_btn.clicked.connect(self.run_iii_diagnosis_engine)
         self.ui.iii_chan_doan_2_btn.clicked.connect(self.run_iv_airway_assessment)
+        self.ui.iii_add_btn.clicked.connect(lambda: self.add_database(self.get_iii_lung_function_data(), "tb_iii_lung_function_data", "iii_tb") if self.get_iii_lung_function_data() else None)
+        self.ui.iii_delete_btn.clicked.connect(lambda: self.delete_database("tb_iii_lung_function_data", "iii_tb"))
+        self.populate_table("tb_iii_lung_function_data", "iii_tb")
+
+
         self.ui.v_chan_doan_btn.clicked.connect(self.run_v_symptom_assessment)
+        self.ui.v_add_btn.clicked.connect(lambda: self.add_database(self.get_v_symptom_assessment_data(), "tb_v_symptom_assessment_data", "v_tb") if self.get_v_symptom_assessment_data() else None)
+        self.ui.v_delete_btn.clicked.connect(lambda: self.delete_database("tb_v_symptom_assessment_data", "v_tb"))
+        self.populate_table("tb_v_symptom_assessment_data", "v_tb")
+
         self.ui.vi_kiem_tra_btn.clicked.connect(self.run_vi_treatment_protocol)
+        self.ui.vi_add_btn.clicked.connect(lambda: self.add_database(self.get_vi_treatment_protocol_data(), "tb_vi_treatment_protocol_data", "vi_tb") if self.get_vi_treatment_protocol_data() else None)
+        self.ui.vi_delete_btn.clicked.connect(lambda: self.delete_database("tb_vi_treatment_protocol_data", "vi_tb"))
+        self.populate_table("tb_vi_treatment_protocol_data", "vi_tb")
+
         self.ui.vii_ket_qua_btn.clicked.connect(self.run_vii_long_term_oxygen)
         self.ui.viii_ket_qua_btn.clicked.connect(self.run_viii_lung_intervention_surgery)
         self.ui.ix_chan_doan_btn.clicked.connect(self.run_ix_acute_exacerbation_copd_diagnosis_and_treatment)
@@ -117,6 +128,7 @@ class MainWindow(QMainWindow):
         self.ui.xii_ket_qua_btn_1.clicked.connect(self.run_xii_empirical_antibiotic_selection_inpatient_1)
         self.ui.xii_ket_qua_btn_2.clicked.connect(self.run_xii_empirical_antibiotic_selection_inpatient_2)
 
+        self.ui.iii_chan_doan_2_btn.setEnabled(False)
         self.ui.xi_ket_qua_btn_2.setEnabled(False)
         self.ui.xi_ket_qua_btn_3.setEnabled(False)
         self.ui.xi_ket_qua_btn_4.setEnabled(False)
@@ -168,6 +180,11 @@ class MainWindow(QMainWindow):
         else:
             QMessageBox.information(self, "Thông báo", f"Thêm thông tin bệnh nhân thành công.")
             self.reset_patient_info()
+            self.reset_ii_questionnaire()
+            self.reset_iii_lung_function_data()
+            self.reset_v_symptom_assessment_data()
+            self.reset_vi_treatment_protocol_data()
+
             self.populate_table(table_name, table_widget_name)
 
     def delete_database(self, table_name, table_widget_name):
@@ -269,6 +286,7 @@ class MainWindow(QMainWindow):
         self.ui.ii_kho_tho.setChecked(False)
         self.ui.ii_tuoi_tren_40.setChecked(False)
         self.ui.ii_hut_thuoc.setChecked(False)
+        self.ui.ii_chan_doan.setText("")
 
     def run_iii_diagnosis_engine(self):
         fev1_fvc = self.ui.iii_fev1_fvc.value()
@@ -281,9 +299,14 @@ class MainWindow(QMainWindow):
         for fact in engine.facts.values():
             if isinstance(fact, Fact) and fact.get("copd") is not None:
                 if not fact.get("copd"):
-                    self.ui.iii_ket_qua_1.setText("Kết quả: Chỉ số FEV₁/FVC bình thường. Không mắc BPTNMT.")
+                    self.ui.iii_ket_qua_1.setText("Kết quả: Chỉ số FEV₁/FVC bình thường. Không mắc bệnh phổi tắc nghẽn mạn tính.")
+                    self.ui.iii_chan_doan_2_btn.setEnabled(False)
+                    self.ui.iii_ket_qua_2.setText("")
+                    return fact.get("copd")
                 else:
-                    self.ui.iii_ket_qua_1.setText("Kết quả: Chỉ số FEV₁/FVC dưới 70%. Chẩn đoán: BPTNMT.")
+                    self.ui.iii_ket_qua_1.setText("Kết quả: Chỉ số FEV₁/FVC dưới 70%. Chẩn đoán: Mắc bệnh phổi tắc nghẽn mạn tính.")
+                    self.ui.iii_chan_doan_2_btn.setEnabled(True)
+                    return fact.get("copd")
 
     def run_iv_airway_assessment(self):
         engine = GOLDStageAssessment()
@@ -297,6 +320,46 @@ class MainWindow(QMainWindow):
         for fact in engine.facts.values():
             if isinstance(fact, LungFunctionData) and fact.get("GOLD_stage") is not None:
                 self.ui.iii_ket_qua_2.setText(f"Kết quả: Giai đoạn {fact.get('GOLD_stage')} - {fact.get('GOLD_stage_description')}")
+                return fact.get("GOLD_stage"), fact.get("GOLD_stage_description")
+
+
+    def get_iii_lung_function_data(self):
+        self.ui.iii_patient_id.value()
+
+        if not self.db.check_patient_exists("tb_patient_info", self.ui.iii_patient_id.value()):
+            QMessageBox.warning(self, "Lỗi", "Mã bệnh nhân không tồn tại trong cơ sở dữ liệu.")
+            return None
+        
+        if self.db.check_patient_exists("tb_iii_lung_function_data", self.ui.iii_patient_id.value()):
+            QMessageBox.warning(self, "Lỗi", "Dữ liệu bệnh nhân đã tồn tại.")
+            return None
+        
+
+        fev1_fvc = self.ui.iii_fev1_fvc.value()
+        copd = self.run_iii_diagnosis_engine()
+        if copd == False:
+            gold_stage, gold_stage_description = "", ""
+        else:
+            gold_stage, gold_stage_description = self.run_iv_airway_assessment()
+        fev1 = self.ui.iii_fev1.value()
+
+        iii_lung_function_data = {
+            "patient_id": self.ui.iii_patient_id.value(),
+            "fev1_fvc": fev1_fvc,
+            "copd": copd,
+            "fev1": fev1,
+            "gold_stage": gold_stage,
+            "gold_stage_description": gold_stage_description
+        }
+
+        return iii_lung_function_data
+    
+    def reset_iii_lung_function_data(self):
+        self.ui.iii_patient_id.setValue(0)
+        self.ui.iii_fev1_fvc.setValue(0)
+        self.ui.iii_fev1.setValue(0)
+        self.ui.iii_ket_qua_1.setText("")
+        self.ui.iii_ket_qua_2.setText("")
 
     def run_v_symptom_assessment(self):
         engine = SymptomAssessment()
@@ -337,6 +400,50 @@ class MainWindow(QMainWindow):
             f"Phương pháp điều trị riêng cho {group}:\n {specific_treatment_list}"
         )
         self.ui.v_ket_qua.setText(result_text)
+
+        return group, specific_treatment_list
+
+    def get_v_symptom_assessment_data(self):
+        patient_id = self.ui.v_patient_id.value()
+        if not self.db.check_patient_exists("tb_patient_info", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Mã bệnh nhân không tồn tại trong cơ sở dữ liệu.")
+            return None
+        
+        if self.db.check_patient_exists("tb_v_symptom_assessment_data", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Dữ liệu bệnh nhân đã tồn tại.")
+
+        mMRC = self.ui.v_mmrc.value()
+        CAT = sum([self.ui.v_q1.value(), self.ui.v_q2.value(), self.ui.v_q3.value(), self.ui.v_q4.value(), self.ui.v_q5.value(), self.ui.v_q6.value(), self.ui.v_q7.value(), self.ui.v_q8.value()])
+        exacerbations = self.ui.v_exacerbations.value()
+        hospitalizations = self.ui.v_hospitalizations.value()
+        group, specific_treatment = self.run_v_symptom_assessment()
+
+        v_symptom_assessment_data = {
+            "patient_id": patient_id,
+            "mMRC": mMRC,
+            "CAT": CAT,
+            "exacerbations": exacerbations,
+            "hospitalizations": hospitalizations,
+            "grp": group,
+            "specific_treatment": json.dumps(specific_treatment)
+        }
+
+        return v_symptom_assessment_data
+    
+    def reset_v_symptom_assessment_data(self):
+        self.ui.v_patient_id.setValue(0)
+        self.ui.v_mmrc.setValue(0)
+        self.ui.v_q1.setValue(0)
+        self.ui.v_q2.setValue(0)
+        self.ui.v_q3.setValue(0)
+        self.ui.v_q4.setValue(0)
+        self.ui.v_q5.setValue(0)
+        self.ui.v_q6.setValue(0)
+        self.ui.v_q7.setValue(0)
+        self.ui.v_q8.setValue(0)
+        self.ui.v_exacerbations.setValue(0)
+        self.ui.v_hospitalizations.setValue(0)
+        self.ui.v_ket_qua.setText("")
     
     def run_vi_treatment_protocol(self):
         engine = TreatmentProtocol()
@@ -363,6 +470,58 @@ class MainWindow(QMainWindow):
             self.ui.vi_ket_qua.setText(f"Kết quả: {result}")
         except KeyError:
             self.ui.vi_ket_qua.setText("Không tìm được kết quả.")
+
+    def get_vi_treatment_protocol_data(self):
+        patient_id = self.ui.vi_patient_id.value()
+        if not self.db.check_patient_exists("tb_patient_info", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Mã bệnh nhân không tồn tại trong cơ sở dữ liệu.")
+            return None
+        
+        if self.db.check_patient_exists("tb_vi_treatment_protocol", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Dữ liệu bệnh nhân đã tồn tại.")
+            return None
+        
+        initial_response_text = self.ui.vi_initial_response.currentText()
+        initial_response = "positive" if initial_response_text == "Đáp ứng tốt" else "negative"
+        status_text = self.ui.vi_status.currentText()
+        status = "persistent" if status_text == "Khó thở kéo dài" else "exacerbations"
+        current_treatment = self.ui.vi_current_treatment.currentText()
+        second_bronchodilator_effective = self.ui.vi_second_bronchodilator_effective.isChecked()
+        eosinophils = self.ui.vi_eosinophils.value()
+        fev1 = self.ui.vi_fev1.value()
+        chronic_bronchitis = self.ui.vi_chronic_bronchitis.isChecked()
+        smoker = self.ui.vi_smoker.isChecked()
+        severe_side_effects = self.ui.vi_severe_side_effects.isChecked()
+        result = self.ui.vi_ket_qua.toPlainText()
+
+        vi_treatment_protocol_data = {
+            "patient_id": patient_id,
+            "initial_response": initial_response,
+            "status": status,
+            "current_treatment": current_treatment,
+            "second_bronchodilator_effective": second_bronchodilator_effective,
+            "eosinophils": eosinophils,
+            "fev1": fev1,
+            "chronic_bronchitis": chronic_bronchitis,
+            "smoker": smoker,
+            "severe_side_effects": severe_side_effects,
+            "result": result
+        }
+
+        return vi_treatment_protocol_data
+    
+    def reset_vi_treatment_protocol_data(self):
+        self.ui.vi_patient_id.setValue(0)
+        self.ui.vi_initial_response.setCurrentIndex(0)
+        self.ui.vi_status.setCurrentIndex(0)
+        self.ui.vi_current_treatment.setCurrentIndex(0)
+        self.ui.vi_second_bronchodilator_effective.setChecked(False)
+        self.ui.vi_eosinophils.setValue(0)
+        self.ui.vi_fev1.setValue(0)
+        self.ui.vi_chronic_bronchitis.setChecked(False)
+        self.ui.vi_smoker.setChecked(False)
+        self.ui.vi_severe_side_effects.setChecked(False)
+        self.ui.vi_ket_qua.setText("")
     
     def run_vii_long_term_oxygen(self):
         engine = OxygenTherapyEngine()
