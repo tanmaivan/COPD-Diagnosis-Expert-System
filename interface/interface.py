@@ -93,7 +93,11 @@ class MainWindow(QMainWindow):
         self.init_single_slot()
 
         # Connect the button click event to the engines
-        self.ui.i_connect.clicked.connect(self.run_i_engine)
+        # i
+        self.ui.i_add_btn.clicked.connect(lambda: self.add_database(self.get_patient_info(),"tb_patient_info", "tb_patient_info"))
+        self.ui.i_delete_btn.clicked.connect(lambda: self.delete_database("tb_patient_info", "tb_patient_info"))
+        self.populate_table("tb_patient_info", "tb_patient_info")
+
         self.ui.ii_chan_doan_btn.clicked.connect(self.run_ii_questionnaire_engine)
         self.ui.iii_chan_doan_1_btn.clicked.connect(self.run_iii_diagnosis_engine)
         self.ui.iii_chan_doan_2_btn.clicked.connect(self.run_iv_airway_assessment)
@@ -129,120 +133,59 @@ class MainWindow(QMainWindow):
     def init_stackwidget(self):
         # Initialize the stack widget with content pages
         widget_list = self.main_content.findChildren(QWidget)
-            
-    def run_i_engine(self):
-        self.ui.i_connect_state.setText("Đã xác nhận.")
 
-        try:
-            self.ui.i_add_btn.clicked.disconnect(self.i_add_info)
-        except TypeError:
-            pass
-
-        self.ui.i_add_btn.clicked.connect(self.i_add_info)
-        self.ui.i_update_btn.clicked.connect(self.i_update_info)
-        self.ui.i_delete_btn.clicked.connect(self.i_delete_info)
-        self.ui.i_select_btn.clicked.connect(self.i_select_info)
-
-
-        self.result_tb = self.ui.i_result_tb
-        self.result_tb.setSortingEnabled(False)
-
-    def i_add_info(self):
-        patient_info = self.get_patient_info()
-
-        if not patient_info["full_name"]:
-            QMessageBox.warning(self, "Cảnh báo", "Tên đầy đủ là trường bắt buộc.")
+    def populate_table(self, table_name, table_widget_name):
+        data = self.db.get_all_info(table_name)
+        if isinstance(data, Exception):
+            QMessageBox.warning(self, "Lỗi", f"Lỗi khi lấy dữ liệu: {data}")
             return
-        
-        add_result = self.db.add_info(**patient_info)
+
+        table_widget = getattr(self.ui, table_widget_name)
+        if data:
+            headers = data[0].keys()
+            table_widget.setColumnCount(len(headers))
+            table_widget.setHorizontalHeaderLabels(headers)
+
+        table_widget.setRowCount(len(data))
+        for row_index, row_data in enumerate(data):
+            for col_index, (col_name, col_data) in enumerate(row_data.items()):
+                table_widget.setItem(row_index, col_index, QTableWidgetItem(str(col_data)))
+
+    def add_database(self, data, table_name, table_widget_name):   
+        add_result = self.db.add_info(table_name, data)
         if add_result:
             QMessageBox.information(self, "Thông báo", f"Thêm thông tin bệnh nhân không thành công.")
         else:
             QMessageBox.information(self, "Thông báo", f"Thêm thông tin bệnh nhân thành công.")
             self.reset_patient_info()
-            self.populate_table()
+            self.populate_table("tb_patient_info", "tb_patient_info")
     
-    def populate_table(self):
-        data = self.db.get_all_info()
-        if isinstance(data, Exception):
-            QMessageBox.warning(self, "Lỗi", f"Lỗi khi lấy dữ liệu: {data}")
-            return
-
-        if data:
-            headers = data[0].keys()
-            self.result_tb.setColumnCount(len(headers))
-            self.result_tb.setHorizontalHeaderLabels(headers)
-
-        self.result_tb.setRowCount(len(data))
-        for row_index, row_data in enumerate(data):
-            for col_index, (col_name, col_data) in enumerate(row_data.items()):
-                self.result_tb.setItem(row_index, col_index, QTableWidgetItem(str(col_data)))
-
     def reset_patient_info(self):
         self.ui.i_full_name.clear()
         self.ui.i_gender.setCurrentIndex(0)
         self.ui.i_age.setValue(0)
         self.ui.i_address.clear()
         self.ui.i_phone_number.clear()
-        self.ui.i_connect_state.clear()
-        self.ui.i_connect_state.setText("Vui lòng xác nhận thông tin.")
 
-    def i_update_info(self):
-        new_patient = self.get_patient_info()
+    def delete_database(self, table_name, table_widget_name):
+        primary_key_column = self.db.get_primary_key(table_name)
+        if not primary_key_column:
+            QMessageBox.warning(self, "Lỗi", "Không tìm thấy khóa chính của bảng.")
+            return
+        
+        table_widget = getattr(self.ui, table_widget_name)
 
-        if new_patient["full_name"]:
-            update_result = self.db.update_info(full_name=new_patient["full_name"], gender=new_patient["gender"], age=new_patient["age"], address=new_patient["address"], phone_number=new_patient["phone_number"])
-            if update_result:
-                QMessageBox.information(self, "Thông báo", "Cập nhật thông tin bệnh nhân không thành công.")
-        else:
-            QMessageBox.information(self, "Thông báo", "Vui lòng chọn thông tin bệnh nhân cần cập nhật.")
-
-    def i_delete_info(self):
-        select_row = self.result_tb.currentRow()
-        if select_row != 1:
-            selected_option = QMessageBox.warning(self, "Xác nhận", "Bạn có chắc chắn muốn xóa thông tin bệnh nhân này?", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
-
-            if selected_option == QMessageBox.StandardButton.Yes:
-                patient_id = self.result_tb.item(select_row, 0).text()
-                delete_result = self.db.delete_info(patient_id)
-                if delete_result:
-                    QMessageBox.information(self, "Thông báo", "Xóa thông tin bệnh nhân không thành công.")
-        else:
-            QMessageBox.information(self, "Thông báo", "Vui lòng chọn thông tin bệnh nhân cần xóa.")
-
-    def i_select_info(self):
-        select_row = self.result_tb.currentRow()
+        select_row = table_widget.currentRow()
         if select_row != -1:
-            full_name = self.result_tb.item(select_row, 1).text()
-            gender = self.result_tb.item(select_row, 2).text()
-            age = int(self.result_tb.item(select_row, 3).text())
-            address = self.result_tb.item(select_row, 4).text()
-            phone_number = self.result_tb.item(select_row, 5).text()
-
-            self.full_name.setText(full_name)
-            self.gender.setText(gender)
-            self.age.setText(str(age))
-            self.address.setText(address)
-            self.phone_number.setText(phone_number)
+            id = int(table_widget.item(select_row, 0).text())  # Assuming the first column is the primary key
+            delete_result = self.db.delete_info(table_name, primary_key_column, id)
+            if delete_result:
+                QMessageBox.information(self, "Thông báo", f"Xóa thông tin không thành công cho ID: {id}")
+            else:
+                QMessageBox.information(self, "Thông báo", "Xóa thông tin thành công.")
+                self.populate_table(table_name, table_widget_name)
         else:
-            QMessageBox.information(self, "Thông báo", "Vui lòng chọn thông tin bệnh nhân cần xem.")
-
-    def show_data(self, data):
-        if data:
-            self.result_tb.setRowCount(0)
-            self.result_tb.setRowCount(len(data))
-
-            for row, patient in enumerate(data):
-                info_list = [
-                    patient["full_name"],
-                    patient["gender"],
-                    patient["age"],
-                    patient["address"],
-                    patient["phone_number"]
-                ]
-                for col, field in enumerate(info_list):
-                    cell_item = QTableWidgetItem(str(field))
-                    self.result_tb.setItem(row, col, cell_item)
+            QMessageBox.information(self, "Thông báo", "Vui lòng chọn thông tin cần xóa.")
 
     def get_patient_info(self):
         full_name = self.ui.i_full_name.text()
@@ -260,12 +203,6 @@ class MainWindow(QMainWindow):
         }
 
         return patient_info
-
-
-
-
-        
-
 
     def run_ii_questionnaire_engine(self):
         ho = self.ui.ii_ho.isChecked()
@@ -352,10 +289,6 @@ class MainWindow(QMainWindow):
             f"Phương pháp điều trị riêng cho {group}:\n {specific_treatment_list}"
         )
         self.ui.v_ket_qua.setText(result_text)
-        # msg = QMessageBox()
-        # msg.setInformativeText(result_text)
-        # msg.setWindowTitle("Kết quả đánh giá triệu chứng")
-        # msg.exec()
     
     def run_vi_treatment_protocol(self):
         engine = TreatmentProtocol()

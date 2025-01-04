@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1012</width>
+    <width>1014</width>
     <height>813</height>
    </rect>
   </property>
@@ -82,7 +82,7 @@
         <property name="geometry">
          <rect>
           <x>70</x>
-          <y>30</y>
+          <y>50</y>
           <width>681</width>
           <height>271</height>
          </rect>
@@ -93,39 +93,6 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QPushButton" name="i_connect">
-         <property name="geometry">
-          <rect>
-           <x>60</x>
-           <y>200</y>
-           <width>93</width>
-           <height>28</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Xác nhận</string>
-         </property>
-        </widget>
-        <widget class="QTextBrowser" name="i_connect_state">
-         <property name="geometry">
-          <rect>
-           <x>210</x>
-           <y>200</y>
-           <width>256</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="html">
-          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Vui lòng xác nhận thông tin.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
         <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
@@ -221,9 +188,9 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>70</x>
-          <y>310</y>
+          <y>240</y>
           <width>681</width>
-          <height>61</height>
+          <height>71</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -272,28 +239,6 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="i_update_btn">
-            <property name="text">
-             <string>Cập nhật</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>icon/update.svg</normaloff>icon/update.svg</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="i_select_btn">
-            <property name="text">
-             <string>Chọn</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>icon/select.svg</normaloff>icon/select.svg</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="i_delete_btn">
             <property name="text">
              <string>Xóa</string>
@@ -311,9 +256,9 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>70</x>
-          <y>380</y>
+          <y>310</y>
           <width>681</width>
-          <height>361</height>
+          <height>431</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -322,13 +267,13 @@ p, li { white-space: pre-wrap; }
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QTableWidget" name="i_result_tb">
+        <widget class="QTableWidget" name="tb_patient_info">
          <property name="geometry">
           <rect>
            <x>0</x>
            <y>20</y>
            <width>681</width>
-           <height>321</height>
+           <height>411</height>
           </rect>
          </property>
          <property name="focusPolicy">
@@ -2571,7 +2516,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1012</width>
+     <width>1014</width>
      <height>26</height>
     </rect>
    </property>
