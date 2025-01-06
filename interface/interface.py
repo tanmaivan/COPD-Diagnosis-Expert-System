@@ -118,15 +118,38 @@ class MainWindow(QMainWindow):
         self.populate_table("tb_vi_treatment_protocol_data", "vi_tb")
 
         self.ui.vii_ket_qua_btn.clicked.connect(self.run_vii_long_term_oxygen)
+        self.ui.vii_add_btn.clicked.connect(lambda: self.add_database(self.get_vii_long_term_oxygen_data(), "tb_vii_long_term_oxygen_data", "vii_tb") if self.get_vii_long_term_oxygen_data() else None)
+        self.ui.vii_delete_btn.clicked.connect(lambda: self.delete_database("tb_vii_long_term_oxygen_data", "vii_tb"))
+        self.populate_table("tb_vii_long_term_oxygen_data", "vii_tb")
+
         self.ui.viii_ket_qua_btn.clicked.connect(self.run_viii_lung_intervention_surgery)
+        self.ui.viii_add_btn.clicked.connect(lambda: self.add_database(self.get_viii_lung_intervention_surgery_data(), "tb_viii_lung_intervention_surgery_data", "viii_tb") if self.get_viii_lung_intervention_surgery_data() else None)
+        self.ui.viii_delete_btn.clicked.connect(lambda: self.delete_database("tb_viii_lung_intervention_surgery_data", "viii_tb"))
+        self.populate_table("tb_viii_lung_intervention_surgery_data", "viii_tb")
+
         self.ui.ix_chan_doan_btn.clicked.connect(self.run_ix_acute_exacerbation_copd_diagnosis_and_treatment)
+        self.ui.ix_add_btn.clicked.connect(lambda: self.add_database(self.get_ix_acute_exacerbation_copd_diagnosis_and_treatment_data(), "tb_ix_acute_exacerbation_copd_diagnosis_data", "ix_tb") if self.get_ix_acute_exacerbation_copd_diagnosis_and_treatment_data() else None)
+        self.ui.ix_delete_btn.clicked.connect(lambda: self.delete_database("tb_ix_acute_exacerbation_copd_diagnosis_data", "ix_tb"))
+        self.populate_table("tb_ix_acute_exacerbation_copd_diagnosis_data", "ix_tb")
+
         self.ui.x_ket_qua_btn.clicked.connect(self.run_x_bipap_indication_copd)
+        self.ui.x_add_btn.clicked.connect(lambda: self.add_database(self.get_x_bipap_indication_copd_data(), "tb_x_bipap_indication_copd_data", "x_tb") if self.get_x_bipap_indication_copd_data() else None)
+        self.ui.x_delete_btn.clicked.connect(lambda: self.delete_database("tb_x_bipap_indication_copd_data", "x_tb"))
+        self.populate_table("tb_x_bipap_indication_copd_data", "x_tb")
+
         self.ui.xi_ket_qua_btn_1.clicked.connect(self.run_xi_empirical_antibiotic_selection_outpatient_1)
         self.ui.xi_ket_qua_btn_2.clicked.connect(self.run_xi_empirical_antibiotic_selection_outpatient_2)
         self.ui.xi_ket_qua_btn_3.clicked.connect(self.run_xi_empirical_antibiotic_selection_outpatient_3)
         self.ui.xi_ket_qua_btn_4.clicked.connect(self.run_xi_empirical_antibiotic_selection_outpatient_4)
+        self.ui.xi_add_btn.clicked.connect(lambda: self.add_database(self.get_xi_empirical_antibiotic_selection_outpatient_data(), "tb_xi_empirical_antibiotic_selection_outpatient_data", "xi_tb") if self.get_xi_empirical_antibiotic_selection_outpatient_data() else None)
+        self.ui.xi_delete_btn.clicked.connect(lambda: self.delete_database("tb_xi_empirical_antibiotic_selection_outpatient_data", "xi_tb"))
+        self.populate_table("tb_xi_empirical_antibiotic_selection_outpatient_data", "xi_tb")
+
         self.ui.xii_ket_qua_btn_1.clicked.connect(self.run_xii_empirical_antibiotic_selection_inpatient_1)
         self.ui.xii_ket_qua_btn_2.clicked.connect(self.run_xii_empirical_antibiotic_selection_inpatient_2)
+        self.ui.xii_add_btn.clicked.connect(lambda: self.add_database(self.get_xii_empirical_antibiotic_selection_inpatient_data(), "tb_xii_empirical_antibiotic_selection_inpatient_data", "xii_tb") if self.get_xii_empirical_antibiotic_selection_inpatient_data() else None)
+        self.ui.xii_delete_btn.clicked.connect(lambda: self.delete_database("tb_xii_empirical_antibiotic_selection_inpatient_data", "xii_tb"))
+        self.populate_table("tb_xii_empirical_antibiotic_selection_inpatient_data", "xii_tb")
 
         self.ui.iii_chan_doan_2_btn.setEnabled(False)
         self.ui.xi_ket_qua_btn_2.setEnabled(False)
@@ -184,6 +207,12 @@ class MainWindow(QMainWindow):
             self.reset_iii_lung_function_data()
             self.reset_v_symptom_assessment_data()
             self.reset_vi_treatment_protocol_data()
+            self.reset_vii_long_term_oxygen_data()
+            self.reset_viii_lung_intervention_surgery_data()
+            self.reset_ix_acute_exacerbation_copd_diagnosis_and_treatment_data()
+            self.reset_x_bipap_indication_copd_data()
+            self.reset_xi_empirical_antibiotic_selection_outpatient_data()
+            self.reset_xii_empirical_antibiotic_selection_inpatient_data()
 
             self.populate_table(table_name, table_widget_name)
 
@@ -232,6 +261,7 @@ class MainWindow(QMainWindow):
         self.ui.i_phone_number.clear()
 
     def run_ii_questionnaire_engine(self):
+
         ho = self.ui.ii_ho.isChecked()
         khac_dom = self.ui.ii_khac_dom.isChecked()
         kho_tho = self.ui.ii_kho_tho.isChecked()
@@ -309,6 +339,7 @@ class MainWindow(QMainWindow):
                     return fact.get("copd")
 
     def run_iv_airway_assessment(self):
+
         engine = GOLDStageAssessment()
         engine.reset()
 
@@ -360,6 +391,7 @@ class MainWindow(QMainWindow):
         self.ui.iii_fev1.setValue(0)
         self.ui.iii_ket_qua_1.setText("")
         self.ui.iii_ket_qua_2.setText("")
+        self.ui.iii_chan_doan_2_btn.setEnabled(False)
 
     def run_v_symptom_assessment(self):
         engine = SymptomAssessment()
@@ -411,6 +443,7 @@ class MainWindow(QMainWindow):
         
         if self.db.check_patient_exists("tb_v_symptom_assessment_data", patient_id):
             QMessageBox.warning(self, "Lỗi", "Dữ liệu bệnh nhân đã tồn tại.")
+            return None
 
         mMRC = self.ui.v_mmrc.value()
         CAT = sum([self.ui.v_q1.value(), self.ui.v_q2.value(), self.ui.v_q3.value(), self.ui.v_q4.value(), self.ui.v_q5.value(), self.ui.v_q6.value(), self.ui.v_q7.value(), self.ui.v_q8.value()])
@@ -541,8 +574,48 @@ class MainWindow(QMainWindow):
             oxygen_required = "Chỉ định thở oxy dài hạn.\n" if engine.facts[2].get("oxygen_required") else "Không chỉ định thở oxy.\n"
             long_term_oxygen_reason = "\n".join(engine.facts[2].get("long_term_oxygen_reason"))
             self.ui.vii_ket_qua.setText(f"Kết quả: {oxygen_required}\nLý do:\n{long_term_oxygen_reason}")
+            return engine.facts[2].get("oxygen_required"), long_term_oxygen_reason
         except KeyError:
             self.ui.vii_ket_qua.setText("Không tìm được kết quả.")
+
+    def get_vii_long_term_oxygen_data(self):
+        patient_id = self.ui.vii_patient_id.value()
+        if not self.db.check_patient_exists("tb_patient_info", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Mã bệnh nhân không tồn tại trong cơ sở dữ liệu.")
+            return None
+        
+        if self.db.check_patient_exists("tb_vii_long_term_oxygen_data", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Dữ liệu bệnh nhân đã tồn tại.")
+            return None
+
+        PaO2 = self.ui.vii_pa02.value()
+        SaO2 = self.ui.vii_sa02.value()
+        heart_failure = self.ui.vii_heart_failure.isChecked()
+        polycythemia = self.ui.vii_polycythemia.isChecked()
+        pulmonary_hypertension = self.ui.vii_pulmonary_hypertension.isChecked()
+        oxygen_required, long_term_oxygen_reason = self.run_vii_long_term_oxygen()
+
+        vii_long_term_oxygen_data = {
+            "patient_id": patient_id,
+            "PaO2": PaO2,
+            "SaO2": SaO2,
+            "heart_failure": heart_failure,
+            "polycythemia": polycythemia,
+            "pulmonary_hypertension": pulmonary_hypertension,
+            "oxygen_required": oxygen_required,
+            "long_term_oxygen_reason": json.dumps(long_term_oxygen_reason)
+        }
+
+        return vii_long_term_oxygen_data
+    
+    def reset_vii_long_term_oxygen_data(self):
+        self.ui.vii_patient_id.setValue(0)
+        self.ui.vii_pa02.setValue(0)
+        self.ui.vii_sa02.setValue(0)
+        self.ui.vii_heart_failure.setChecked(False)
+        self.ui.vii_polycythemia.setChecked(False)
+        self.ui.vii_pulmonary_hypertension.setChecked(False)
+        self.ui.vii_ket_qua.setText("")
 
     def run_viii_lung_intervention_surgery(self):
         engine = InterventionRecommendation()
@@ -563,10 +636,63 @@ class MainWindow(QMainWindow):
         engine.run()
 
         try:
+            diagnosis_result = engine.facts[2].get("diagnosis_result")
             diagnosis_result_description = engine.facts[2].get("diagnosis_result_description")
             self.ui.viii_ket_qua.setText(f"Kết quả:\n\n{diagnosis_result_description}")
+            return diagnosis_result, diagnosis_result_description
         except KeyError:
             self.ui.viii_ket_qua.setText("Không tìm được kết quả.")
+
+    def get_viii_lung_intervention_surgery_data(self):
+        patient_id = self.ui.viii_patient_id.value()
+        if not self.db.check_patient_exists("tb_patient_info", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Mã bệnh nhân không tồn tại trong cơ sở dữ liệu.")
+            return None
+        
+        if self.db.check_patient_exists("tb_viii_lung_intervention_surgery_data", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Dữ liệu bệnh nhân đã tồn tại.")
+            return None
+
+        emphysema_severity = "nặng" if self.ui.viii_emphysema_severity.currentText() == "Nặng" else "nhẹ"
+        lobe_hyperinflation = self.ui.viii_lobe_hyperinflation.isChecked()
+        bode_score = self.ui.viii_bode_score.value()
+        acute_CO2_exacerbation = self.ui.viii_acute_CO2_exacerbation.isChecked()
+        pulmonary_hypertension = self.ui.viii_pulmonary_hypertension.isChecked()
+        cor_pulmonale = self.ui.viii_cor_pulmonale.isChecked()
+        FEV1 = self.ui.viii_fev1.value()
+        DLCO = self.ui.viii_dlco.value()
+        emphysema_pattern = "đồng nhất" if self.ui.viii_emphysema_pattern.currentText() == "Đồng nhất" else "không"
+        diagnosis_result, diagnosis_result_description = self.run_viii_lung_intervention_surgery()
+
+        viii_lung_intervention_surgery_data = {
+            "patient_id": patient_id,
+            "emphysema_severity": emphysema_severity,
+            "lobe_hyperinflation": lobe_hyperinflation,
+            "bode_score": bode_score,
+            "acute_CO2_exacerbation": acute_CO2_exacerbation,
+            "pulmonary_hypertension": pulmonary_hypertension,
+            "cor_pulmonale": cor_pulmonale,
+            "FEV1": FEV1,
+            "DLCO": DLCO,
+            "emphysema_pattern": emphysema_pattern,
+            "diagnosis_result": diagnosis_result,
+            "diagnosis_result_description": json.dumps(diagnosis_result_description)
+        }
+
+        return viii_lung_intervention_surgery_data
+    
+    def reset_viii_lung_intervention_surgery_data(self):
+        self.ui.viii_patient_id.setValue(0)
+        self.ui.viii_emphysema_severity.setCurrentIndex(0)
+        self.ui.viii_lobe_hyperinflation.setChecked(False)
+        self.ui.viii_bode_score.setValue(0)
+        self.ui.viii_acute_CO2_exacerbation.setChecked(False)
+        self.ui.viii_pulmonary_hypertension.setChecked(False)
+        self.ui.viii_cor_pulmonale.setChecked(False)
+        self.ui.viii_fev1.setValue(0)
+        self.ui.viii_dlco.setValue(0)
+        self.ui.viii_emphysema_pattern.setCurrentIndex(0)
+        self.ui.viii_ket_qua.setText("")  
 
     def run_ix_acute_exacerbation_copd_diagnosis_and_treatment(self):
         engine = COPDExacerbationDiagnosis()
@@ -589,8 +715,57 @@ class MainWindow(QMainWindow):
             severity = engine.facts[2].get("severity")
             treatment_location = engine.facts[2].get("treatment_location")
             self.ui.ix_chan_doan.setText(f"Kết quả chẩn đoán: {severity}.\nNên điều trị tại: {treatment_location}.")
+            return severity, treatment_location
         except KeyError:
             self.ui.ix_chan_doan.setText("Không tìm được kết quả.")
+
+    def get_ix_acute_exacerbation_copd_diagnosis_and_treatment_data(self):
+        patient_id = self.ui.ix_patient_id.value()
+        if not self.db.check_patient_exists("tb_patient_info", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Mã bệnh nhân không tồn tại trong cơ sở dữ liệu.")
+            return None
+        
+        if self.db.check_patient_exists("tb_ix_acute_exacerbation_copd_diagnosis_data", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Dữ liệu bệnh nhân đã tồn tại.")
+            return None
+
+        vas = self.ui.ix_vas.value()
+        respiratory_rate = self.ui.ix_respiratory_rate.value()
+        heart_rate = self.ui.ix_heart_rate.value()
+        spo2 = self.ui.ix_spo2.value()
+        crp = self.ui.ix_crp.value()
+        pao2 = self.ui.ix_pao2.value()
+        paco2 = self.ui.ix_paco2.value()
+        ph = self.ui.ix_ph.value()
+        diagnosis, treatment_location = self.run_ix_acute_exacerbation_copd_diagnosis_and_treatment()
+
+        ix_acute_exacerbation_copd_diagnosis_and_treatment_data = {
+            "patient_id": patient_id,
+            "vas": vas,
+            "respiratory_rate": respiratory_rate,
+            "heart_rate": heart_rate,
+            "spo2": spo2,
+            "crp": crp,
+            "pao2": pao2,
+            "paco2": paco2,
+            "ph": ph,
+            "diagnosis": diagnosis,
+            "treatment_location": treatment_location
+        }
+
+        return ix_acute_exacerbation_copd_diagnosis_and_treatment_data
+    
+    def reset_ix_acute_exacerbation_copd_diagnosis_and_treatment_data(self):
+        self.ui.ix_patient_id.setValue(0)
+        self.ui.ix_vas.setValue(0)
+        self.ui.ix_respiratory_rate.setValue(0)
+        self.ui.ix_heart_rate.setValue(0)
+        self.ui.ix_spo2.setValue(0)
+        self.ui.ix_crp.setValue(0)
+        self.ui.ix_pao2.setValue(0)
+        self.ui.ix_paco2.setValue(0)
+        self.ui.ix_ph.setValue(0)
+        self.ui.ix_chan_doan.setText("")
 
     def run_x_bipap_indication_copd(self):
         engine = BiPAPIndicationExpert()
@@ -609,8 +784,48 @@ class MainWindow(QMainWindow):
         try:
             bipap_indicated_description = engine.facts[2].get("bipap_indicated_description")
             self.ui.x_ket_qua.setText(f"Kết quả: {bipap_indicated_description}")
+            return bipap_indicated_description
         except KeyError:
-            self.ui.x_ket_qua.setText("Không chỉ định thông khí nhân tạo không xâm nhập (BiPAP).") 
+            self.ui.x_ket_qua.setText("Không chỉ định thông khí nhân tạo không xâm nhập (BiPAP).")
+            return None
+        
+    def get_x_bipap_indication_copd_data(self):
+        patient_id = self.ui.x_patient_id.value()
+        if not self.db.check_patient_exists("tb_patient_info", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Mã bệnh nhân không tồn tại trong cơ sở dữ liệu.")
+            return None
+        
+        if self.db.check_patient_exists("tb_x_bipap_indication_copd_data", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Dữ liệu bệnh nhân đã tồn tại.")
+            return None
+        
+        dyspnea_severe = self.ui.x_dyspnea_severe.isChecked()
+        ph = self.ui.x_ph.value()
+        paco2 = self.ui.x_paco2.value()
+        respiratory_rate = self.ui.x_respiratory_rate.value()
+        persistent_hypoxemia = self.ui.x_persistent_hypoxemia.isChecked()
+        bipap_indicated_description = self.run_x_bipap_indication_copd()
+
+        x_bipap_indication_copd_data = {
+            "patient_id": patient_id,
+            "dyspnea_severe": dyspnea_severe,
+            "ph": ph,
+            "paco2": paco2,
+            "respiratory_rate": respiratory_rate,
+            "persistent_hypoxemia": persistent_hypoxemia,
+            "bipap_indicated_description": bipap_indicated_description
+        }
+
+        return x_bipap_indication_copd_data
+    
+    def reset_x_bipap_indication_copd_data(self):
+        self.ui.x_patient_id.setValue(0)
+        self.ui.x_dyspnea_severe.setChecked(False)
+        self.ui.x_ph.setValue(0)
+        self.ui.x_paco2.setValue(0)
+        self.ui.x_respiratory_rate.setValue(0)
+        self.ui.x_persistent_hypoxemia.setChecked(False)
+        self.ui.x_ket_qua.setText("")
 
     def run_xi_empirical_antibiotic_selection_outpatient_1(self):
         engine_1 = EmpiricalAntibioticSelectionOutpatient()
@@ -702,6 +917,80 @@ class MainWindow(QMainWindow):
         except KeyError:
             self.ui.ix_ix_ket_qua_4.setText("Không tìm được kết quả.")
 
+    def get_xi_empirical_antibiotic_selection_outpatient_data(self):
+        patient_id = self.ui.xi_patient_id.value()
+        if not self.db.check_patient_exists("tb_patient_info", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Mã bệnh nhân không tồn tại trong cơ sở dữ liệu.")
+            return None
+        
+        if self.db.check_patient_exists("tb_xi_empirical_antibiotic_selection_outpatient_data", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Dữ liệu bệnh nhân đã tồn tại.")
+            return None
+        
+        symptom_main_1 = self.ui.xi_breathlessness_increase.isChecked()
+        symptom_main_2 = self.ui.xi_sputum_volume_or_thickness_increase.isChecked()
+        symptom_main_3 = self.ui.xi_purulent_sputum_increase.isChecked()
+        fev1 = self.ui.xi_fev1.value()
+        exacerbations = self.ui.xi_exacerbations.value()
+        hospitalization = self.ui.xi_hospitalization.isChecked()
+        risk_oxygen_home = self.ui.xi_risk_oxygen_home.isChecked()
+        risk_comorbidities = self.ui.xi_risk_comorbidities.isChecked()
+        risk_pseudomonas = self.ui.xi_risk_pseudomonas.isChecked()
+        bronchiectasis = self.ui.xi_bronchiectasis.isChecked()
+        broad_spectrum = self.ui.xi_broad_spectrum_antibiotic_use.isChecked()
+        antibiotic_selection_description_1 = self.ui.xi_ket_qua_1.toPlainText()
+        antibiotic_selection_description_2 = self.ui.xi_ket_qua_2.toPlainText()
+        antibiotic_selection_description_3 = self.ui.xi_ket_qua_3.toPlainText()
+        antibiotic_selection_description_4 = self.ui.xi_ket_qua_4.toPlainText()
+
+        if antibiotic_selection_description_4:
+            antibiotic_selection_description = antibiotic_selection_description_4
+        elif antibiotic_selection_description_3:
+            antibiotic_selection_description = antibiotic_selection_description_3
+        elif antibiotic_selection_description_2:
+            antibiotic_selection_description = antibiotic_selection_description_2
+        else:
+            antibiotic_selection_description = antibiotic_selection_description_1
+
+        xi_empirical_antibiotic_selection_outpatient_data = {
+            "patient_id": patient_id,
+            "symptom_main_1": symptom_main_1,
+            "symptom_main_2": symptom_main_2,
+            "symptom_main_3": symptom_main_3,
+            "fev1": fev1,
+            "exacerbations": exacerbations,
+            "hospitalization": hospitalization,
+            "risk_oxygen_home": risk_oxygen_home,
+            "risk_comorbidities": risk_comorbidities,
+            "risk_pseudomonas": risk_pseudomonas,
+            "bronchiectasis": bronchiectasis,
+            "broad_spectrum": broad_spectrum,
+            "antibiotic_selection_description": antibiotic_selection_description
+        }
+
+        return xi_empirical_antibiotic_selection_outpatient_data
+    
+    def reset_xi_empirical_antibiotic_selection_outpatient_data(self):
+        self.ui.xi_patient_id.setValue(0)
+        self.ui.xi_breathlessness_increase.setChecked(False)
+        self.ui.xi_sputum_volume_or_thickness_increase.setChecked(False)
+        self.ui.xi_purulent_sputum_increase.setChecked(False)
+        self.ui.xi_fev1.setValue(0)
+        self.ui.xi_exacerbations.setValue(0)
+        self.ui.xi_hospitalization.setChecked(False)
+        self.ui.xi_risk_oxygen_home.setChecked(False)
+        self.ui.xi_risk_comorbidities.setChecked(False)
+        self.ui.xi_risk_pseudomonas.setChecked(False)
+        self.ui.xi_bronchiectasis.setChecked(False)
+        self.ui.xi_broad_spectrum_antibiotic_use.setChecked(False)
+        self.ui.xi_ket_qua_1.setText("")
+        self.ui.xi_ket_qua_2.setText("")
+        self.ui.xi_ket_qua_3.setText("")
+        self.ui.xi_ket_qua_4.setText("")
+        self.ui.xi_ket_qua_btn_2.setEnabled(False)
+        self.ui.xi_ket_qua_btn_3.setEnabled(False)
+        self.ui.xi_ket_qua_btn_4.setEnabled(False)
+
     def run_xii_empirical_antibiotic_selection_inpatient_1(self):
         engine_1 = EmpiricalAntibioticSelectionInpatient()
         engine_1.reset()
@@ -722,8 +1011,6 @@ class MainWindow(QMainWindow):
         except KeyError:
             self.ui.xii_ket_qua_1.setText("Không tìm được kết quả.")
 
-
-
     def run_xii_empirical_antibiotic_selection_inpatient_2(self):
         engine_2 = EmpiricalAntibioticSelectionInpatient()
         engine_2.reset()
@@ -738,7 +1025,43 @@ class MainWindow(QMainWindow):
             self.ui.xii_ket_qua_2.setText(f"Kết quả chẩn đoán: {antibiotic_selection_description_2}")
         except KeyError:
             self.ui.xii_ket_qua_2.setText("Không tìm được kết quả.")
+
+    def get_xii_empirical_antibiotic_selection_inpatient_data(self):
+        patient_id = self.ui.xii_patient_id.value()
+        if not self.db.check_patient_exists("tb_patient_info", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Mã bệnh nhân không tồn tại trong cơ sở dữ liệu.")
+            return None
         
+        if self.db.check_patient_exists("tb_xii_empirical_antibiotic_selection_inpatient_data", patient_id):
+            QMessageBox.warning(self, "Lỗi", "Dữ liệu bệnh nhân đã tồn tại.")
+            return None
+        
+        suspect_pneumonia_or_infection = self.ui.xii_suspect_pneumonia_or_infection.isChecked()
+        risk_pseudomonas = self.ui.xii_risk_pseudomonas.isChecked()
+        antibiotic_selection_description_1 = self.ui.xii_ket_qua_1.toPlainText()
+        antibiotic_selection_description_2 = self.ui.xii_ket_qua_2.toPlainText()
+
+        if antibiotic_selection_description_2:
+            antibiotic_selection_description = antibiotic_selection_description_2
+        else:
+            antibiotic_selection_description = antibiotic_selection_description_1
+
+        xii_empirical_antibiotic_selection_inpatient_data = {
+            "patient_id": patient_id,
+            "suspect_pneumonia_or_infection": suspect_pneumonia_or_infection,
+            "risk_pseudomonas": risk_pseudomonas,
+            "antibiotic_selection_description": antibiotic_selection_description
+        }
+
+        return xii_empirical_antibiotic_selection_inpatient_data
+    
+    def reset_xii_empirical_antibiotic_selection_inpatient_data(self):
+        self.ui.xii_patient_id.setValue(0)
+        self.ui.xii_suspect_pneumonia_or_infection.setChecked(False)
+        self.ui.xii_risk_pseudomonas.setChecked(False)
+        self.ui.xii_ket_qua_1.setText("")
+        self.ui.xii_ket_qua_2.setText("")
+        self.ui.xii_ket_qua_btn_2.setEnabled(False)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

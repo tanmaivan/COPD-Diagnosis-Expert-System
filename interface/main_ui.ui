@@ -75,7 +75,7 @@
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="i">
        <widget class="QFrame" name="i_info_frame">
@@ -129,7 +129,7 @@
           <set>Qt::AlignCenter</set>
          </property>
         </widget>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
            <x>60</x>
@@ -796,7 +796,7 @@
           <bool>false</bool>
          </property>
          <attribute name="horizontalHeaderVisible">
-          <bool>true</bool>
+          <bool>false</bool>
          </attribute>
          <attribute name="horizontalHeaderMinimumSectionSize">
           <number>50</number>
@@ -2063,7 +2063,7 @@
         <property name="geometry">
          <rect>
           <x>70</x>
-          <y>260</y>
+          <y>340</y>
           <width>261</width>
           <height>16</height>
          </rect>
@@ -2075,8 +2075,8 @@
        <widget class="QPushButton" name="viii_ket_qua_btn">
         <property name="geometry">
          <rect>
-          <x>190</x>
-          <y>570</y>
+          <x>180</x>
+          <y>640</y>
           <width>93</width>
           <height>28</height>
          </rect>
@@ -2089,8 +2089,8 @@
         <property name="geometry">
          <rect>
           <x>410</x>
-          <y>300</y>
-          <width>256</width>
+          <y>360</y>
+          <width>241</width>
           <height>301</height>
          </rect>
         </property>
@@ -2196,7 +2196,7 @@
         <property name="geometry">
          <rect>
           <x>70</x>
-          <y>300</y>
+          <y>370</y>
           <width>321</width>
           <height>252</height>
          </rect>
@@ -2368,7 +2368,7 @@
           <x>670</x>
           <y>100</y>
           <width>661</width>
-          <height>661</height>
+          <height>231</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -2383,7 +2383,7 @@
            <x>10</x>
            <y>20</y>
            <width>641</width>
-           <height>631</height>
+           <height>201</height>
           </rect>
          </property>
          <property name="focusPolicy">
@@ -2508,6 +2508,164 @@
           </item>
           <item>
            <widget class="QPushButton" name="vii_delete_btn">
+            <property name="text">
+             <string>Xóa</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icon/delete.svg</normaloff>icon/delete.svg</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QFrame" name="i_result_frame_14">
+        <property name="geometry">
+         <rect>
+          <x>670</x>
+          <y>410</y>
+          <width>661</width>
+          <height>341</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QTableWidget" name="viii_tb">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>641</width>
+           <height>311</height>
+          </rect>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="showGrid">
+          <bool>false</bool>
+         </property>
+         <attribute name="horizontalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="horizontalHeaderMinimumSectionSize">
+          <number>50</number>
+         </attribute>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>130</number>
+         </attribute>
+         <attribute name="horizontalHeaderHighlightSections">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="verticalHeaderHighlightSections">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="verticalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>New Column</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>New Column</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>New Column</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>New Column</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>New Column</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>New Column</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>New Column</string>
+          </property>
+         </column>
+        </widget>
+       </widget>
+       <widget class="QFrame" name="i_function_frame_14">
+        <property name="geometry">
+         <rect>
+          <x>670</x>
+          <y>340</y>
+          <width>661</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QWidget" name="layoutWidget_9">
+         <property name="geometry">
+          <rect>
+           <x>110</x>
+           <y>20</y>
+           <width>454</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_19">
+          <property name="spacing">
+           <number>50</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_20">
+            <item>
+             <widget class="QLabel" name="label_116">
+              <property name="text">
+               <string>Mã bệnh nhân:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="viii_patient_id"/>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QPushButton" name="viii_add_btn">
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Thêm</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icon/add.svg</normaloff>icon/add.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="viii_delete_btn">
             <property name="text">
              <string>Xóa</string>
             </property>
