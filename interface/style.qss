@@ -10,11 +10,6 @@
     max-height: 35px;
 }
 
-/* Define styles for the 'menu_btn' widget */
-#menu_btn {
-    border: none;
-}
-
 /* Define styles for the 'QStackedWidget' */
 QStackedWidget {
     background-color: #fff;
@@ -54,6 +49,7 @@ QListWidget,
     border: 0px;
     padding: 5px 10px;
     margin: 2px 0;
+    min-height: 25px;
 }
 
 /* Border radius for '#listWidget' items */
@@ -72,9 +68,108 @@ QListWidget,
     background-color:hsl(0, 72.90%, 34.70%);
 }
 
+QLineEdit, QSpinBox, QDoubleSpinBox, QComboBox {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    background-color: white;
+    color: #333;
+    font-size: 13px;
+    font-family: Segoe UI;
+    min-height: 20px;
+}
+
+QLineEdit:focus {
+    border: 1px solid hsl(0, 72.90%, 34.70%);
+}
+
+QSpinBox:focus {
+    border: 1px solid hsl(0, 72.90%, 34.70%);
+}
+
+/* QPushButton styles */
+QPushButton {
+    font-size: 13px;
+    font-family: Segoe UI;
+    min-height: 10px;
+    min-width: 30px;
+    border: 1px solid #808080;
+    padding: 10px 20px;
+}
+
 QPushButton:hover {
     color: hsl(0, 72.90%, 34.70%);
+    border: 1px solid hsl(0, 72.90%, 34.70%);
 }
+
+QPushButton:disabled {
+    color: white;
+    border: none
+}
+
+QCheckBox {
+    background-color: white;
+    color: #333;
+    font-size: 13px;
+    font-family: Segoe UI;
+    min-height: 20px;
+}
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ccc;
+    background-color: white;
+    border-radius: 4px;
+}
+
+QCheckBox::indicator:checked {
+    background-color: #4CAF50;
+    border: 2px solid #4CAF50;
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: white;
+    border: 2px solid #ccc;
+}
+
+
+#label_110, #ii_tieu_de_bang, #iii_mo_ta_1, #label_3, #label_28, #label_41, #label_31, #label_32, #label_78 {
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: bold;
+    color: #333; 
+}
+
+QTextBrowser {
+    border: 1px solid #808080;
+    border-radius: 10px;
+    padding: 10px;
+    background-color:white;
+    color: #333;
+    font-size: 13px;
+    font-family: Segoe UI;
+}
+
+QTextBrowser QScrollBar:vertical {
+    width: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+QTextBrowser QScrollBar:vertical:hover {
+    background-color: #d0d0d0;
+}
+
+QTextBrowser QScrollBar::handle:vertical {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+QTextBrowser QScrollBar::handle:vertical:hover {
+    background-color: #aaa;
+}
+
 
 
 

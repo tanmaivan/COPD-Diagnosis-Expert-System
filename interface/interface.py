@@ -91,7 +91,7 @@ class MainWindow(QMainWindow):
         self.init_single_slot()
 
         # Connect the button click event to the engines
-        self.ui.i_add_btn.clicked.connect(lambda: self.add_database(self.get_patient_info(),"tb_patient_info", "tb_patient_info"))
+        self.ui.i_add_btn.clicked.connect(lambda: self.add_database(self.get_patient_info(),"tb_patient_info", "tb_patient_info") )
         self.ui.i_delete_btn.clicked.connect(lambda: self.delete_database("tb_patient_info", "tb_patient_info"))
         self.populate_table("tb_patient_info", "tb_patient_info")
 
@@ -243,6 +243,23 @@ class MainWindow(QMainWindow):
         address = self.ui.i_address.text()
         phone_number = self.ui.i_phone_number.text()
 
+        # Kiểm tra các trường bắt buộc
+        if not full_name:
+            QMessageBox.warning(self, "Lỗi nhập liệu", "Họ và tên không được để trống.")
+            return None
+        if not gender or gender == "Chọn giới tính":  # Giả sử có mục chọn mặc định
+            QMessageBox.warning(self, "Lỗi nhập liệu", "Vui lòng chọn giới tính.")
+            return None
+        if age <= 0:
+            QMessageBox.warning(self, "Lỗi nhập liệu", "Tuổi phải lớn hơn 0.")
+            return None
+        if not address:
+            QMessageBox.warning(self, "Lỗi nhập liệu", "Địa chỉ không được để trống.")
+            return None
+        if not phone_number:
+            QMessageBox.warning(self, "Lỗi nhập liệu", "Số điện thoại không được để trống.")
+            return None
+        
         patient_info = {
             "full_name": full_name,
             "gender": gender,
@@ -352,7 +369,6 @@ class MainWindow(QMainWindow):
             if isinstance(fact, LungFunctionData) and fact.get("GOLD_stage") is not None:
                 self.ui.iii_ket_qua_2.setText(f"Kết quả: Giai đoạn {fact.get('GOLD_stage')} - {fact.get('GOLD_stage_description')}")
                 return fact.get("GOLD_stage"), fact.get("GOLD_stage_description")
-
 
     def get_iii_lung_function_data(self):
         self.ui.iii_patient_id.value()

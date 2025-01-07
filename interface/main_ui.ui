@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1532</width>
+    <width>1295</width>
     <height>808</height>
    </rect>
   </property>
@@ -30,6 +30,16 @@
     <property name="spacing">
      <number>0</number>
     </property>
+    <item row="1" column="1">
+     <widget class="QListWidget" name="listWidget">
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="0" colspan="2">
      <widget class="QFrame" name="title_frame">
       <property name="frameShape">
@@ -56,26 +66,16 @@
       </layout>
      </widget>
     </item>
-    <item row="1" column="1">
-     <widget class="QListWidget" name="listWidget">
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>16777215</height>
-       </size>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="2" rowspan="2">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(236, 236, 236);</string>
+       <string notr="true"/>
       </property>
       <property name="frameShape">
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="i">
        <widget class="QFrame" name="i_info_frame">
@@ -116,10 +116,10 @@
         <widget class="QLabel" name="label_110">
          <property name="geometry">
           <rect>
-           <x>240</x>
+           <x>0</x>
            <y>30</y>
-           <width>147</width>
-           <height>16</height>
+           <width>591</width>
+           <height>20</height>
           </rect>
          </property>
          <property name="text">
@@ -209,7 +209,7 @@
           <x>670</x>
           <y>40</y>
           <width>661</width>
-          <height>71</height>
+          <height>81</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -240,9 +240,9 @@
         <property name="geometry">
          <rect>
           <x>670</x>
-          <y>100</y>
+          <y>120</y>
           <width>661</width>
-          <height>661</height>
+          <height>641</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -335,7 +335,7 @@
           <x>70</x>
           <y>40</y>
           <width>551</width>
-          <height>61</height>
+          <height>91</height>
          </rect>
         </property>
         <property name="mouseTracking">
@@ -372,9 +372,9 @@
        <widget class="QPushButton" name="ii_chan_doan_btn">
         <property name="geometry">
          <rect>
-          <x>300</x>
-          <y>310</y>
-          <width>93</width>
+          <x>270</x>
+          <y>420</y>
+          <width>151</width>
           <height>28</height>
          </rect>
         </property>
@@ -386,9 +386,9 @@
         <property name="geometry">
          <rect>
           <x>70</x>
-          <y>370</y>
+          <y>510</y>
           <width>551</width>
-          <height>51</height>
+          <height>61</height>
          </rect>
         </property>
        </widget>
@@ -398,10 +398,13 @@
           <x>70</x>
           <y>140</y>
           <width>551</width>
-          <height>150</height>
+          <height>241</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
+         <property name="spacing">
+          <number>15</number>
+         </property>
          <item>
           <widget class="QLabel" name="ii_tieu_de_bang">
            <property name="font">
@@ -413,10 +416,19 @@
            <property name="text">
             <string>BỘ CÂU HỎI TẦM SOÁT BỆNH PHỔI TẮC NGHẼN MẠN TÍNH Ở CỘNG ĐỒNG (THEO GOLD)</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item>
           <layout class="QGridLayout" name="gridLayout_13">
+           <property name="spacing">
+            <number>15</number>
+           </property>
            <item row="0" column="0">
             <widget class="QCheckBox" name="ii_ho">
              <property name="text">
@@ -460,9 +472,9 @@
         <property name="geometry">
          <rect>
           <x>670</x>
-          <y>100</y>
+          <y>120</y>
           <width>661</width>
-          <height>661</height>
+          <height>641</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -550,7 +562,7 @@
           <x>670</x>
           <y>30</y>
           <width>661</width>
-          <height>71</height>
+          <height>91</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -565,12 +577,21 @@
            <x>110</x>
            <y>20</y>
            <width>454</width>
-           <height>30</height>
+           <height>48</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_29">
           <property name="spacing">
            <number>50</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
           </property>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_30">
@@ -644,10 +665,10 @@
             <enum>Qt::DefaultContextMenu</enum>
            </property>
            <property name="frameShape">
-            <enum>QFrame::Box</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="text">
-            <string>Đo chức năng hô hấp: kết quả đo CNHH là tiêu chuẩn vàng để chẩn đoán xác định và đánh giá mức độ tắc nghẽn đường thở của bệnh nhân BPTNMT.</string>
+            <string>Chẩn đoán mắc bệnh phổi tắc nghẽn mạn tính</string>
            </property>
            <property name="textFormat">
             <enum>Qt::AutoText</enum>
@@ -686,92 +707,13 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>370</y>
-          <width>591</width>
-          <height>211</height>
-         </rect>
-        </property>
-        <layout class="QGridLayout" name="iii_danh_gia_bptnmt">
-         <item row="2" column="0">
-          <widget class="QLabel" name="iii_fev1_label">
-           <property name="text">
-            <string>FEV₁</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0" colspan="4">
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Đánh giá mức độ tắc nghẽn đường thở</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="3">
-          <widget class="QPushButton" name="iii_chan_doan_2_btn">
-           <property name="text">
-            <string>Chẩn đoán</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0" colspan="4">
-          <widget class="QLabel" name="iii_mo_ta_2">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="mouseTracking">
-            <bool>true</bool>
-           </property>
-           <property name="tabletTracking">
-            <bool>false</bool>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
-           </property>
-           <property name="contextMenuPolicy">
-            <enum>Qt::DefaultContextMenu</enum>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::Box</enum>
-           </property>
-           <property name="text">
-            <string>Mục tiêu của đánh giá BPTNMT để xác định mức độ giới hạn của luồng khí thở, ảnh hưởng của bệnh đến tình trạng sức khỏe của người bệnh và nguy cơ đợt cấp trong tương lai giúp điều trị bệnh hiệu quả hơn.
-Đánh giá BPTNMT dựa trên các khía cạnh sau: mức độ tắc nghẽn đường thở, độ nặng của triệu chứng hiện tại và sự ảnh hưởng của bệnh đối với sức khỏe và cuộc sống của bệnh nhân, tiền sử đợt cấp trong năm trước) và các bệnh lý đồng mắc.
-</string>
-           </property>
-           <property name="textFormat">
-            <enum>Qt::AutoText</enum>
-           </property>
-           <property name="scaledContents">
-            <bool>false</bool>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-           </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QDoubleSpinBox" name="iii_fev1">
-           <property name="maximum">
-            <double>1000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
        <widget class="QFrame" name="i_result_frame_11">
         <property name="geometry">
          <rect>
           <x>670</x>
-          <y>100</y>
+          <y>120</y>
           <width>661</width>
-          <height>661</height>
+          <height>641</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -859,7 +801,7 @@
           <x>670</x>
           <y>30</y>
           <width>661</width>
-          <height>71</height>
+          <height>91</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -874,12 +816,18 @@
            <x>110</x>
            <y>20</y>
            <width>454</width>
-           <height>30</height>
+           <height>48</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_27">
           <property name="spacing">
            <number>50</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
           </property>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_28">
@@ -943,6 +891,46 @@
          </rect>
         </property>
        </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>470</y>
+          <width>591</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_14">
+         <item row="1" column="2">
+          <widget class="QPushButton" name="iii_chan_doan_2_btn">
+           <property name="text">
+            <string>Chẩn đoán</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="iii_fev1_label">
+           <property name="text">
+            <string>FEV₁</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QDoubleSpinBox" name="iii_fev1">
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="2">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Đánh giá mức độ tắc nghẽn đường thở</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
       <widget class="QWidget" name="v">
        <widget class="QPushButton" name="v_chan_doan_btn">
@@ -950,7 +938,7 @@
          <rect>
           <x>480</x>
           <y>590</y>
-          <width>93</width>
+          <width>151</width>
           <height>28</height>
          </rect>
         </property>
@@ -983,6 +971,9 @@
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <property name="spacing">
+            <number>15</number>
+           </property>
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
@@ -1422,8 +1413,8 @@
             <widget class="QLabel" name="label_58">
              <property name="font">
               <font>
-               <weight>75</weight>
-               <bold>true</bold>
+               <weight>50</weight>
+               <bold>false</bold>
               </font>
              </property>
              <property name="text">
@@ -1437,8 +1428,8 @@
               <widget class="QLabel" name="label_59">
                <property name="font">
                 <font>
-                 <weight>75</weight>
-                 <bold>true</bold>
+                 <weight>50</weight>
+                 <bold>false</bold>
                 </font>
                </property>
                <property name="text">
@@ -1462,6 +1453,9 @@
          </item>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_14">
+           <property name="spacing">
+            <number>0</number>
+           </property>
            <item>
             <widget class="QSpinBox" name="v_exacerbations"/>
            </item>
@@ -1476,9 +1470,9 @@
         <property name="geometry">
          <rect>
           <x>60</x>
-          <y>650</y>
+          <y>670</y>
           <width>571</width>
-          <height>111</height>
+          <height>91</height>
          </rect>
         </property>
        </widget>
@@ -1486,9 +1480,9 @@
         <property name="geometry">
          <rect>
           <x>670</x>
-          <y>100</y>
+          <y>120</y>
           <width>661</width>
-          <height>661</height>
+          <height>641</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -1576,7 +1570,7 @@
           <x>670</x>
           <y>30</y>
           <width>661</width>
-          <height>71</height>
+          <height>91</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -1591,12 +1585,18 @@
            <x>110</x>
            <y>20</y>
            <width>454</width>
-           <height>30</height>
+           <height>48</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_9">
           <property name="spacing">
            <number>50</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
           </property>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_10">
@@ -1652,9 +1652,9 @@
        <widget class="QTextBrowser" name="vi_ket_qua">
         <property name="geometry">
          <rect>
-          <x>150</x>
-          <y>470</y>
-          <width>371</width>
+          <x>140</x>
+          <y>540</y>
+          <width>391</width>
           <height>151</height>
          </rect>
         </property>
@@ -1676,7 +1676,7 @@
         <property name="geometry">
          <rect>
           <x>290</x>
-          <y>400</y>
+          <y>440</y>
           <width>93</width>
           <height>28</height>
          </rect>
@@ -1688,13 +1688,19 @@
        <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>160</x>
-          <y>150</y>
-          <width>368</width>
-          <height>224</height>
+          <x>150</x>
+          <y>70</y>
+          <width>381</width>
+          <height>336</height>
          </rect>
         </property>
         <layout class="QFormLayout" name="formLayout">
+         <property name="horizontalSpacing">
+          <number>15</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>15</number>
+         </property>
          <item row="0" column="0">
           <widget class="QLabel" name="label">
            <property name="text">
@@ -1867,9 +1873,9 @@
         <property name="geometry">
          <rect>
           <x>670</x>
-          <y>100</y>
+          <y>120</y>
           <width>661</width>
-          <height>661</height>
+          <height>641</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -1957,7 +1963,7 @@
           <x>670</x>
           <y>30</y>
           <width>661</width>
-          <height>71</height>
+          <height>91</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -1972,12 +1978,18 @@
            <x>110</x>
            <y>20</y>
            <width>454</width>
-           <height>30</height>
+           <height>48</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_11">
           <property name="spacing">
            <number>50</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
           </property>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_12">
@@ -2026,8 +2038,8 @@
        <widget class="QPushButton" name="vii_ket_qua_btn">
         <property name="geometry">
          <rect>
-          <x>180</x>
-          <y>210</y>
+          <x>190</x>
+          <y>270</y>
           <width>93</width>
           <height>28</height>
          </rect>
@@ -2063,9 +2075,9 @@
         <property name="geometry">
          <rect>
           <x>70</x>
-          <y>340</y>
-          <width>261</width>
-          <height>16</height>
+          <y>325</y>
+          <width>321</width>
+          <height>41</height>
          </rect>
         </property>
         <property name="text">
@@ -2076,7 +2088,7 @@
         <property name="geometry">
          <rect>
           <x>180</x>
-          <y>640</y>
+          <y>710</y>
           <width>93</width>
           <height>28</height>
          </rect>
@@ -2088,9 +2100,9 @@
        <widget class="QTextBrowser" name="viii_ket_qua">
         <property name="geometry">
          <rect>
-          <x>410</x>
-          <y>360</y>
-          <width>241</width>
+          <x>430</x>
+          <y>370</y>
+          <width>221</width>
           <height>301</height>
          </rect>
         </property>
@@ -2100,11 +2112,20 @@
          <rect>
           <x>70</x>
           <y>70</y>
-          <width>335</width>
-          <height>124</height>
+          <width>353</width>
+          <height>178</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
+         <property name="horizontalSpacing">
+          <number>6</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>15</number>
+         </property>
          <item row="3" column="0" colspan="4">
           <widget class="QLabel" name="label_26">
            <property name="text">
@@ -2198,10 +2219,16 @@
           <x>70</x>
           <y>370</y>
           <width>321</width>
-          <height>252</height>
+          <height>315</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
+         <property name="bottomMargin">
+          <number>20</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>15</number>
+         </property>
          <item row="2" column="8">
           <widget class="QSpinBox" name="viii_bode_score">
            <property name="maximum">
@@ -2366,9 +2393,9 @@
         <property name="geometry">
          <rect>
           <x>670</x>
-          <y>100</y>
+          <y>120</y>
           <width>661</width>
-          <height>231</height>
+          <height>211</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -2383,7 +2410,7 @@
            <x>10</x>
            <y>20</y>
            <width>641</width>
-           <height>201</height>
+           <height>181</height>
           </rect>
          </property>
          <property name="focusPolicy">
@@ -2456,7 +2483,7 @@
           <x>670</x>
           <y>30</y>
           <width>661</width>
-          <height>71</height>
+          <height>91</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -2471,12 +2498,18 @@
            <x>110</x>
            <y>20</y>
            <width>454</width>
-           <height>30</height>
+           <height>48</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_15">
           <property name="spacing">
            <number>50</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
           </property>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_16">
@@ -2524,9 +2557,9 @@
         <property name="geometry">
          <rect>
           <x>670</x>
-          <y>410</y>
+          <y>430</y>
           <width>661</width>
-          <height>341</height>
+          <height>321</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -2541,7 +2574,7 @@
            <x>10</x>
            <y>20</y>
            <width>641</width>
-           <height>311</height>
+           <height>301</height>
           </rect>
          </property>
          <property name="focusPolicy">
@@ -2614,7 +2647,7 @@
           <x>670</x>
           <y>340</y>
           <width>661</width>
-          <height>71</height>
+          <height>91</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -2629,12 +2662,18 @@
            <x>110</x>
            <y>20</y>
            <width>454</width>
-           <height>30</height>
+           <height>48</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_19">
           <property name="spacing">
            <number>50</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
           </property>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_20">
@@ -2684,9 +2723,9 @@
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>120</y>
+          <y>49</y>
           <width>361</width>
-          <height>20</height>
+          <height>91</height>
          </rect>
         </property>
         <property name="text">
@@ -2696,9 +2735,9 @@
        <widget class="QPushButton" name="ix_chan_doan_btn">
         <property name="geometry">
          <rect>
-          <x>300</x>
-          <y>410</y>
-          <width>93</width>
+          <x>280</x>
+          <y>490</y>
+          <width>121</width>
           <height>28</height>
          </rect>
         </property>
@@ -2709,9 +2748,9 @@
        <widget class="QTextBrowser" name="ix_chan_doan">
         <property name="geometry">
          <rect>
-          <x>150</x>
-          <y>460</y>
-          <width>371</width>
+          <x>100</x>
+          <y>540</y>
+          <width>471</width>
           <height>192</height>
          </rect>
         </property>
@@ -2719,13 +2758,19 @@
        <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>160</x>
-          <y>150</y>
-          <width>364</width>
-          <height>242</height>
+          <x>100</x>
+          <y>130</y>
+          <width>471</width>
+          <height>341</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_4">
+         <property name="bottomMargin">
+          <number>20</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>15</number>
+         </property>
          <item row="7" column="0" colspan="4">
           <widget class="QLabel" name="label_77">
            <property name="text">
@@ -2866,9 +2911,9 @@
         <property name="geometry">
          <rect>
           <x>670</x>
-          <y>100</y>
+          <y>120</y>
           <width>661</width>
-          <height>661</height>
+          <height>641</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -2956,7 +3001,7 @@
           <x>670</x>
           <y>30</y>
           <width>661</width>
-          <height>71</height>
+          <height>91</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -2971,12 +3016,18 @@
            <x>110</x>
            <y>20</y>
            <width>454</width>
-           <height>30</height>
+           <height>48</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_17">
           <property name="spacing">
            <number>50</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
           </property>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_18">
@@ -3025,8 +3076,8 @@
        <widget class="QPushButton" name="x_ket_qua_btn">
         <property name="geometry">
          <rect>
-          <x>280</x>
-          <y>420</y>
+          <x>270</x>
+          <y>480</y>
           <width>93</width>
           <height>28</height>
          </rect>
@@ -3039,7 +3090,7 @@
         <property name="geometry">
          <rect>
           <x>60</x>
-          <y>490</y>
+          <y>550</y>
           <width>531</width>
           <height>141</height>
          </rect>
@@ -3051,7 +3102,7 @@
           <x>60</x>
           <y>50</y>
           <width>531</width>
-          <height>161</height>
+          <height>181</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -3074,10 +3125,16 @@
           <x>60</x>
           <y>250</y>
           <width>527</width>
-          <height>146</height>
+          <height>200</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_5">
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>15</number>
+         </property>
          <item row="2" column="0">
           <widget class="QLabel" name="label_81">
            <property name="text">
@@ -3173,9 +3230,9 @@
         <property name="geometry">
          <rect>
           <x>670</x>
-          <y>100</y>
+          <y>120</y>
           <width>661</width>
-          <height>661</height>
+          <height>641</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -3263,7 +3320,7 @@
           <x>670</x>
           <y>30</y>
           <width>661</width>
-          <height>71</height>
+          <height>91</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -3278,12 +3335,18 @@
            <x>110</x>
            <y>20</y>
            <width>454</width>
-           <height>30</height>
+           <height>48</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_21">
           <property name="spacing">
            <number>50</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
           </property>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_22">
@@ -3333,9 +3396,9 @@
         <property name="geometry">
          <rect>
           <x>390</x>
-          <y>100</y>
+          <y>40</y>
           <width>256</width>
-          <height>101</height>
+          <height>161</height>
          </rect>
         </property>
        </widget>
@@ -3343,9 +3406,9 @@
         <property name="geometry">
          <rect>
           <x>390</x>
-          <y>250</y>
+          <y>240</y>
           <width>256</width>
-          <height>171</height>
+          <height>241</height>
          </rect>
         </property>
        </widget>
@@ -3353,19 +3416,19 @@
         <property name="geometry">
          <rect>
           <x>390</x>
-          <y>470</y>
+          <y>500</y>
           <width>256</width>
-          <height>51</height>
+          <height>71</height>
          </rect>
         </property>
        </widget>
        <widget class="QTextBrowser" name="xi_ket_qua_4">
         <property name="geometry">
          <rect>
-          <x>400</x>
-          <y>570</y>
+          <x>390</x>
+          <y>600</y>
           <width>256</width>
-          <height>101</height>
+          <height>151</height>
          </rect>
         </property>
        </widget>
@@ -3373,14 +3436,23 @@
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>250</y>
-          <width>351</width>
-          <height>176</height>
+          <y>240</y>
+          <width>343</width>
+          <height>239</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_5">
+         <property name="spacing">
+          <number>15</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
          <item>
           <layout class="QGridLayout" name="gridLayout_7">
+           <property name="verticalSpacing">
+            <number>15</number>
+           </property>
            <item row="0" column="0">
             <widget class="QLabel" name="label_90">
              <property name="text">
@@ -3411,7 +3483,7 @@
            <item row="3" column="0">
             <widget class="QLabel" name="label_93">
              <property name="text">
-              <string>Nhập viện vì đợt cấp BPTNMT trong 3 tháng qua</string>
+              <string>Nhập viện vì đợt cấp trong 3 tháng qua</string>
              </property>
             </widget>
            </item>
@@ -3474,12 +3546,18 @@
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>470</y>
-          <width>351</width>
-          <height>54</height>
+          <y>500</y>
+          <width>341</width>
+          <height>81</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
+         <property name="spacing">
+          <number>15</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
          <item>
           <layout class="QGridLayout" name="gridLayout_8">
            <item row="0" column="0">
@@ -3514,14 +3592,26 @@
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>570</y>
-          <width>351</width>
-          <height>98</height>
+          <y>600</y>
+          <width>341</width>
+          <height>153</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_8">
+         <property name="spacing">
+          <number>15</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
          <item>
           <layout class="QGridLayout" name="gridLayout_9">
+           <property name="bottomMargin">
+            <number>20</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>15</number>
+           </property>
            <item row="0" column="0">
             <widget class="QLabel" name="label_97">
              <property name="text">
@@ -3578,14 +3668,23 @@
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>90</y>
-          <width>351</width>
-          <height>120</height>
+          <y>40</y>
+          <width>341</width>
+          <height>181</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
+         <property name="spacing">
+          <number>15</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
          <item>
           <layout class="QGridLayout" name="gridLayout_6">
+           <property name="verticalSpacing">
+            <number>15</number>
+           </property>
            <item row="0" column="0" colspan="3">
             <widget class="QLabel" name="label_86">
              <property name="text">
@@ -3659,9 +3758,9 @@
         <property name="geometry">
          <rect>
           <x>670</x>
-          <y>100</y>
+          <y>120</y>
           <width>661</width>
-          <height>661</height>
+          <height>641</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -3749,7 +3848,7 @@
           <x>670</x>
           <y>30</y>
           <width>661</width>
-          <height>71</height>
+          <height>91</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -3764,12 +3863,18 @@
            <x>110</x>
            <y>20</y>
            <width>454</width>
-           <height>30</height>
+           <height>48</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_23">
           <property name="spacing">
            <number>50</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
           </property>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_24">
@@ -3819,12 +3924,18 @@
         <property name="geometry">
          <rect>
           <x>130</x>
-          <y>130</y>
-          <width>380</width>
-          <height>54</height>
+          <y>80</y>
+          <width>381</width>
+          <height>121</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_18">
+         <property name="spacing">
+          <number>15</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
          <item>
           <layout class="QGridLayout" name="gridLayout_11">
            <item row="0" column="0">
@@ -3859,7 +3970,7 @@
         <property name="geometry">
          <rect>
           <x>130</x>
-          <y>210</y>
+          <y>240</y>
           <width>381</width>
           <height>81</height>
          </rect>
@@ -3870,11 +3981,17 @@
          <rect>
           <x>130</x>
           <y>370</y>
-          <width>380</width>
-          <height>54</height>
+          <width>381</width>
+          <height>101</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_19">
+         <property name="spacing">
+          <number>15</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
          <item>
           <layout class="QGridLayout" name="gridLayout_12">
            <item row="0" column="0">
@@ -3908,9 +4025,9 @@
        <widget class="QTextBrowser" name="xii_ket_qua_2">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>440</y>
-          <width>371</width>
+          <x>130</x>
+          <y>520</y>
+          <width>381</width>
           <height>101</height>
          </rect>
         </property>
@@ -3919,9 +4036,9 @@
         <property name="geometry">
          <rect>
           <x>670</x>
-          <y>100</y>
+          <y>120</y>
           <width>661</width>
-          <height>661</height>
+          <height>641</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -4009,7 +4126,7 @@
           <x>670</x>
           <y>30</y>
           <width>661</width>
-          <height>71</height>
+          <height>91</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -4024,12 +4141,18 @@
            <x>110</x>
            <y>20</y>
            <width>454</width>
-           <height>30</height>
+           <height>48</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_25">
           <property name="spacing">
            <number>50</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
           </property>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_26">
@@ -4083,7 +4206,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1532</width>
+     <width>1295</width>
      <height>26</height>
     </rect>
    </property>
