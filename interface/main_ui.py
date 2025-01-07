@@ -1140,7 +1140,7 @@ class Ui_MainWindow(object):
         self.ix = QtWidgets.QWidget()
         self.ix.setObjectName("ix")
         self.label_78 = QtWidgets.QLabel(parent=self.ix)
-        self.label_78.setGeometry(QtCore.QRect(160, 49, 361, 91))
+        self.label_78.setGeometry(QtCore.QRect(100, 49, 471, 81))
         self.label_78.setObjectName("label_78")
         self.ix_chan_doan_btn = QtWidgets.QPushButton(parent=self.ix)
         self.ix_chan_doan_btn.setGeometry(QtCore.QRect(280, 490, 121, 28))
@@ -1425,7 +1425,7 @@ class Ui_MainWindow(object):
         self.xi_ket_qua_2.setGeometry(QtCore.QRect(390, 240, 256, 241))
         self.xi_ket_qua_2.setObjectName("xi_ket_qua_2")
         self.xi_ket_qua_3 = QtWidgets.QTextBrowser(parent=self.xi)
-        self.xi_ket_qua_3.setGeometry(QtCore.QRect(390, 500, 256, 71))
+        self.xi_ket_qua_3.setGeometry(QtCore.QRect(390, 490, 256, 101))
         self.xi_ket_qua_3.setObjectName("xi_ket_qua_3")
         self.xi_ket_qua_4 = QtWidgets.QTextBrowser(parent=self.xi)
         self.xi_ket_qua_4.setGeometry(QtCore.QRect(390, 600, 256, 151))
@@ -1768,7 +1768,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(9)
+        self.stackedWidget.setCurrentIndex(6)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -1936,7 +1936,7 @@ class Ui_MainWindow(object):
         self.vi_delete_btn.setText(_translate("MainWindow", "Xóa"))
         self.vii_ket_qua_btn.setText(_translate("MainWindow", "Kiểm tra"))
         self.label_31.setText(_translate("MainWindow", "Chỉ định thở oxi"))
-        self.label_32.setText(_translate("MainWindow", "Chỉ định nội soi can thiệp và phẫu thuật"))
+        self.label_32.setText(_translate("MainWindow", "Nội soi can thiệp và phẫu thuật"))
         self.viii_ket_qua_btn.setText(_translate("MainWindow", "Kiểm tra"))
         self.label_26.setText(_translate("MainWindow", "Bệnh nhân có dấu hiệu suy tim phải:"))
         self.label_22.setText(_translate("MainWindow", "PaO₂:"))
