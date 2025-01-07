@@ -75,7 +75,7 @@
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>6</number>
+       <number>9</number>
       </property>
       <widget class="QWidget" name="i">
        <widget class="QFrame" name="i_info_frame">
@@ -257,7 +257,7 @@
            <x>10</x>
            <y>20</y>
            <width>641</width>
-           <height>631</height>
+           <height>611</height>
           </rect>
          </property>
          <property name="focusPolicy">
@@ -489,7 +489,7 @@
            <x>10</x>
            <y>20</y>
            <width>641</width>
-           <height>631</height>
+           <height>611</height>
           </rect>
          </property>
          <property name="focusPolicy">
@@ -728,7 +728,7 @@
            <x>10</x>
            <y>20</y>
            <width>641</width>
-           <height>631</height>
+           <height>611</height>
           </rect>
          </property>
          <property name="focusPolicy">
@@ -1497,7 +1497,7 @@
            <x>10</x>
            <y>20</y>
            <width>641</width>
-           <height>631</height>
+           <height>611</height>
           </rect>
          </property>
          <property name="focusPolicy">
@@ -1890,7 +1890,7 @@
            <x>10</x>
            <y>20</y>
            <width>641</width>
-           <height>631</height>
+           <height>611</height>
           </rect>
          </property>
          <property name="focusPolicy">
@@ -2928,7 +2928,7 @@
            <x>10</x>
            <y>20</y>
            <width>641</width>
-           <height>631</height>
+           <height>611</height>
           </rect>
          </property>
          <property name="focusPolicy">
@@ -3247,7 +3247,7 @@
            <x>10</x>
            <y>20</y>
            <width>641</width>
-           <height>631</height>
+           <height>611</height>
           </rect>
          </property>
          <property name="focusPolicy">
@@ -3775,7 +3775,7 @@
            <x>10</x>
            <y>20</y>
            <width>641</width>
-           <height>631</height>
+           <height>611</height>
           </rect>
          </property>
          <property name="focusPolicy">
@@ -4053,7 +4053,7 @@
            <x>10</x>
            <y>20</y>
            <width>641</width>
-           <height>631</height>
+           <height>611</height>
           </rect>
          </property>
          <property name="focusPolicy">

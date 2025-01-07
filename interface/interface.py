@@ -91,7 +91,7 @@ class MainWindow(QMainWindow):
         self.init_single_slot()
 
         # Connect the button click event to the engines
-        self.ui.i_add_btn.clicked.connect(lambda: self.add_database(self.get_patient_info(),"tb_patient_info", "tb_patient_info") )
+        self.ui.i_add_btn.clicked.connect(lambda: self.add_database(self.get_patient_info(),"tb_patient_info", "tb_patient_info") if self.get_patient_info() else None)
         self.ui.i_delete_btn.clicked.connect(lambda: self.delete_database("tb_patient_info", "tb_patient_info"))
         self.populate_table("tb_patient_info", "tb_patient_info")
 
@@ -156,6 +156,8 @@ class MainWindow(QMainWindow):
         self.ui.xi_ket_qua_btn_3.setEnabled(False)
         self.ui.xi_ket_qua_btn_4.setEnabled(False)
         self.ui.xii_ket_qua_btn_2.setEnabled(False)
+
+        self.showMaximized()
 
     def init_list_widget(self):
         for item in self.menu_list:

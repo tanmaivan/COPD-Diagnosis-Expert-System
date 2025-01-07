@@ -1,49 +1,40 @@
-/* Define styles for the 'title_label' widget */
 #title_label {
     font-size: 16px;
     font-family: Amazone BT;
 }
 
-/* Define styles for the 'title_icon' widget */
 #title_icon {
     max-width: 35px;
     max-height: 35px;
 }
 
-/* Define styles for the 'QStackedWidget' */
 QStackedWidget {
     background-color: #fff;
 }
 
-/* Define styles for 'QListWidget' and '#title_frame' */
 QListWidget,
 #title_frame {
     background-color: #f0f0f0;
 }
 
-/* Define border styles for '#stackedWidget' and '#title_frame' */
 #stackedWidget,
 #title_frame {
     border: 1px solid #828790;
 }
 
-/* Additional border style for '#stackedWidget' */
 #stackedWidget {
     border-left: none;
 }
 
-/* Additional border style for '#title_frame' */
 #title_frame {
     border-bottom: none;
 }
 
-/* Define font styles for '#listWidget' */
 #listWidget {
     font-size: 13px;
     font-family: Segoe UI Semibold;
 }
 
-/* Styles for list items in '#listWidget'*/
 #listWidget::item {
     /* Ensure borders are set for proper styling */
     border: 0px;
@@ -52,18 +43,15 @@ QListWidget,
     min-height: 25px;
 }
 
-/* Border radius for '#listWidget' items */
 #listWidget::item {
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
 }
 
-/* Hover effect for list items */
 #listWidget::item:hover{
     background-color: #dadada;
 }
 
-/* Selected item styles for list items */
 #listWidget::item:selected{
     background-color:hsl(0, 72.90%, 34.70%);
 }
@@ -124,8 +112,8 @@ QCheckBox::indicator {
 }
 
 QCheckBox::indicator:checked {
-    background-color: #4CAF50;
-    border: 2px solid #4CAF50;
+    background-color: hsl(0, 72.90%, 34.70%);
+    border: 2px solid hsl(0, 72.90%, 34.70%);
 }
 
 QCheckBox::indicator:unchecked {
@@ -170,6 +158,28 @@ QTextBrowser QScrollBar::handle:vertical:hover {
     background-color: #aaa;
 }
 
+QTableWidget {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+}
+
+QHeaderView::section {
+    background-color: hsl(0, 72.90%, 34.70%);
+    color: white;
+    padding: 4px;
+    border: 1px solid #ddd;
+}
+
+QTableWidget::item {
+    padding: 5px;
+}
+
+QTableWidget QScrollBar:vertical {
+    width: 10px;
+    background-color: hsl(0, 72.90%, 34.70%);
+    border-radius: 5px;
+}
 
 
 
