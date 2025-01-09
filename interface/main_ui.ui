@@ -75,7 +75,7 @@
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="i">
        <widget class="QFrame" name="i_info_frame">
@@ -323,6 +323,28 @@
           </property>
          </column>
         </widget>
+       </widget>
+       <widget class="QLabel" name="label_104">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>590</y>
+          <width>491</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="text">
+         <string>Đối với các mục sau, sau khi hoàn tất chẩn đoán hoặc tương tác, nếu cần lưu kết quả, hãy sử dụng patient_id tương ứng của từng người trong bảng bên để thực hiện việc lưu trữ.</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </widget>
       <widget class="QWidget" name="ii">

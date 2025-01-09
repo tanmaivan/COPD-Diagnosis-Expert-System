@@ -54,6 +54,7 @@ QListWidget,
 
 #listWidget::item:selected{
     background-color:hsl(0, 72.90%, 34.70%);
+    color: white;
 }
 
 QLineEdit, QSpinBox, QDoubleSpinBox, QComboBox {
