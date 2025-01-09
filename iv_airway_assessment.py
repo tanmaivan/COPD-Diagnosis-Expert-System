@@ -46,4 +46,3 @@ def run_airway_assessment():
 
 if __name__ == "__main__":
     run_airway_assessment()
-

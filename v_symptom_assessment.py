@@ -209,4 +209,3 @@ def run_symptom_assessment():
         #         print(f"{key}: {value}")
 if __name__ == "__main__":
     run_symptom_assessment()
-

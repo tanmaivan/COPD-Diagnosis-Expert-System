@@ -45,7 +45,7 @@ class InterventionRecommendation(KnowledgeEngine):
         self.diagnosis_result_description = "Phẫu thuật giảm thể tích phổi có thể được chỉ định cho bệnh nhân có ứ khí thùy trên."
         self.diagnosis_result = "lung_volume_reduction_surgery"
 
-    @Rule(LungInterventionAssessment(bode_score=MATCH.bode_score, emphysema_severity="nặng", ),
+    @Rule(LungInterventionAssessment(bode_score=MATCH.bode_score, emphysema_severity="nặng"),
           TEST(lambda bode_score: 7 <= bode_score <= 10),
           OR(LungInterventionAssessment(acute_CO2_exacerbation=True),
              LungInterventionAssessment(pulmonary_hypertension=True),

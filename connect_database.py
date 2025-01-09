@@ -94,6 +94,7 @@ class ConnectDatabase:
             self.con.commit()
         except Exception as E:
             self.con.rollback()
+            print(f"Error deleting data from {table_name}: {E}")
             return E
         finally:
             self.con.close()

@@ -23,6 +23,7 @@ class COPDExpertSystem(KnowledgeEngine):
             print("Kết quả: Có nguy cơ BPTNMT. Khuyến cáo đo chức năng hô hấp.")
         else:
             self.declare(Fact(screening="negative"))
+
             print("Kết quả: Không có nguy cơ BPTNMT.")
 
     @Rule(Fact(screening="positive"))

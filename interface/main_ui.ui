@@ -75,7 +75,7 @@
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>6</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="i">
        <widget class="QFrame" name="i_info_frame">
@@ -891,7 +891,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>40</x>
@@ -937,7 +937,7 @@
         <property name="geometry">
          <rect>
           <x>480</x>
-          <y>590</y>
+          <y>620</y>
           <width>151</width>
           <height>28</height>
          </rect>
@@ -952,7 +952,7 @@
           <x>60</x>
           <y>40</y>
           <width>561</width>
-          <height>178</height>
+          <height>207</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -976,6 +976,12 @@
            </property>
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_4">
+             <property name="spacing">
+              <number>15</number>
+             </property>
+             <property name="bottomMargin">
+              <number>10</number>
+             </property>
              <item>
               <widget class="QLabel" name="label_4">
                <property name="text">
@@ -1018,6 +1024,9 @@
            </item>
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_3">
+             <property name="spacing">
+              <number>15</number>
+             </property>
              <item>
               <widget class="QLabel" name="label_9">
                <property name="text">
@@ -1096,7 +1105,7 @@
         <property name="geometry">
          <rect>
           <x>60</x>
-          <y>230</y>
+          <y>250</y>
           <width>566</width>
           <height>326</height>
          </rect>
@@ -1401,7 +1410,7 @@
         <property name="geometry">
          <rect>
           <x>60</x>
-          <y>570</y>
+          <y>590</y>
           <width>375</width>
           <height>66</height>
          </rect>

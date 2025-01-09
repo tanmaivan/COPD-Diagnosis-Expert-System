@@ -63,7 +63,7 @@ class MainWindow(QMainWindow):
                 "name": "3. Đo chức năng hô hấp",
             },
             {
-                "name": "4. Độ tắc nghẽn đường thở",
+                "name": "4. Phân nhóm và điều trị",
             },
             {
                 "name": "5. Chuyển đổi điều trị thuốc",

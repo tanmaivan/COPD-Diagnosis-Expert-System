@@ -9,7 +9,7 @@ class LungFunctionData(Fact):
     GOLD_stage_description = Field(str)  # Mô tả giai đoạn GOLD
 
 class DiagnosisEngine(KnowledgeEngine):
-    @Rule(LungFunctionData(fev1_fvc=MATCH.fev1_fvc))
+    @Rule(LungFunctionData(fev1_fvc=MATCH.fev1_fvc)) 
     def check_fev1_fvc(self, fev1_fvc):
         if fev1_fvc < 70:
             self.declare(LungFunctionData(fev1_fvc=fev1_fvc, copd=True))
