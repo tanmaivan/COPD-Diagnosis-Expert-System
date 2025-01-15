@@ -383,7 +383,6 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, "Lỗi", "Dữ liệu bệnh nhân đã tồn tại.")
             return None
         
-
         fev1_fvc = self.ui.iii_fev1_fvc.value()
         copd = self.run_iii_diagnosis_engine()
         if copd == False:
